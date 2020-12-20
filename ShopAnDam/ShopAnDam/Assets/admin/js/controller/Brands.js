@@ -1,23 +1,12 @@
 ﻿//<reference path="jquery-1.9.1.intellisense.js" />
 //Load Data in Table when documents is ready
-
+var tuKhoa = '';
 $(document).ready(function () {
-
-
-    function Constains(text_one, text_two) {
-        if (text_one.indexOf(text_two)) {
-            return true;
-        }
-    }
-    $("#Search").keyup(function () {
-        var searchText = $("#Search").val().toLowerCase();
-        $(".Search").each(function () {
-            if (!Contains($(this).text().toLowerCase, searchText)) {
-                $(this).hide();
-            } else {
-                $(this).show();
-            }
-        })
+    $("#txtSearch").on("keyup", function () {
+        var value = $('#txtSearch').val().toLowerCase();
+        $(".tbody tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
     });
     loadData();
  
@@ -28,20 +17,21 @@ function loadData() {
     $.ajax({
         url: "/Admin/Brand/List",
         type: "GET",
+       
         contentType: "application/json;charset=utf-8",
         dataType: "json",
-        success: function (result) {
-            var html = '';
-            $.each(result, function (key, item) {
-                html += '<tr>';
-                html += '<td>' + item.ID + '</td>';
-                html += '<td>' + item.Name + '</td>';
-                html += '<td>' + item.Logo + '</td>';
-                html += '<td><a href="#" class="btn btn-primary btn-xs"  onclick="return getbyID(' + item.ID + ')"><i class="fa fa-pencil"></a> | <a href="#" class="btn btn-danger btn-xs fa fa-trash-o"  onclick="Delele(' + item.ID + ')"></a></td>';
-                html += '</tr>';
-            });
-            $('.tbody').html(html);
-        },
+        //success: function (data) {
+        //    var html = '';
+        //    $.each(data, function (key, item) {
+        //        html += '<tr>';
+        //        html += '<td>' + item.ID + '</td>';
+        //        html += '<td>' + item.Name + '</td>';
+        //        html += '<td>' + item.Logo + '</td>';
+        //        html += '<td><a href="#" class="btn btn-primary btn-xs"  onclick="return getbyID(' + item.ID + ')"><i class="fa fa-pencil"></a> | <a href="#" class="btn btn-danger btn-xs fa fa-trash-o"  onclick="Delele(' + item.ID + ')"></a></td>';
+        //        html += '</tr>';
+        //    });
+        //    $('.tbody').html(html);
+        //},
         error: function (errormessage) {
             alert(errormessage.responseText);
         }
@@ -75,6 +65,7 @@ function Add() {
             alert(errormessage.responseText);
         }
     });
+    loadData();
 }
 
 //Function for getting the Data Based upon Employee ID
@@ -88,6 +79,7 @@ function getbyID(ID) {
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
+            loadData();
             $('#ID').val(result.ID);
             $('#Name').val(result.Name);
             $('#Logo').val(result.Logo);

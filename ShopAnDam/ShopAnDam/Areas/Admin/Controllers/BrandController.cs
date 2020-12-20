@@ -11,22 +11,33 @@ namespace ShopAnDam.Areas.Admin.Controllers
     public class BrandController : BaseController
     {
         BrandDao brandDao = new BrandDao();
+ 
         // GET: Admin/Brand
-        public ActionResult Index()
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
-            return View();
+            var dao = new BrandDao();
+            var model = dao.ListAllPageList(searchString, page, pageSize);
+            ViewBag.SearchString = searchString;
+            return View(model);
         }
-
         public JsonResult List()
         {
-            //var model = brandDao.ListAll().Skip((page - 1) * pageSize).Take(pageSize);
-            //int totalRow = brandDao.ListAll().Count;
-
-            return Json(brandDao.ListAll(), JsonRequestBehavior.AllowGet); 
+             return Json(brandDao.ListAll(), JsonRequestBehavior.AllowGet);
         }
         public JsonResult Add(Brand emp)
         {
-            return Json(brandDao.Add(emp), JsonRequestBehavior.AllowGet);
+            long id = brandDao.Add(emp);
+            if (id > 0)
+            {
+                SetAlert("Thêm thành công!", "success");
+                return Json(brandDao.Add(emp), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                SetAlert("Thêm thất bại!", "error");
+                return Json( JsonRequestBehavior.AllowGet);
+            }
+           
         }
         public JsonResult GetbyID(int ID)
         {
@@ -35,11 +46,23 @@ namespace ShopAnDam.Areas.Admin.Controllers
         }
         public JsonResult Update(Brand emp)
         {
+            SetAlert("Sửa thành công!", "success");
             return Json(brandDao.Update(emp), JsonRequestBehavior.AllowGet);
         }
         public JsonResult Delete(int ID)
         {
-            return Json(brandDao.Delete(ID), JsonRequestBehavior.AllowGet);
+            long id = brandDao.Delete(ID);
+            if (id > 0)
+            {
+                SetAlert("Xóa thành công!", "success");
+                return Json(brandDao.Delete(ID), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                SetAlert("Xóa thất bại!", "error");
+                return Json( JsonRequestBehavior.AllowGet);
+            }
+
         }
 
     }

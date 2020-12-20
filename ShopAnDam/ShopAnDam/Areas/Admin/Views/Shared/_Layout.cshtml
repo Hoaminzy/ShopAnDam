@@ -219,7 +219,10 @@
                         </ul>
                     </li>
                     <!-- notification dropdown end -->
+
+                
                 </ul>
+             
                 <!--  notification end -->
             </div>
             <div class="top-menu">
@@ -244,6 +247,13 @@
             <section class="wrapper">
                 <div class="row">
                     <div class="col-lg-9 main-chart">
+                        @if (TempData["AlertMessage"] != null)
+                        {
+                            <div id="AlertBox" class="alert @TempData["AlertType"] hide  col-lg-4">
+                                @TempData["AlertMessage"]
+                            </div>
+                        }
+
                         <div class="border-head">
                             <h3>@RenderSection("header", required: true)</h3>
                         </div>

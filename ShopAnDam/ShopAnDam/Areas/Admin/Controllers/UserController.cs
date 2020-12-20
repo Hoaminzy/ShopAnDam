@@ -43,12 +43,14 @@ namespace ShopAnDam.Areas.Admin.Controllers
                 long id = dao.Insert(user);
                 if (id > 0)
                 {
+                    SetAlert("Thêm thành công!", "success");
                     return RedirectToAction("Index", "User");
 
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Thêm thành công");
+                    SetAlert("Thêm thất bại!", "error");
+                    ModelState.AddModelError("", "Thêm thất bại");
                 }
             }
 
@@ -70,12 +72,14 @@ namespace ShopAnDam.Areas.Admin.Controllers
                 var res = dao.Update(user);
                 if (res)
                 {
+                    SetAlert("Cập nhật thành công!", "success");
                     return RedirectToAction("Index", "User");
 
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Cập nhật thành công");
+                    SetAlert("Cập nhật thất bại!", "error");
+                    ModelState.AddModelError("", "Cập nhật thất bại!");
                 }
             }
 
@@ -85,6 +89,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
        public ActionResult Delete(int id)
         {
             new UserDao().Delete(id);
+            SetAlert("Xóa thành công!", "success");
             return RedirectToAction("Index");
         }
         [HttpPost]

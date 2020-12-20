@@ -1,4 +1,4 @@
-/*---LEFT BAR ACCORDION----*/
+﻿/*---LEFT BAR ACCORDION----*/
 $(function() {
   $('#nav-accordion').dcAccordion({
     eventType: 'click',
@@ -11,6 +11,9 @@ $(function() {
     //        cookie: 'dcjq-accordion-1',
     classExpand: 'dcjq-current-parent'
   });
+    $('#AlertBox').removeClass('hide'); //hien thi lên
+    $('#AlertBox').delay(1000).slideUp(500); //hien thi thong bao trong 1s
+
 });
 
 var Script = function() {

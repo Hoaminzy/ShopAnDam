@@ -1,4 +1,5 @@
-﻿using ShopAnDam.Models.Framework;
+﻿using PagedList;
+using ShopAnDam.Models.Framework;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,6 +12,11 @@ namespace ShopAnDam.Models.Dao
 {
     public class BrandDao
     {
+        AnDamDBContext db = null;
+        public BrandDao()
+        {
+            db = new AnDamDBContext();
+        }
         string cs = ConfigurationManager.ConnectionStrings["AnDamDBContext"].ConnectionString;
         public List<Brand> ListAll()
         {
@@ -36,7 +42,16 @@ namespace ShopAnDam.Models.Dao
 
 
         }
+        public IEnumerable<Brand> ListAllPageList(string searchString, int page, int pageSize)
+        {
 
+            IQueryable<Brand> model = db.Brands;
+            if (!string.IsNullOrEmpty(searchString))
+            {//Contains: tìm kiếm gần đúng
+                model = model.Where(x => x.Name.Contains(searchString) || x.Name.Contains(searchString));
+            }
+            return model.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
+        }
         public int Add(Brand brands)
         {
             using (SqlConnection con = new SqlConnection(cs))
