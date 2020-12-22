@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using PagedList.Mvc;
 using PagedList;
+using ShopAnDam.Common;
 
 namespace ShopAnDam.Models.Dao
 {
@@ -60,26 +61,53 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Users.Find(id);
         }
-        public int Login(string UserName, string PassWord)
+        public int Login(string UserName, string PassWord, bool isLoginAdmin =false)
         {
             var result = db.Users.SingleOrDefault(x => x.UserName == UserName );
+          
             if (result == null)
             {
                 return 0; // Không có tài khoản
             }
+
             else
             {
-                if(result.Status == false)
+                if(isLoginAdmin ==true  )
                 {
-                    return -1; //Tài khoản bị khóa
-                }
-                else
-                {
-                    if (result.PassWord == PassWord)
-                        return 1; //tài khoản đúng
+                    if(result.GroupID == CommonConStants.ADMIN_GROUP || result.GroupID == CommonConStants.SUPPER_GROUP)
+                    {
+                        if (result.Status == false)
+                        {
+                            return -1; //Tài khoản bị khóa
+                        }
+                        else
+                        {
+                            if (result.PassWord == PassWord)
+                                return 1; //tài khoản đúng
+                            else
+                                return -2; //tài khoản sai
+                        }
+                    }
                     else
-                        return -2; //tài khoản sai
+                    {
+                        return -3;//không có quyền
+                    }
+                    
+                }else
+                {
+                    if (result.Status == false)
+                    {
+                        return -1; //Tài khoản bị khóa
+                    }
+                    else
+                    {
+                        if (result.PassWord == PassWord)
+                            return 1; //tài khoản đúng
+                        else
+                            return -2; //tài khoản sai
+                    }
                 }
+                      
             }
         }
 

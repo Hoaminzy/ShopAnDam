@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopAnDam.Models.Dao;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,12 @@ namespace ShopAnDam.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        [ChildActionOnly]
+        public ActionResult MainMenu()
+        {
+            var model = new MenuDao().List();
+            return PartialView(model);
         }
     }
 }

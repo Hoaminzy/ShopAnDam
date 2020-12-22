@@ -19,15 +19,15 @@ namespace ShopAnDam.Areas.Admin.Controllers
         {
             return View();
         }
-  
-       // [HttpPost]
-        //[ValidateAntiForgeryToken] //Chống request và respone liên tục
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Chống request và respone liên tục
         public ActionResult  Login(LoginModel model)
         {
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
-                var result = dao.Login(model.UserName,Encryptor.MD5Hash(model.PassWord));
+                var result = dao.Login(model.UserName,Encryptor.MD5Hash(model.PassWord), true);
                 if (result==1)
                 {
                     var user = dao.GetByID(model.UserName);
@@ -44,6 +44,11 @@ namespace ShopAnDam.Areas.Admin.Controllers
                 {
 
                     ModelState.AddModelError("", "Tài khoản đã bị khóa!");
+                }
+                else if (result == -3)
+                {
+
+                    ModelState.AddModelError("", "Tài khoản không được phép đăng nhập tại đây!");
                 }
                 else
                 {

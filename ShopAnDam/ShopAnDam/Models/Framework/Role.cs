@@ -8,12 +8,6 @@ namespace ShopAnDam.Models.Framework
 
     public partial class Role
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
-        {
-            UserGroups = new HashSet<UserGroup>();
-        }
-
         [StringLength(50)]
         public string ID { get; set; }
 
@@ -25,8 +19,5 @@ namespace ShopAnDam.Models.Framework
 
         [StringLength(50)]
         public string CreateBy { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserGroup> UserGroups { get; set; }
     }
 }

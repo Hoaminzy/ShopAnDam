@@ -13,22 +13,24 @@ namespace ShopAnDam.Models.Framework
         }
 
         public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role_User> Role_User { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Brand>()
-               .Property(e => e.Name)
-               .IsUnicode(false);
-
-            modelBuilder.Entity<Brand>()
-               .Property(e => e.Logo)
-               .IsUnicode(false);
-
-            modelBuilder.Entity<Brand>()
                 .Property(e => e.CreateBy)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Menu>()
+                .Property(e => e.Link)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Menu>()
+                .Property(e => e.Target)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Role>()
@@ -38,11 +40,6 @@ namespace ShopAnDam.Models.Framework
             modelBuilder.Entity<Role>()
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Role>()
-                .HasMany(e => e.UserGroups)
-                .WithMany(e => e.Roles)
-                .Map(m => m.ToTable("Role_User").MapLeftKey("RoleID").MapRightKey("GroupID"));
 
             modelBuilder.Entity<UserGroup>()
                 .Property(e => e.ID)
@@ -79,6 +76,14 @@ namespace ShopAnDam.Models.Framework
 
             modelBuilder.Entity<User>()
                 .Property(e => e.CreateBy)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Role_User>()
+                .Property(e => e.GroupID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Role_User>()
+                .Property(e => e.RoleID)
                 .IsUnicode(false);
         }
     }
