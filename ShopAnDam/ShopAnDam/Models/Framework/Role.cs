@@ -15,7 +15,7 @@ namespace ShopAnDam.Models.Framework
         public string Name { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }
 
         [StringLength(50)]
         public string CreateBy { get; set; }

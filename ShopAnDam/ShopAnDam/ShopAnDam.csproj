@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -47,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -151,6 +150,7 @@
     <Content Include="Assets\admin\img\weather.jpg" />
     <Content Include="Assets\admin\img\zoom.png" />
     <Content Include="Assets\admin\js\controller\Brands.js" />
+    <Content Include="Assets\admin\js\controller\Supply.js" />
     <Content Include="Assets\admin\js\controller\User.js" />
     <Content Include="Assets\admin\js\scripts.js" />
     <Content Include="Assets\admin\lib\advanced-datatable\css\demo_page.css" />
@@ -485,6 +485,12 @@
     <Content Include="Assets\client\fonts\themify.eot" />
     <Content Include="Assets\client\fonts\themify.ttf" />
     <Content Include="Assets\client\fonts\themify.woff" />
+    <Content Include="Areas\Admin\Views\Supply\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Supply\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Supply\Edit.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -588,8 +594,10 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SupplyController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Common\CommonConStants.cs" />
     <Compile Include="Common\Encryptor.cs" />
@@ -603,13 +611,31 @@
     <Compile Include="Areas\Admin\Code\UserSession.cs" />
     <Compile Include="Models\Dao\BrandDao.cs" />
     <Compile Include="Models\Dao\MenuDao.cs" />
+    <Compile Include="Models\Dao\SupplyDao.cs" />
     <Compile Include="Models\Dao\UserDao.cs" />
     <Compile Include="Areas\Admin\Model\LoginModel.cs" />
+    <Compile Include="Models\Framework\About.cs" />
     <Compile Include="Models\Framework\AnDamDBContext.cs" />
+    <Compile Include="Models\Framework\Article.cs" />
     <Compile Include="Models\Framework\Brand.cs" />
+    <Compile Include="Models\Framework\Category.cs" />
+    <Compile Include="Models\Framework\Contact.cs" />
+    <Compile Include="Models\Framework\Customer.cs" />
+    <Compile Include="Models\Framework\Feedback.cs" />
+    <Compile Include="Models\Framework\Good.cs" />
+    <Compile Include="Models\Framework\Goods_Detail.cs" />
     <Compile Include="Models\Framework\Menu.cs" />
+    <Compile Include="Models\Framework\Order.cs" />
+    <Compile Include="Models\Framework\Order_Detail.cs" />
+    <Compile Include="Models\Framework\Product.cs" />
+    <Compile Include="Models\Framework\Product_Image.cs" />
+    <Compile Include="Models\Framework\Review.cs" />
     <Compile Include="Models\Framework\Role.cs" />
     <Compile Include="Models\Framework\Role_User.cs" />
+    <Compile Include="Models\Framework\Supply.cs" />
+    <Compile Include="Models\Framework\SystemConfig.cs" />
+    <Compile Include="Models\Framework\Tag.cs" />
+    <Compile Include="Models\Framework\Topic.cs" />
     <Compile Include="Models\Framework\User.cs" />
     <Compile Include="Models\Framework\UserGroup.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -678,10 +704,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

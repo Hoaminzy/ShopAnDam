@@ -8,6 +8,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link href="~/Assets/admin/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <!--external css-->
@@ -19,8 +20,8 @@
     <link href="~/Assets/admin/css/style-responsive.css" rel="stylesheet">
 
     <script src="~/Assets/admin/lib/chart-master/Chart.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-   
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
+
 
 </head>
 
@@ -255,7 +256,7 @@
                         }
 
                         <div class="border-head">
-                            <h3>@RenderSection("header", required: true)</h3>
+                            <h3>@RenderSection("header", required: false)</h3>
                         </div>
 
 

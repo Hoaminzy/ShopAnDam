@@ -1,0 +1,175 @@
+﻿@model PagedList.IPagedList<ShopAnDam.Models.Framework.Supply>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Nhà Cung Cấp";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Danh sách nhà cung cấp
+}
+
+@section jsFooter{
+    <script src="~/Assets/admin/js/controller/Supply.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#show").click(function () {
+                var url = $("#Modal").data("url");
+
+                $.get(url, function (data) {
+                    $("#Container").html(data);
+                    $("#Modal").modal("show");
+                });
+
+            });
+        });
+        function Details(ID)
+           {
+               $.get("@Url.Action("Edit","Supply")/"+ID,
+               function(data) {$('.modal-body').html(data);})
+                $("#myModal").modal("show");
+           }
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            $('.modal-body').html("");
+        });
+
+    </script>
+}
+<div class="row mt">
+    @Html.BeginForm("Index", "Suppy", FormMethod.Get)
+    {
+    <div class="form-group col-lg-12">
+        <div class="col-md-8">
+            <button type="button" class="btn btn-theme" id="show" onclick="clearTextBox();"><i class="fa fa-plus"></i>Thêm mới</button>
+
+        </div>
+        <div class="input-append col-md-3  ">
+            <input type="text" class="form-control " id="txtSearch" name="searchString" @ViewBag.SearchString placeholder="Nhập từ khóa cần tìm">
+            <span class="input-group-btn add-on">
+                <button class="btn btn-theme" type="submit" id="btnSearch"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+    }
+    <div class="col-md-12">
+        <div class="content-panel">
+            <table class="table table-striped table-advance table-hover">
+                <thead>
+                    <tr class="Search">
+                        <th><i class="fa fa-bullhorn"></i> Mã NCC</th>
+                        <th><i class="fa fa-bookmark"></i> Tên NCC</th>
+                        <th><i class="fa fa-bookmark"></i> Email</th>
+                        <th><i class="fa fa-bookmark"></i> Số điện thoại</th>
+                        <th><i class="fa fa-bookmark"></i> Địa chỉ</th>
+                        <th><i class="fa fa-bookmark"></i> Trạng thái</th>
+                        <th><i class=" fa fa-edit"></i> Hành động</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.ID" class="search">
+                            <td>@item.ID</td>
+                            <td>@item.Name</td>
+                            <td>@item.Email </td>
+                            <td>@item.Phone </td>
+                            <td>@item.Address</td>
+                            <td><a href="#" class="label label-success label-mini btn-active" data-id="@item.ID">@(item.Status ? "Kích hoạt" : "Khóa")</a></td>
+                            <td>
+                                <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                <a href="#" onclick="Details(@item.ID)" id="show" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có muốn xóa bản ghi này?",
+                               OnComplete = "$('#row_" + @item.ID + "').remove()",
+                               HttpMethod = "Delete"
+                           }, new { @class = "btn btn-danger btn-xs fa fa-trash-o " }
+                        )
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = ViewBag.SearchString }))
+        </div>
+        <!-- /content-panel -->
+        @*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+            <button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Add Brand</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="Id">ID</label>
+                                    <input type="text" class="form-control" id="ID" placeholder="ID" disabled="disabled" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Name">Name</label>
+                                    <input type="text" class="form-control" id="Name" placeholder="Name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Logo">Logo</label>
+                                    <input type="file" class="form-control" id="Logo" placeholder="Logo" />
+                                    <input type="button" id="btnLogo" value="Upload" class="tbnfile" />
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();"><i class="fa fa-plus"></i>Add</button>
+                            <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+    </div>
+    <!-- /col-md-12 -->
+</div>
+<div id='Modal' class='modal' data-url='@Url.Action("Create")'>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm nhà cung cấp</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div id='Container'>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

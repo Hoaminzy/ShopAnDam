@@ -14,7 +14,7 @@ namespace ShopAnDam.Models.Framework
         {
             Users = new HashSet<User>();
         }
-
+    
         [StringLength(50)]
         public string ID { get; set; }
 

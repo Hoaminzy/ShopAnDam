@@ -9,19 +9,20 @@ namespace ShopAnDam.Models.Framework
     [Table("Menu")]
     public partial class Menu
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [StringLength(50)]
-        public string Text { get; set; }
+        public string Name { get; set; }
 
-        [StringLength(50)]
+        [StringLength(200)]
         public string Link { get; set; }
 
-        public int? DisplayOrder { get; set; }
+        public int DisplayOrder { get; set; }
 
         [StringLength(50)]
         public string Target { get; set; }
 
-        public bool status { get; set; }
+        public bool Status { get; set; }
     }
 }

@@ -8,6 +8,12 @@ namespace ShopAnDam.Models.Framework
 
     public partial class Brand
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Brand()
+        {
+            Products = new HashSet<Product>();
+        }
+
         public int ID { get; set; }
 
         [StringLength(50)]
@@ -17,9 +23,12 @@ namespace ShopAnDam.Models.Framework
         public string Logo { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }
 
         [StringLength(50)]
         public string CreateBy { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace ShopAnDam.Models.Dao
                 }
                 user.Email = entity.Email;
                 user.Phone = entity.Phone;
-                user.CreateDate = entity.CreateDate;
+                user.CreateDate = DateTime.Now;
                 user.CreateBy = entity.CreateBy;
                 db.SaveChanges();
                 return true;
@@ -63,7 +63,7 @@ namespace ShopAnDam.Models.Dao
         }
         public int Login(string UserName, string PassWord, bool isLoginAdmin =false)
         {
-            var result = db.Users.SingleOrDefault(x => x.UserName == UserName );
+            var result = db.Users.FirstOrDefault(x => x.UserName == UserName );
           
             if (result == null)
             {

@@ -20,17 +20,21 @@ namespace ShopAnDam.Areas.Admin.Controllers
             ViewBag.SearchString = searchString;
             return View(model);
         }
-        [HttpGet] 
+
         public ActionResult Create()
         {
             return View();
         }
-      
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var user = new UserDao().ViewDetail(id);
             return View(user);
         }
+
+       
+        [HttpPost]
+
         public ActionResult Create( User user)
         {
             if (ModelState.IsValid)
@@ -53,8 +57,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Thêm thất bại");
                 }
             }
-
-            return View("Index");
+            return PartialView("Index");
         }
         [HttpPost]
         public ActionResult Edit(User user)
@@ -68,13 +71,11 @@ namespace ShopAnDam.Areas.Admin.Controllers
                     user.PassWord = encrypMd5Pass;
 
                 }
-
                 var res = dao.Update(user);
                 if (res)
                 {
                     SetAlert("Cập nhật thành công!", "success");
                     return RedirectToAction("Index", "User");
-
                 }
                 else
                 {

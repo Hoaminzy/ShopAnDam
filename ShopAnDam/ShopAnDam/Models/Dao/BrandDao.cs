@@ -17,30 +17,29 @@ namespace ShopAnDam.Models.Dao
         {
             db = new AnDamDBContext();
         }
-        string cs = ConfigurationManager.ConnectionStrings["AnDamDBContext"].ConnectionString;
-        public List<Brand> ListAll()
+        public long Insert(Brand entity)
         {
-            List<Brand> lst = new List<Brand>();
-            using (SqlConnection con = new SqlConnection(cs))
+            db.Brands.Add(entity);
+            db.SaveChanges();
+            return entity.ID;
+        }
+
+        public bool Update(Brand entity)
+        {
+            try
             {
-                con.Open();
-                SqlCommand com = new SqlCommand("SelectBrand", con);
-                com.CommandType = CommandType.StoredProcedure;
-                SqlDataReader rdr = com.ExecuteReader();
-                while (rdr.Read())
-                {
-                    lst.Add(new Brand
-                    {
-                        ID = Convert.ToInt32(rdr["ID"]),
-                        Name = rdr["Name"].ToString(),
-                        Logo = rdr["Logo"].ToString(),
-                      
-                    });
-                }
-                return lst;
+                var Brand = db.Brands.Find(entity.ID);    
+                    Brand.Name= entity.Name;
+                Brand.Logo = entity.Logo;
+                Brand.CreateDate = DateTime.Now;
+                Brand.CreateBy = entity.CreateBy;
+                db.SaveChanges();
+                return true;
             }
-
-
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
         public IEnumerable<Brand> ListAllPageList(string searchString, int page, int pageSize)
         {
@@ -48,60 +47,43 @@ namespace ShopAnDam.Models.Dao
             IQueryable<Brand> model = db.Brands;
             if (!string.IsNullOrEmpty(searchString))
             {//Contains: tìm kiếm gần đúng
-                model = model.Where(x => x.Name.Contains(searchString) || x.Name.Contains(searchString));
+                model = model.Where(x => x.Name.Contains(searchString) );
             }
             return model.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
-        public int Add(Brand brands)
+        public Brand GetByID(string Name)
         {
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                con.Open();
-                SqlCommand com = new SqlCommand("InsertBrand", con);
-                com.CommandType = CommandType.StoredProcedure;
-
-                com.Parameters.AddWithValue("@Name", brands.Name);
-                com.Parameters.AddWithValue("@Logo", brands.Logo);
-                // com.Parameters.AddWithValue("@Action", "Insert");
-                int rs = com.ExecuteNonQuery();
-                return rs;
-            }
-        }
-        public int Update(Brand brands)
-        {
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                con.Open();
-                SqlCommand com = new SqlCommand("UpdateBrand", con);
-                com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@ID", brands.ID);
-                com.Parameters.AddWithValue("@Name", brands.Name);
-                com.Parameters.AddWithValue("@Logo", brands.Logo);
-            
-                //   com.Parameters.AddWithValue("@Action", "Update");
-                int i = com.ExecuteNonQuery();
-                return i;
-
-            }
-
-
+            return db.Brands.SingleOrDefault(x => x.Name == Name);
         }
 
-        //Method for Deleting an Employee
-        public int Delete(int ID)
+        public Brand ViewDetail(int id)
         {
+            return db.Brands.Find(id);
+        }
+     
 
-            using (SqlConnection con = new SqlConnection(cs))
+        public bool Delete(int id)
+        {
+            try
             {
-                con.Open();
-                SqlCommand com = new SqlCommand("DeleteBrand", con);
-                com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@ID", ID);
-                int i = com.ExecuteNonQuery();
-                return i;
+                var Brand = db.Brands.Find(id);
+                db.Brands.Remove(Brand);
+                db.SaveChanges();
+                return true;
             }
-
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
+        //public bool ChangeStatus(long id)
+        //{
+        //    var Brand = db.Brands.Find(id);
+        //    Brand.Status = !Brand.Status;
+        //    db.SaveChanges();
+        //    return Brand.Status;
+        //}
     }
+
 }
