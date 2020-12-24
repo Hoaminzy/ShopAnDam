@@ -28,7 +28,7 @@ namespace ShopAnDam.Models.Framework
         [StringLength(100)]
         public string SeoTitle { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }

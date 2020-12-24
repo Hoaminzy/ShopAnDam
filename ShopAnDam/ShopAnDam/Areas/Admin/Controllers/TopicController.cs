@@ -8,12 +8,14 @@ using System.Web.Mvc;
 
 namespace ShopAnDam.Areas.Admin.Controllers
 {
-    public class CategoryController : BaseController
+    public class TopicController : BaseController
     {
-        // GET: Admin/Category
+        //TopicDao dao = new TopicDao();
+
+        // GET: Admin/Topic
         public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
-            var dao = new CategoryDao();
+            var dao = new TopicDao();
             var model = dao.ListAllPageList(searchString, page, pageSize);
             ViewBag.SearchString = searchString;
             return View(model);
@@ -26,26 +28,25 @@ namespace ShopAnDam.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var Category = new CategoryDao().ViewDetail(id);
-            return View(Category);
+            var topic = new TopicDao().ViewDetail(id);
+            return View(topic);
         }
 
 
         [HttpPost]
 
-        public ActionResult Create(Category category)
+        public ActionResult Create(Topic topic)
         {
             if (ModelState.IsValid)
             {
-                var dao = new CategoryDao();
+                var dao = new TopicDao();
+                topic.CreateDate = DateTime.Now;
 
-                category.CreateDate = DateTime.Now;
-
-                long id = dao.Insert(category);
+                long id = dao.Insert(topic);
                 if (id > 0)
                 {
                     SetAlert("Thêm thành công!", "success");
-                    return RedirectToAction("Index", "Category");
+                    return RedirectToAction("Index", "Topic");
 
                 }
                 else
@@ -57,17 +58,17 @@ namespace ShopAnDam.Areas.Admin.Controllers
             return PartialView("Index");
         }
         [HttpPost]
-        public ActionResult Edit(Category category)
+        public ActionResult Edit(Topic topic)
         {
             if (ModelState.IsValid)
             {
-                var dao = new CategoryDao();
-                category.CreateDate = DateTime.Now;
-                var res = dao.Update(category);
+                var dao = new TopicDao();
+                topic.CreateDate = DateTime.Now;
+                var res = dao.Update(topic);
                 if (res)
                 {
                     SetAlert("Cập nhật thành công!", "success");
-                    return RedirectToAction("Index", "Category");
+                    return RedirectToAction("Index", "Topic");
                 }
                 else
                 {
@@ -81,20 +82,19 @@ namespace ShopAnDam.Areas.Admin.Controllers
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            new CategoryDao().Delete(id);
+            new TopicDao().Delete(id);
             SetAlert("Xóa thành công!", "success");
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public JsonResult ChangeCategory(long id)
+        public JsonResult ChangeTopic(long id)
         {
-            var result = new CategoryDao().ChangeStatus(id);
+            var result = new TopicDao().ChangeStatus(id);
             return Json(new
             {
                 status = result
             }); ;
         }
-
 
     }
 }

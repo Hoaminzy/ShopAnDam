@@ -1,5 +1,5 @@
 ﻿
-@model PagedList.IPagedList<ShopAnDam.Models.Framework.Category>
+@model PagedList.IPagedList<ShopAnDam.Models.Framework.Topic>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
@@ -8,11 +8,11 @@
 }
 
 @section header{
-    Danh mục sản phẩm
-    }
+    Danh mục chủ đề bài viết
+}
 @section jsFooter{
 
-    <script src="~/Assets/admin/js/controller/Category.js"></script>
+    <script src="~/Assets/admin/js/controller/Topic.js"></script>
     <script>
         $(document).ready(function () {
             $("#show").click(function () {
@@ -27,7 +27,7 @@
         });
         function Details(ID)
            {
-               $.get("@Url.Action("Edit","Category")/"+ID,
+               $.get("@Url.Action("Edit","Topic")/"+ID,
                function(data) {$('.modal-body').html(data);})
                 $("#myModal").modal("show");
            }
@@ -39,7 +39,7 @@
 }
 <div class="row mt">
 
-    @Html.BeginForm("Index", "Category", FormMethod.Get)
+    @Html.BeginForm("Index", "Topic", FormMethod.Get)
     {
     <div class="form-group col-lg-12">
         <div class="col-md-8">
@@ -73,27 +73,27 @@
 
                     @foreach (var item in Model)
                     {
-                    <tr id="row_@item.ID">
-                        <td></td>
-                        <td>@item.ID</td>
-                        <td>@item.Name</td>
-                        <td>@item.MetaTilte</td>
-                        <td>@item.SeoTitle</td>
-                        <td>@item.DisplayOrder</td>
-                        <td><a href="#" class="label label-success label-mini btn-active" data-id="@item.ID">@(item.Status ?"Kích hoạt": "Khóa")</a></td>
-                        <td>@item.CreateDate</td>
-                        <td>
-                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                            <a onclick="Details(@item.ID)" data-id="@item.ID" id="show" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                            @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
-                       {
-                           Confirm = "Bạn có muốn xóa bản ghi này?",
-                           OnComplete = "$('#row_" + @item.ID + "').remove()",
-                           HttpMethod = "Delete"
-                       }, new { @class = "btn btn-danger btn-xs fa fa-trash-o " }
-                           )
-                        </td>
-                    </tr>
+                        <tr id="row_@item.ID">
+                            <td></td>
+                            <td>@item.ID</td>
+                            <td>@item.Name</td>
+                            <td>@item.MetaTilte</td>
+                            <td>@item.SeoTitle</td>
+                            <td>@item.DisplayOrder</td>
+                            <td><a href="#" class="label label-success label-mini btn-active" data-id="@item.ID">@(item.Status ?"Kích hoạt": "Khóa")</a></td>
+                            <td>@item.CreateDate</td>
+                            <td>
+                                <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                <a onclick="Details(@item.ID)" data-id="@item.ID" id="show" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có muốn xóa bản ghi này?",
+                               OnComplete = "$('#row_" + @item.ID + "').remove()",
+                               HttpMethod = "Delete"
+                           }, new { @class = "btn btn-danger btn-xs fa fa-trash-o " }
+                               )
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -107,10 +107,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thêm danh mục<h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
+                <h5 class="modal-title" id="exampleModalLabel"> Thêm chủ đề<h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
             </div>
 
             <div class="modal-body">

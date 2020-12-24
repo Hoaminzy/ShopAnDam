@@ -150,7 +150,9 @@
     <Content Include="Assets\admin\img\weather.jpg" />
     <Content Include="Assets\admin\img\zoom.png" />
     <Content Include="Assets\admin\js\controller\Brands.js" />
+    <Content Include="Assets\admin\js\controller\Category.js" />
     <Content Include="Assets\admin\js\controller\Supply.js" />
+    <Content Include="Assets\admin\js\controller\Topic.js" />
     <Content Include="Assets\admin\js\controller\User.js" />
     <Content Include="Assets\admin\js\scripts.js" />
     <Content Include="Assets\admin\lib\advanced-datatable\css\demo_page.css" />
@@ -491,6 +493,11 @@
     <Content Include="Areas\Admin\Views\Brand\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Supply\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\Edit.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -598,6 +605,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\SupplyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Common\CommonConStants.cs" />
     <Compile Include="Common\Encryptor.cs" />
@@ -610,8 +618,10 @@
     <Compile Include="Areas\Admin\Code\SessionHelper.cs" />
     <Compile Include="Areas\Admin\Code\UserSession.cs" />
     <Compile Include="Models\Dao\BrandDao.cs" />
+    <Compile Include="Models\Dao\CategoryDao.cs" />
     <Compile Include="Models\Dao\MenuDao.cs" />
     <Compile Include="Models\Dao\SupplyDao.cs" />
+    <Compile Include="Models\Dao\TopicDao.cs" />
     <Compile Include="Models\Dao\UserDao.cs" />
     <Compile Include="Areas\Admin\Model\LoginModel.cs" />
     <Compile Include="Models\Framework\About.cs" />

@@ -28,9 +28,11 @@ namespace ShopAnDam.Models.Framework
         [StringLength(100)]
         public string SeoTitle { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]
