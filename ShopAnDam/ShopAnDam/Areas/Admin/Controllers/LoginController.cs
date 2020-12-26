@@ -34,6 +34,9 @@ namespace ShopAnDam.Areas.Admin.Controllers
                     var userSession = new UserLogin();
                     userSession.UserName = user.UserName;
                     userSession.UserID =user.ID;
+                    userSession.GroupID = user.GroupID;
+                    var listPermittion = dao.GetListPermittion(model.UserName);
+                    Session.Add(CommonConStants.SESSION_PERMITIONS, listPermittion);
                     Session.Add(CommonConStants.USER_SESSION, userSession);
                     return RedirectToAction("Index","Home");
                 }else if (result == 0)

@@ -22,7 +22,7 @@
                     $("#Container").html(data);
                     $("#Modal").modal("show");
                 });
-               
+
             });
         });
         function Details(ID)
@@ -62,6 +62,7 @@
                         <th><i class="fa fa-bullhorn"></i> Mã</th>
                         <th><i class="fa fa-bullhorn"></i> Tài khoản</th>
                         <th><i class="fa fa-bookmark"></i> Họ tên</th>
+                        <th><i class="fa fa-bookmark"></i> Nhóm quyền</th>
                         <th><i class="fa fa-bookmark"></i> Số điện thoại</th>
                         <th><i class="fa fa-bookmark"></i> Email</th>
                         <th><i class=" fa fa-edit"></i> Trạng thái</th>
@@ -77,6 +78,7 @@
                             <td>@item.ID</td>
                             <td>@item.UserName</td>
                             <td>@item.Name</td>
+                            <td>@item.GroupID</td>
                             <td>@item.Phone</td>
                             <td>@item.Email </td>
                             <td><a href="#" class="label label-success label-mini btn-active" data-id="@item.ID">@(item.Status ?"Kích hoạt": "Khóa")</a></td>

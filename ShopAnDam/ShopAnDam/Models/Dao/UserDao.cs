@@ -61,6 +61,24 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Users.Find(id);
         }
+
+        public List<string> GetListPermittion(string UserName)
+        {
+            var user = db.Users.Single(x => x.UserName == UserName);
+            var data = (from a in db.Role_User 
+                        join b in db.UserGroups on a.GroupID equals b.ID 
+                        join c in db.Roles on a.RoleID equals c.ID
+                        where b.ID == user.GroupID
+                        select new { 
+                            RoleID = a.RoleID,
+                            GroupID = a.GroupID
+                        }).AsEnumerable().Select(x=>new Role_User() { 
+                            RoleID = x.RoleID,
+                            GroupID = x.GroupID
+                        });
+            return data.Select(x => x.RoleID).ToList();
+        }
+
         public int Login(string UserName, string PassWord, bool isLoginAdmin =false)
         {
             var result = db.Users.FirstOrDefault(x => x.UserName == UserName );

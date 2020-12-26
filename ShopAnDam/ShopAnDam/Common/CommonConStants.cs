@@ -11,5 +11,8 @@ namespace ShopAnDam.Common
         public static string MEMBER_GROUP = "MEMBER"; //thành viên
         public static string ADMIN_GROUP = "ADMIN";// quản trị
         public static string SUPPER_GROUP = "SUPPER_ADMIN";//quản lý
+        public static string SESSION_PERMITIONS = "SESSION_PERMITIONS";
+
+        public static string CartSession = "CartSession";
     }
 }

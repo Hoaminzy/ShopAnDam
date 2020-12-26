@@ -13,6 +13,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
     public class UserController : BaseController
     {
         // GET: Admin/User
+        [CheckCredentail(RoleID = "VIEW_USER")]
         public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
             var dao = new UserDao();
@@ -20,20 +21,32 @@ namespace ShopAnDam.Areas.Admin.Controllers
             ViewBag.SearchString = searchString;
             return View(model);
         }
-
+        [CheckCredentail(RoleID = "ADD_USER")]
         public ActionResult Create()
         {
+            SetViewBag();
             return View();
         }
+
+        public void SetViewBag(long? selectedId = null)
+        {
+            var dao = new UserGroupDao();
+            ViewBag.GroupID = new SelectList(dao.ListAll(), "ID", "Name", selectedId);
+        }
+
         [HttpGet]
+        [CheckCredentail(RoleID = "EDIT_USER")]
         public ActionResult Edit(int id)
         {
             var user = new UserDao().ViewDetail(id);
+            SetViewBag();
             return View(user);
         }
 
-       
+
+
         [HttpPost]
+        [CheckCredentail(RoleID = "ADD_USER")]
 
         public ActionResult Create( User user)
         {
@@ -59,7 +72,10 @@ namespace ShopAnDam.Areas.Admin.Controllers
             }
             return PartialView("Index");
         }
+
         [HttpPost]
+        [CheckCredentail(RoleID = "EDIT_USER")]
+
         public ActionResult Edit(User user)
         {
             if (ModelState.IsValid)
@@ -86,14 +102,18 @@ namespace ShopAnDam.Areas.Admin.Controllers
 
             return View("Index");
         }
+      
+
         [HttpDelete]
-       public ActionResult Delete(int id)
+        [CheckCredentail(RoleID = "DELETE_USER")]
+        public ActionResult Delete(int id)
         {
             new UserDao().Delete(id);
             SetAlert("Xóa thành công!", "success");
             return RedirectToAction("Index");
         }
         [HttpPost]
+        [CheckCredentail(RoleID = "EDIT_USER")]
         public JsonResult ChangeUser(long id)
         {
             var result = new UserDao().ChangeStatus(id);
