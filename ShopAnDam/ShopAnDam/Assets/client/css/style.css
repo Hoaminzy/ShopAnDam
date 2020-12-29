@@ -716,9 +716,10 @@ ol {
 	list-style: none;
 }
 
-.nav-item .nav-depart .depart-btn .depart-hover li.active a {
-	color: #e7ab3c;
-}
+	.nav-item .nav-depart .depart-btn .depart-hover li.active a {
+		color: #e7ab3c;
+		color: red;
+	}
 
 .nav-item .nav-depart .depart-btn .depart-hover li a {
 	display: block;

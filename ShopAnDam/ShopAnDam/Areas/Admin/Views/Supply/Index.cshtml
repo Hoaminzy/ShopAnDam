@@ -13,7 +13,8 @@
     <script src="~/Assets/admin/js/controller/Supply.js"></script>
     <script>
         $(document).ready(function () {
-            $("#show").click(function () {
+            $("#show").click(function (e) {
+                e.preventDefault();
                 var url = $("#Modal").data("url");
 
                 $.get(url, function (data) {
@@ -30,7 +31,7 @@
                 $("#myModal").modal("show");
            }
         $('#myModal').on('hidden.bs.modal', function (e) {
-            $('.modal-body').html("");
+            $('.modal-body').html("");   
         });
 
     </script>

@@ -1,0 +1,14 @@
+﻿
+@model List<ShopAnDam.Models.Framework.Category>
+<div class="depart-btn">
+    <i class="ti-menu"></i>
+    <span>Danh mục sản phẩm</span>
+    <ul class="depart-hover">
+        @foreach (var item in Model)
+        {
+            <li><a href="/san-pham/@item.MetaTilte-@item.ID">@item.Name</a></li>
+
+        }
+
+    </ul>
+</div>

@@ -45,7 +45,6 @@ namespace ShopAnDam.Models.Dao
         }
         public IEnumerable<User> ListAllPageList(string searchString,int page, int pageSize)
         {
-
            IQueryable<User> model = db.Users;
             if (!string.IsNullOrEmpty(searchString)){//Contains: tìm kiếm gần đúng
                 model = model.Where(x => x.UserName.Contains(searchString) || x.Name.Contains(searchString));

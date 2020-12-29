@@ -13,7 +13,8 @@
   
     <script>
         $(document).ready(function () {
-            $("#show").click(function () {
+            $("#show").click(function (e) {
+                e.preventDefault();
                 var url = $("#Modal").data("url");
 
                 $.get(url, function (data) {
@@ -150,8 +151,9 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <h5 class="modal-title" id="exampleModalLabel">chỉnh sửa thương hiệu</h5>
+            
             <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">chỉnh sửa thương hiệu</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
