@@ -14,18 +14,29 @@ namespace ShopAnDam.Models.Framework
             Order_Detail = new HashSet<Order_Detail>();
         }
 
-        public int ID { get; set; }
+        public long ID { get; set; }
 
         public int CustomersID { get; set; }
 
-        [StringLength(255)]
+        [StringLength(50)]
+        public string NameShip { get; set; }
+
+        [StringLength(12)]
+        public string PhoneShip { get; set; }
+
+        [StringLength(250)]
+        public string AdressShip { get; set; }
+
+        [StringLength(50)]
+        public string MailShip { get; set; }
+
+        [StringLength(250)]
         public string Node { get; set; }
 
-        public int? Status { get; set; }
+        public int Status { get; set; }
 
         public int? Payment_Method { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

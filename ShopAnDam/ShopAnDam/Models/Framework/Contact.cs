@@ -11,9 +11,15 @@ namespace ShopAnDam.Models.Framework
     {
         public int ID { get; set; }
 
-        [Column(TypeName = "ntext")]
-        public string Content { get; set; }
+        [StringLength(150)]
+        public string Address { get; set; }
 
-        public bool? Status { get; set; }
+        [StringLength(50)]
+        public string Email { get; set; }
+
+        [StringLength(12)]
+        public string SDT { get; set; }
+
+        public bool Status { get; set; }
     }
 }

@@ -55,7 +55,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Thêm thất bại");
                 }
             }
-            return PartialView("Index");
+            return View("Index");
         }
         [HttpPost]
         public ActionResult Edit(Brand brand)

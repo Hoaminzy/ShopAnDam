@@ -8,9 +8,13 @@ namespace ShopAnDam.Models.Framework
 
     public partial class Goods_Detail
     {
-        public int ID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Goods_Detail()
+        {
+            Goods = new HashSet<Good>();
+        }
 
-        public int GoodID { get; set; }
+        public int ID { get; set; }
 
         public int ProductID { get; set; }
 
@@ -21,13 +25,13 @@ namespace ShopAnDam.Models.Framework
 
         public decimal? Price { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]
         public string CreateBy { get; set; }
 
-        public virtual Good Good { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Good> Goods { get; set; }
 
         public virtual Product Product { get; set; }
     }

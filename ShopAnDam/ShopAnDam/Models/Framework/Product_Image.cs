@@ -17,9 +17,9 @@ namespace ShopAnDam.Models.Framework
 
         public int ID { get; set; }
 
+        [StringLength(500)]
         public string Image { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

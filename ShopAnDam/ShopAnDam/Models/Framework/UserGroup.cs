@@ -14,14 +14,13 @@ namespace ShopAnDam.Models.Framework
         {
             Users = new HashSet<User>();
         }
-    
+
         [StringLength(50)]
         public string ID { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

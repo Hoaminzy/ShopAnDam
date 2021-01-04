@@ -30,9 +30,6 @@ namespace ShopAnDam.Models.Framework
 
         public bool Status { get; set; }
 
-        [Column(TypeName = "date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

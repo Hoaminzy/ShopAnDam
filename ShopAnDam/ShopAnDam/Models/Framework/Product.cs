@@ -47,7 +47,7 @@ namespace ShopAnDam.Models.Framework
 
         public bool? IncludeVAT { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         public DateTime? TopHot { get; set; }
 
@@ -56,7 +56,6 @@ namespace ShopAnDam.Models.Framework
         [StringLength(500)]
         public string Tags { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

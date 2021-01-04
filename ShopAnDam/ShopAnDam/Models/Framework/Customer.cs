@@ -29,7 +29,6 @@ namespace ShopAnDam.Models.Framework
         [StringLength(12)]
         public string Phone { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? Createdate { get; set; }
 
         [StringLength(50)]

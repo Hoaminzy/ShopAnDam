@@ -20,9 +20,8 @@ namespace ShopAnDam.Models.Framework
         [StringLength(255)]
         public string comment { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

@@ -26,9 +26,9 @@ namespace ShopAnDam.Models.Dao
             {
                 var supply = db.Supplies.Find(entity.ID);
                 supply.Name = entity.Name;
+                supply.Address = entity.Address;
                 supply.Email = entity.Email;
                 supply.Phone = entity.Phone;
-                supply.Address = entity.Address;
                 supply.CreateDate = DateTime.Now;
                 supply.CreateBy = entity.CreateBy;
                 db.SaveChanges();
@@ -74,7 +74,7 @@ namespace ShopAnDam.Models.Dao
 
         public bool ChangeStatus(long id)
         {
-            var supply = db.Users.Find(id);
+            var supply = db.Supplies.Find(id);
             supply.Status = !supply.Status;
             db.SaveChanges();
             return supply.Status;

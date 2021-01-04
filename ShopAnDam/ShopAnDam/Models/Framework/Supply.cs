@@ -17,24 +17,19 @@ namespace ShopAnDam.Models.Framework
         public int ID { get; set; }
 
         [StringLength(100)]
-        [Required]
         public string Name { get; set; }
 
         [StringLength(200)]
-        [Required]
         public string Address { get; set; }
 
         [StringLength(50)]
-        [Required]
         public string Email { get; set; }
 
         [StringLength(12)]
-        [Required]
         public string Phone { get; set; }
 
         public bool Status { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

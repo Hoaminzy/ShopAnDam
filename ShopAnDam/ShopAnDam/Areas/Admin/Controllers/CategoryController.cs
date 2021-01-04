@@ -92,7 +92,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
             return Json(new
             {
                 status = result
-            }); ;
+            }) ; 
         }
 
 

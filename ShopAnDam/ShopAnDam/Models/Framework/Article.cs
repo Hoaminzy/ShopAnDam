@@ -38,7 +38,7 @@ namespace ShopAnDam.Models.Framework
 
         public DateTime? ViewCount { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }

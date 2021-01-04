@@ -9,7 +9,6 @@ namespace ShopAnDam.Models.Framework
     [Table("Menu")]
     public partial class Menu
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [StringLength(50)]
@@ -18,11 +17,16 @@ namespace ShopAnDam.Models.Framework
         [StringLength(200)]
         public string Link { get; set; }
 
-        public int DisplayOrder { get; set; }
+        public int? DisplayOrder { get; set; }
 
         [StringLength(50)]
         public string Target { get; set; }
 
         public bool Status { get; set; }
+
+        public DateTime? CreateDate { get; set; }
+
+        [StringLength(50)]
+        public string CreateBy { get; set; }
     }
 }

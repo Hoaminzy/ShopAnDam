@@ -22,8 +22,7 @@ namespace ShopAnDam.Models.Framework
         [StringLength(255)]
         public string Logo { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]
         public string CreateBy { get; set; }

@@ -30,7 +30,6 @@ namespace ShopAnDam.Models.Framework
 
         public bool Status { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

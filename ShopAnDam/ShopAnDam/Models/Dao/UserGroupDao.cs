@@ -18,5 +18,18 @@ namespace ShopAnDam.Models.Dao
         {
             return db.UserGroups.ToList();
         }
+        public List<Brand> ListAllBrand()
+        {
+            return db.Brands.ToList();
+        }
+        public List<Category> ListAllCategory()
+        {
+            return db.Categories.Where(x => x.Status==true).ToList();
+        }
+
+        public List<Product_Image> ListAllImage()
+        {
+            return db.Product_Image.ToList();
+        }
     }
 }
