@@ -63,7 +63,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.DisplayOrder, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
                 <div class="col-sm-6">
-                    @Html.TextBoxFor(model => model.DisplayOrder, htmlAttributes: new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.DisplayOrder, htmlAttributes: new { @class = "form-control", type = "number" })
                     @Html.ValidationMessageFor(model => model.DisplayOrder, "", new { @class = "text-danger" })
                 </div>
             </div>

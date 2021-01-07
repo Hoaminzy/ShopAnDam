@@ -12,6 +12,7 @@ namespace ShopAnDam.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.slide = new SlideDao().ListAll();
             return View();
         }
         [ChildActionOnly]

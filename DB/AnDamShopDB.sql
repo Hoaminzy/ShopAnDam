@@ -16,6 +16,14 @@ log on
 
 )
 
+
+--tạo bảng nhóm người dừng
+create table UserGroup(
+    ID varchar(50) primary key not null
+   ,Name nvarchar(50)
+   ,CreateDate datetime DEFAULT GETDATE()
+   ,CreateBy varchar(50)
+)
 --Tạo bảng người dùng
 create table Users(
     ID int not null primary key identity
@@ -25,24 +33,18 @@ create table Users(
    ,Name nvarchar(50) 
    ,Email varchar(50)
    ,Phone varchar(11)
-   ,CreateDate date default getdate()
+   ,CreateDate datetime default getdate()
    ,CreateBy varchar(50)
    ,Status bit default(0) 
    constraint FK_User_UserGroups foreign key (GroupID) references UserGroup(ID)
 )
 
---tạo bảng nhóm người dừng
-create table UserGroup(
-    ID varchar(50) primary key not null
-   ,Name nvarchar(50)
-   ,CreateDate date DEFAULT GETDATE()
-   ,CreateBy varchar(50)
-)
+
 -- Tạo bảng quyền
 create table Roles (
     ID varchar(50) primary key not null
 	,Name nvarchar(50)
-    ,CreateDate date DEFAULT GETDATE()
+    ,CreateDate datetime DEFAULT GETDATE()
    ,CreateBy varchar(50)
 )
 
@@ -61,42 +63,8 @@ create table Customers(
   ,Address nvarchar(200) 
   ,Email varchar(50)
   ,Phone varchar(12)
-  ,Createdate date default getdate()
+  ,Createdate datetime default getdate()
   ,CreateBy varchar(50)
-)
---Tọa bảng nhà cung cấp (NCC)
-create table Supplies(
-  ID int primary key not null identity
-  ,Name nvarchar(100)
-  ,Address nvarchar(200)
-  ,Email varchar(50)
-  ,Phone varchar(12)
-  ,Status bit default(1)
-  ,CreateDate date default getdate()
-  ,CreateBy varchar(50)
-)
- 
- --Taọ bảng Catagories
-create table Goods_Detail(
-  ID int primary key not null identity
-  ,GoodID int not null
-  ,ProductID int not null
-  ,Name nvarchar(100)
-  ,Quantity int
-  ,Price decimal
-  ,CreateDate date default getdate()
-  ,CreateBy varchar(50)
-  ,constraint FK_Cate_Product foreign key (ProductID) references Products(ID)
-   ,constraint FK_Cate_good foreign key (GoodID) references Goods(ID)
-)
-
---tạo bảng Product_Catagory
-create table Goods(
-   ID int not null primary key identity
-   , SupplyID int not null
-   ,CreateDate date default getdate() --ngày lập
-   ,CreateBy varchar(50) 
-	 ,constraint FK_Cate_Goods foreign key (SupplyID) references Supplies(ID)
 )
 --tạo bảng loại sản phẩm
 create table Category(
@@ -106,7 +74,7 @@ create table Category(
   ,DisplayOrder int default(0)
   ,SeoTitle nvarchar(100)
   ,Status bit default(1)
-  ,CreateDate date default getdate()
+  ,CreateDate datetime default getdate()
   ,CreateBy varchar(50)
 )
 --Tạo bảng thương hiệu
@@ -114,10 +82,17 @@ create table Brands(
   ID int primary key not null identity
   ,Name nvarchar(50)
   ,Logo nvarchar(255)
-  ,CreateDate date default getdate()
+  ,CreateDate datetime default getdate()
   ,CreateBy varchar(50)
 )
 
+--tạo bảng ảnh sản phẩm
+create table Product_Image(
+ID int primary key not null identity
+,Image nvarchar(Max)
+,CreateDate datetime default getdate()
+,CreateBy varchar(50)
+)
 --tạo bảng sản phẩm
 create table Products(
   ID int primary key not null identity
@@ -137,29 +112,62 @@ create table Products(
   ,TopHot datetime
   ,ViewCount int default(0)
   ,Tags nvarchar(500)
-  ,CreateDate date default getdate()
+  ,CreateDate datetime default getdate()
   ,CreateBy varchar(50)
   ,constraint FK_Product_Image foreign key (ImageID) references Product_Image(ID)
   ,constraint FK_Product_Brand foreign key(BrandID) references Brands(ID)
   ,constraint FK_Product_Cate foreign key (CategoryID) references Category(ID)
 )
 
---tạo bảng ảnh sản phẩm
-create table Product_Image(
-ID int primary key not null identity
-,Image nvarchar(Max)
-,CreateDate date default getdate()
-,CreateBy varchar(50)
+
+
+--Tọa bảng nhà cung cấp (NCC)
+create table Supplies(
+  ID int primary key not null identity
+  ,Name nvarchar(100)
+  ,Address nvarchar(200)
+  ,Email varchar(50)
+  ,Phone varchar(12)
+  ,Status bit default(0)
+  ,CreateDate datetime default getdate()
+  ,CreateBy varchar(50)
 )
+ create table Goods_Detail(
+  ID int primary key not null identity
+  ,ProductID int not null
+  ,Name nvarchar(100)
+  ,Quantity int
+  ,Price decimal
+  ,CreateDate datetime default getdate()
+  ,CreateBy varchar(50)
+  ,constraint FK_Cate_Product foreign key (ProductID) references Products(ID)
+)
+ --tạo bảng Product_Catagory
+  create table Goods (
+   ID int not null primary key identity
+   ,GoodID int not null
+   , SupplyID int not null
+   ,CreateDate datetime default getdate() --ngày lập
+   ,CreateBy varchar(50) 
+	,constraint FK_Cate_Goods foreign key (SupplyID) references Supplies(ID)
+	 ,constraint FK_GoodDetails foreign key (GoodID) references Goods_Detail(ID)
+)
+ --Taọ bảng Catagories
+
+
 
 --tạo bảng Hóa đơn
  create table Orders(
-   ID int primary key not null identity
+   ID bigint primary key not null identity
    ,CustomersID int not null
-   ,Node nvarchar(255)
-   ,Status int 
+   ,NameShip nvarchar(50)
+   ,PhoneShip varchar(12)
+   ,AdressShip nvarchar(250)
+   ,MailShip varchar(50)
+   ,Node nvarchar(250)
+   ,Status int default(0)
    ,Payment_Method int default(0)
-   ,CreateDate date default getdate()
+   ,CreateDate datetime default getdate()
    ,CreateBy varchar(50)
    ,constraint FK_Order_customer foreign key (CustomersID) references Customers(ID)
  )
@@ -167,27 +175,15 @@ ID int primary key not null identity
  -- Taọ bảng chi tiết hóa đơn
  create table Order_Detail(
    ID int primary key not null identity
-   ,OrderID int not null
+   ,OrderID bigint not null
    ,ProductID int not null
-   ,Quantity bigint default(0)
+   ,Quantity bigint default(1)
    ,Price decimal(18,0)
    ,constraint FK_product_order foreign key (ProductID) references products(ID)
    ,constraint FK_order foreign key (OrderID) references Orders(ID)
  )
- -- tạo bảng đánh giá
- create table Review(
-    ID int primary key not null identity
-	,CustomersID int not null
-	,ProductID int not null
-	,ArticleID int not null
-	,comment nvarchar(255)
-	,Status bit 
-	,CreateDate date default getdate()
-	,CreateBy varchar(50)
-	,constraint FK_Review_customer foreign key (CustomersID) references Customers(ID)
-	,constraint FK_Product_review foreign key (ProductID) references Products(ID)
-	,constraint FK_review_Ar foreign key (ArticleID) references Article(ID)
- )
+
+ 
  --tạo bảng chủ đề
  create table Topic(
   ID int primary key not null identity
@@ -196,7 +192,7 @@ ID int primary key not null identity
   ,DisplayOrder int default(0)
   ,SeoTitle nvarchar(100)
   ,Status bit default(1)
-  ,CreateDate date default getdate()
+  ,CreateDate datetime default getdate()
   ,CreateBy varchar(50)
 )
  --tạo bảng bài viết
@@ -216,28 +212,34 @@ ID int primary key not null identity
     ,constraint FK_topic_Ar foreign key (TopicID) references Topic(ID)
 	 ,constraint FK_img_Ar foreign key (ImageID) references Product_Image(ID)
  )
-
+ -- tạo bảng đánh giá
+ create table Review(
+    ID int primary key not null identity
+	,CustomersID int not null
+	,ProductID int not null
+	,ArticleID int not null
+	,comment nvarchar(255)
+	,Status bit default(0)
+	,CreateDate datetime default getdate()
+	,CreateBy varchar(50)
+	,constraint FK_Review_customer foreign key (CustomersID) references Customers(ID)
+	,constraint FK_Product_review foreign key (ProductID) references Products(ID)
+	,constraint FK_review_Ar foreign key (ArticleID) references Article(ID)
+ 
+ )
  --tạo bảng menu
  create table Menu(
-    ID int primary key not null
+    ID int primary key not null identity
 	,Name nvarchar(50)
 	,Link nvarchar(200)
 	,DisplayOrder int
 	,Target varchar(50)
-	,Status bit 
+	,Status bit default(0)
+	,CreateDate datetime  default getdate()
+	,CreateBy varchar(50)
  )
 
- --Tạo bảng liên hệ
- create table Feedback(
-   ID int primary key not null
-   ,Name nvarchar(50)
-   ,Phone varchar(12)
-   ,Email varchar(50)
-   ,Address nvarchar(200)
-   ,Content nvarchar(255)
-   ,CreateDate date default getdate()
-   
- )
+
  create table Tags(
    ID varchar(50) not null primary key
    ,Name nvarchar(50)
@@ -254,14 +256,38 @@ ID int primary key not null identity
    ,Content nText
    ,ViewCount datetime
    ,Status bit default(0)
-   ,CreateDate date default getdate()
+   ,CreateDate datetime default getdate()
    ,CreateBy varchar(50)
     
  )
+ create table Slide(
+     ID int primary key not null identity
+	 ,Image nvarchar(250)
+	 ,DisplayOrder int
+	 ,Link varchar(250)
+	 ,Description nvarchar(250)
+	 ,Status bit default(0)
+	 ,CreateDate datetime default getdate()
+	 ,CreateBy varchar(50)
+	 
+ )
  create table Contact(
     ID int not null primary key identity
-	,Content ntext 
+	,Address nvarchar(150)
+	,Email varchar(50)
+	,SDT varchar(12)
 	,Status bit default(0)
+ ) 
+ 
+ --Tạo bảng liên hệ
+ create table Feedback(
+   ID int primary key not null
+   ,Name nvarchar(50)
+   ,Email varchar(50)
+   ,Content nvarchar(255)
+   ,Status bit default(0)
+   ,CreateDate date default getdate()
+   
  )
  create table SystemConfig(
     ID varchar(50) not null primary key

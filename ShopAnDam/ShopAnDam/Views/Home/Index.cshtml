@@ -2,13 +2,17 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    //var slide = ViewBag.slide;
+
 }
 
 <!-- Hero Section Begin -->
 @section slide{
     <section class="hero-section">
         <div class="hero-items owl-carousel">
-            <div class="single-hero-items set-bg" data-setbg="Assets/client/img/hero-1.jpg">
+            @*@foreach (var item in slide)
+            {*@
+            <div class="single-hero-items set-bg" data-setbg="Assets/client/img/hero-2.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
@@ -26,6 +30,8 @@
                     </div>
                 </div>
             </div>
+            @*  *@}
+
             <div class="single-hero-items set-bg" data-setbg="Assets/client/img/hero-2.jpg">
                 <div class="container">
                     <div class="row">
@@ -46,8 +52,7 @@
             </div>
         </div>
     </section>
-    }
-
+}
 <!-- Hero Section End -->
 <!-- Banner Section Begin -->
 <div class="banner-section spad">
@@ -343,8 +348,8 @@
             </div>
             <div class="col-lg-3 offset-lg-1">
                 <div class="product-large set-bg m-large" data-setbg="img/products/man-large.jpg">
-                    <h2>Men’s</h2>
-                    <a href="#">Discover More</a>
+                    <h2>Bột ăn dặm</h2>
+                    <a href="#">Tìm hiểu thêm</a>
                 </div>
             </div>
         </div>
@@ -507,3 +512,4 @@
 </section>
 <!-- Latest Blog Section End -->
 <!-- Partner Logo Section Begin -->
+   

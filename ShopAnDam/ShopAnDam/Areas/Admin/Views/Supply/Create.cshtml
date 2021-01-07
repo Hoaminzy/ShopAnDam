@@ -43,7 +43,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
                     <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.Phone, htmlAttributes :new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.Phone, htmlAttributes :new { @class = "form-control", type = "number" })
                         @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -57,15 +57,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CreateDate, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(model => model.CreateDate,  htmlAttributes : new { @class = "form-control"  })
-                        @Html.ValidationMessageFor(model => model.CreateDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <div class="col-md-offset-8 col-md-2">
                         <button type="submit" class="btn btn-theme"> <i class="fa fa-plus">Thêm mới</i></button>

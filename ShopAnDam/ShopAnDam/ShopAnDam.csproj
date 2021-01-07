@@ -1596,6 +1596,7 @@
     <Compile Include="Models\Dao\ImageDao.cs" />
     <Compile Include="Models\Dao\MenuDao.cs" />
     <Compile Include="Models\Dao\ProductDao.cs" />
+    <Compile Include="Models\Dao\SlideDao.cs" />
     <Compile Include="Models\Dao\SupplyDao.cs" />
     <Compile Include="Models\Dao\TopicDao.cs" />
     <Compile Include="Models\Dao\UserDao.cs" />
