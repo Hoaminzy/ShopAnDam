@@ -1,55 +1,47 @@
-﻿
+﻿@using ShopAnDam.Models.Framework;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    //var slide = ViewBag.slide;
+    var slide = (List<Slide>)ViewBag.slide;
+    var product = (List<Product>)ViewBag.product;
+    var product1 = (List<Product>)ViewBag.product1;
+    var brand = (List<Brand>)ViewBag.brand;
+    var article = (List<Article>)ViewBag.article;
 
 }
+@section jsFooter{
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    }
 
 <!-- Hero Section Begin -->
 @section slide{
     <section class="hero-section">
         <div class="hero-items owl-carousel">
-            @*@foreach (var item in slide)
-            {*@
-            <div class="single-hero-items set-bg" data-setbg="Assets/client/img/hero-2.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Hello Hòa Minzy</h1>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore
-                            </p>
-                            <a href="#" class="primary-btn">Shop Now</a>
+            @foreach (var item in slide)
+            {
+                <div class="single-hero-items set-bg"  data-setbg="@item.Image">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <span>Bag,kids</span>
+                                <h1>Hello Hòa Minzy</h1>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore
+                                </p>
+                                <a href="#" class="primary-btn">Shop Now</a>
+                            </div>
+                        </div>
+                        <div class="off-card">
+                            <h2>Sale <span>50%</span></h2>
                         </div>
                     </div>
-                    <div class="off-card">
-                        <h2>Sale <span>50%</span></h2>
-                    </div>
                 </div>
-            </div>
-            @*  *@}
-
-            <div class="single-hero-items set-bg" data-setbg="Assets/client/img/hero-2.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Black friday</h1>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore
-                            </p>
-                            <a href="#" class="primary-btn">Shop Now</a>
-                        </div>
-                    </div>
-                    <div class="off-card">
-                        <h2>Sale <span>50%</span></h2>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </section>
 }
@@ -58,30 +50,18 @@
 <div class="banner-section spad">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-4">
-                <div class="single-banner">
-                    <img src="Assets/client/img/banner-1.jpg" alt="">
-                    <div class="inner-text">
-                        <h4>Men’s</h4>
+            @foreach (var item in brand)
+            {
+                <div class="col-lg-4"  style="width:300px; height:300px">
+                    <div class="single-banner">
+                        <img src="@item.Logo" alt="Thương Hiệu">
+                        <div class="inner-text">
+                            <h4>@item.Name</h4>
+                        </div>
                     </div>
+
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-banner">
-                    <img src="Assets/client/img/banner-2.jpg" alt="">
-                    <div class="inner-text">
-                        <h4>Women’s</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-banner">
-                    <img src="Assets/client/img/banner-3.jpg" alt="">
-                    <div class="inner-text">
-                        <h4>Kid’s</h4>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>
@@ -91,7 +71,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3">
-                <div class="product-large set-bg" data-setbg="img/products/women-large.jpg">
+                <div class="product-large set-bg" data-setbg="Assets/client/img/products/women-large.jpg">
                     <h2>Women’s</h2>
                     <a href="#">Discover More</a>
                 </div>
@@ -106,96 +86,33 @@
                     </ul>
                 </div>
                 <div class="product-slider owl-carousel">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="Assets/client/img/products/women-1.jpg" alt="">
-                            <div class="sale">Sale</div>
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
+                    @foreach (var item in product)
+                    {
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="@item.Product_Image.Image" alt="">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"  data-toggle="tooltip" data-placement="bottom" title="Thêm vào giỏ hàng"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">Xem chi tiết</a></li>
+                                    <li class="w-icon"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Mua hàng"><i class="fa fa-random"></i></a></li>
+                                </ul>
                             </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="Assets/client/icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Coat</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="Assets/client/img/products/women-2.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Shoes</div>
-                            <a href="#">
-                                <h5>Guangzhou sweater</h5>
-                            </a>
-                            <div class="product-price">
-                                $13.00
+                            <div class="pi-text">
+                                <div class="catagory-name">@item.Category.Name</div>
+                                <a href="#">
+                                    <h5>@item.Name</h5>
+                                </a>
+                                <div class="product-price">
+                                    @item.Price
+                                    <span>@item.MotionPrice</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="Assets/client/img/products/women-3.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="Assets/client/img/products/women-4.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Converse Shoes</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
@@ -203,7 +120,7 @@
 </section>
 <!-- Women Banner Section End -->
 <!-- Deal Of The Week Section Begin-->
-<section class="deal-of-week set-bg spad" data-setbg="img/time-bg.jpg">
+<section class="deal-of-week set-bg spad" data-setbg="Assets/client/img/time-bg.jpg">
     <div class="container">
         <div class="col-lg-6 text-center">
             <div class="section-title">
@@ -246,108 +163,49 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="filter-control">
-                    <ul>
-                        <li class="active">Clothings</li>
-                        <li>HandBag</li>
-                        <li>Shoes</li>
-                        <li>Accessories</li>
-                    </ul>
+                    @*<ul>
+                            <li class="active">Clothings</li>
+                            <li>HandBag</li>
+                            <li>Shoes</li>
+                            <li>Accessories</li>
+                        </ul>*@
+                    <h2>New Arrivals</h2>
                 </div>
                 <div class="product-slider owl-carousel">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="Assets/client/img/products/man-1.jpg" alt="">
-                            <div class="sale">Sale</div>
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
+                    @foreach (var item in product1)
+                    {
+                        var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="@item.Product_Image.Image" alt="@item.Name">
+                                <div class="sale">New</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="@url" data-toggle="tooltip" data-placement="bottom" title="Thêm vào giỏ hàng"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="@url">Xem chi tiết</a></li>
+                                    <li class="w-icon"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Mua hàng"><i class="fa fa-random"></i></a></li>
+                                </ul>
                             </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Coat</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="Assets/client/img/products/man-2.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Shoes</div>
-                            <a href="#">
-                                <h5>Guangzhou sweater</h5>
-                            </a>
-                            <div class="product-price">
-                                $13.00
+                            <div class="pi-text">
+                                <div class="catagory-name">@item.Category.Name</div>
+                                <a href="#">
+                                    <h5>@item.Name</h5>
+                                </a>
+                                <div class="product-price">
+                                   @(item.Price.HasValue ?  item.Price.Value.ToString("N0"): "Liên Hệ")
+                                    @*<span>@item.Price</span>*@
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="Assets/client/img/products/man-3.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="Assets/client/img/products/man-4.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Converse Shoes</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
+                    }
+
+            
                 </div>
             </div>
             <div class="col-lg-3 offset-lg-1">
-                <div class="product-large set-bg m-large" data-setbg="img/products/man-large.jpg">
+                <div class="product-large set-bg m-large" data-setbg="Assets/client/img/products/man-large.jpg">
                     <h2>Bột ăn dặm</h2>
                     <a href="#">Tìm hiểu thêm</a>
                 </div>
@@ -402,74 +260,36 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <h2>From The Blog</h2>
+                    <h2>Kiến thức ăn dặm cho bé</h2>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="single-latest-blog">
-                    <img src="Assets/client/img/latest-1.jpg" alt="">
-                    <div class="latest-text">
-                        <div class="tag-list">
-                            <div class="tag-item">
-                                <i class="fa fa-calendar-o"></i>
-                                May 4,2019
+            @foreach (var item in article)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-blog">
+                        <img src="@item.Product_Image.Image" alt="@item.Name">
+                        <div class="latest-text">
+                            <div class="tag-list">
+                                <div class="tag-item">
+                                    <i class="fa fa-calendar-o"></i>
+                                    @(item.CreateDate.HasValue?item.CreateDate.Value.ToString("dd/MM/yyyy"):"")
+                                </div>
+                                <div class="tag-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    @item.Reviews.Count
+                                </div>
                             </div>
-                            <div class="tag-item">
-                                <i class="fa fa-comment-o"></i>
-                                5
-                            </div>
+                            <a href="#">
+                                <h4>@item.Topic.Name</h4>
+                            </a>
+                            <p>@item.Title </p>
                         </div>
-                        <a href="#">
-                            <h4>The Best Street Style From London Fashion Week</h4>
-                        </a>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-latest-blog">
-                    <img src="Assets/client/img/latest-2.jpg" alt="">
-                    <div class="latest-text">
-                        <div class="tag-list">
-                            <div class="tag-item">
-                                <i class="fa fa-calendar-o"></i>
-                                May 4,2019
-                            </div>
-                            <div class="tag-item">
-                                <i class="fa fa-comment-o"></i>
-                                5
-                            </div>
-                        </div>
-                        <a href="#">
-                            <h4>Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes</h4>
-                        </a>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-latest-blog">
-                    <img src="Assets/client/img/latest-3.jpg" alt="">
-                    <div class="latest-text">
-                        <div class="tag-list">
-                            <div class="tag-item">
-                                <i class="fa fa-calendar-o"></i>
-                                May 4,2019
-                            </div>
-                            <div class="tag-item">
-                                <i class="fa fa-comment-o"></i>
-                                5
-                            </div>
-                        </div>
-                        <a href="#">
-                            <h4>How To Brighten Your Wardrobe With A Dash Of Lime</h4>
-                        </a>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                    </div>
-                </div>
-            </div>
+            }
+
         </div>
         <div class="benefit-items">
             <div class="row">
@@ -512,4 +332,3 @@
 </section>
 <!-- Latest Blog Section End -->
 <!-- Partner Logo Section Begin -->
-   

@@ -33,14 +33,14 @@ namespace ShopAnDam.Areas.Admin.Controllers
 
         [HttpPost]
 
-        public ActionResult Create(Product_Image Image)
+        public ActionResult Create(Product_Image img)
         {
             if (ModelState.IsValid)
             {
                 var dao = new ImageDao();
-                Image.CreateDate = DateTime.Now;
+                img.CreateDate = DateTime.Now;
 
-                long id = dao.Insert(Image);
+                long id = dao.Insert(img);
                 if (id > 0)
                 {
                     SetAlert("Thêm thành công!", "success");
@@ -56,13 +56,13 @@ namespace ShopAnDam.Areas.Admin.Controllers
             return View("Index");
         }
         [HttpPost]
-        public ActionResult Edit(Product_Image Image)
+        public ActionResult Edit(Product_Image img)
         {
             if (ModelState.IsValid)
             {
                 var dao = new ImageDao();
-                Image   .CreateDate = DateTime.Now;
-                var res = dao.Update(Image);
+                img.CreateDate = DateTime.Now;
+                var res = dao.Update(img);
                 if (res)
                 {
                     SetAlert("Cập nhật thành công!", "success");

@@ -9,7 +9,6 @@ namespace ShopAnDam.Models.Framework
     [Table("Feedback")]
     public partial class Feedback
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [StringLength(50)]

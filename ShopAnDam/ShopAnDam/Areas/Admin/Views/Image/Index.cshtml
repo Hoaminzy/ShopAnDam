@@ -76,11 +76,11 @@
                         <tr id="row_@item.ID" class="search">
                             <td></td>
                             <td>@item.ID</td>
-                            <td>@item.Image</td>
-                            <td>@item.CreateDate </td>
+                            <td><img src="@item.Image" width="70px"/></td>
+                            <td>@(item.CreateDate.HasValue?item.CreateDate.Value.ToString("dd/MM/yyyy"):"") </td>
                             <td>
                                 <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                <a href="#" onclick="Details(@item.ID)" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                <a href="/Admin/Image/Edit/@item.ID" @*onclick="Details(@item.ID)"*@ class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                                 @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
                            {
                                Confirm = "Bạn có muốn xóa bản ghi này?",

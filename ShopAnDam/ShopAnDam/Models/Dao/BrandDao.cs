@@ -23,7 +23,10 @@ namespace ShopAnDam.Models.Dao
             db.SaveChanges();
             return entity.ID;
         }
-
+        public List<Brand> getall(int top)
+        {
+            return db.Brands.OrderByDescending(x => x.CreateDate).Take(top).ToList(); ;
+        }
         public bool Update(Brand entity)
         {
             try

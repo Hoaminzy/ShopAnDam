@@ -18,7 +18,6 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Slides.Where(x => x.Status==true).OrderBy(x => x.DisplayOrder).ToList();
         }
-        public void list() { }
 
     }
 }

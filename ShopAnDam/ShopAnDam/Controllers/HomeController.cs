@@ -13,6 +13,11 @@ namespace ShopAnDam.Controllers
         public ActionResult Index()
         {
             ViewBag.slide = new SlideDao().ListAll();
+            ViewBag.product = new ProductDao().ListAllProduct(3);
+            ViewBag.product1 = new ProductDao().ListAllProductTopHot(3);
+            //ViewBag.category = new CategoryDao().getAll();
+            ViewBag.brand = new BrandDao().getall(3);
+            ViewBag.article = new ArticleDao().List(3);
             return View();
         }
         [ChildActionOnly]

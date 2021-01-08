@@ -168,9 +168,7 @@ namespace ShopAnDam.Models.Framework
             modelBuilder.Entity<Product_Image>()
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
-            modelBuilder.Entity<Product_Image>()
-              .Property(e => e.Image)
-              .IsUnicode(false);
+
             modelBuilder.Entity<Product_Image>()
                 .HasMany(e => e.Articles)
                 .WithRequired(e => e.Product_Image)
@@ -182,7 +180,6 @@ namespace ShopAnDam.Models.Framework
                 .WithRequired(e => e.Product_Image)
                 .HasForeignKey(e => e.ImageID)
                 .WillCascadeOnDelete(false);
-
 
             modelBuilder.Entity<Product>()
                 .Property(e => e.Code)
@@ -238,14 +235,6 @@ namespace ShopAnDam.Models.Framework
             modelBuilder.Entity<Slide>()
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Supply>()
-            .Property(e => e.Name)
-            .IsUnicode(false);
-
-            modelBuilder.Entity<Supply>()
-            .Property(e => e.Address)
-            .IsUnicode(false);
 
             modelBuilder.Entity<Supply>()
                 .Property(e => e.Email)

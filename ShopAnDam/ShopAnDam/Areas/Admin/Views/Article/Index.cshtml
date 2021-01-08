@@ -4,12 +4,16 @@
     ViewBag.Title = "Bài viết";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@section header{
+    Danh sách bài viết
+}
 @section jsFooter{
 
     <script src="~/Assets/admin/js/controller/Article.js"></script>
     <script>
         $(document).ready(function () {
-            $("#show").click(function () {
+            $("#show").click(function (e) {
+                e.preventDefault();
                 var url = $("#Modal").data("url");
 
                 $.get(url, function (data) {
@@ -26,13 +30,16 @@
                 $("#myModal").modal("show");
            }
         $('#myModal').on('hidden.bs.modal', function (e) {
+            e.preventDefault();
             $('.modal-body').html("");
         });
 
           function View(ID)
            {
                $.get("@Url.Action("View","Article")/"+ID,
-               function(data) {$('.modal-body').html(data);})
+                   function (data) {
+                       $('.modal-body').html(data);
+                   })
                 $("#myModal").modal("show");
            }
         $('#myModal').on('hidden.bs.modal', function (e) {
@@ -47,7 +54,7 @@
     {
     <div class="form-group col-lg-12">
         <div class="col-md-8">
-            <a class="btn btn-theme03" id="show"><i class="fa fa-plus"></i>Thêm mới</a>
+            <a class="btn btn-theme" href="#" id="show"><i class="fa fa-plus"></i>Thêm mới</a>
         </div>
         <div class="input-append col-md-3">
             <input type="text" class="form-control " value="@ViewBag.SearchString" name="searchString" placeholder="Nhập từ khóa cần tìm">
@@ -86,7 +93,7 @@
                             <td>@item.CreateDate</td>
                             <td>
                                 <a class="btn btn-success btn-xs " onclick="View(@item.ID)" data-id="@item.ID" id="show"><i class="fa fa-check"></i></a>
-                                <a onclick="Details(@item.ID)" data-id="@item.ID" id="show" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                <a onclick="Details(@item.ID)"  id="show" href="#" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                                 @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
                            {
                                Confirm = "Bạn có muốn xóa bản ghi này?",

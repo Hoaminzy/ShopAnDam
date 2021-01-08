@@ -18,9 +18,11 @@ namespace ShopAnDam.Areas.Admin.Controllers
             ViewBag.SearchString = searchString;
             return View(model);
         }
-
+ 
         public ActionResult Create()
         {
+
+
             return View();
         }
         [HttpGet]

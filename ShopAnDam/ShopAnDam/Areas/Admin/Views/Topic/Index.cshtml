@@ -28,7 +28,9 @@
         function Details(ID)
            {
                $.get("@Url.Action("Edit","Topic")/"+ID,
-               function(data) {$('.modal-body').html(data);})
+                   function (data) {
+                       $('.modal-body').html(data);
+                   })
                 $("#myModal").modal("show");
            }
         $('#myModal').on('hidden.bs.modal', function (e) {
@@ -83,8 +85,8 @@
                             <td><a href="#" class="label label-success label-mini btn-active" data-id="@item.ID">@(item.Status ?"Kích hoạt": "Khóa")</a></td>
                             <td>@item.CreateDate</td>
                             <td>
-                                <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                <a onclick="Details(@item.ID)" data-id="@item.ID" id="show" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                             @*   <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>*@
+                                <a onclick="Details(@item.ID)" id="show" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                                 @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
                            {
                                Confirm = "Bạn có muốn xóa bản ghi này?",
@@ -131,8 +133,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"> Thêm chủ đề</h4>
-
+                <h4 class="modal-title" id="exampleModalLabel"> Chỉnh sửa chủ đề</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
             </div>

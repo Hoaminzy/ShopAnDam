@@ -19,7 +19,14 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Products.ToList();
         }
-
+        public List<Product> ListAllProduct(int top)
+        {
+            return db.Products.Where(x => x.Status == true).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+        }
+        public List<Product> ListAllProductTopHot(int top)
+        {
+            return db.Products.Where( x => x.Status==true && x.TopHot!= null && x.TopHot>DateTime.Now).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+        }
         public long Insert(Product entity)
         {
             db.Products.Add(entity);

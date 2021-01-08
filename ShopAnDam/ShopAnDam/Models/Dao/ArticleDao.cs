@@ -15,9 +15,9 @@ namespace ShopAnDam.Models.Dao
         {
             db = new AnDamDBContext();
         }
-        public List<Article> List()
+        public List<Article> List(int top)
         {
-            return db.Articles.ToList();
+            return db.Articles.Where(x => x.Status == true).OrderByDescending(x => x.CreateDate).Take(3).ToList();
         }
 
         public long Insert(Article entity)
