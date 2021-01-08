@@ -14,12 +14,16 @@ namespace ShopAnDam.Controllers
         {
             return View();
         }
-
+        public ActionResult Details()
+        {
+            return View();
+        }
         [ChildActionOnly]
         public PartialViewResult Category()
         {
             var model = new CategoryDao().getAll();
             return PartialView(model);
         }
+
     }
 }
