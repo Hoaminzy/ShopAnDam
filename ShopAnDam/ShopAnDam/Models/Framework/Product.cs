@@ -12,17 +12,16 @@ namespace ShopAnDam.Models.Framework
         public Product()
         {
             Goods_Detail = new HashSet<Goods_Detail>();
+            Images = new HashSet<Image>();
             Order_Detail = new HashSet<Order_Detail>();
             Reviews = new HashSet<Review>();
         }
 
         public int ID { get; set; }
 
-        public int ImageID { get; set; }
+        public int? BrandID { get; set; }
 
-        public int BrandID { get; set; }
-
-        public int CategoryID { get; set; }
+        public int? CategoryID { get; set; }
 
         [StringLength(150)]
         public string Name { get; set; }
@@ -30,7 +29,7 @@ namespace ShopAnDam.Models.Framework
         [StringLength(50)]
         public string Code { get; set; }
 
-        [StringLength(50)]
+        [StringLength(150)]
         public string Title { get; set; }
 
         [StringLength(150)]
@@ -45,7 +44,7 @@ namespace ShopAnDam.Models.Framework
 
         public int? Quantity { get; set; }
 
-        public bool? IncludeVAT { get; set; }
+        public bool IncludeVAT { get; set; }
 
         public bool Status { get; set; }
 
@@ -69,9 +68,10 @@ namespace ShopAnDam.Models.Framework
         public virtual ICollection<Goods_Detail> Goods_Detail { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order_Detail> Order_Detail { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
 
-        public virtual Product_Image Product_Image { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order_Detail> Order_Detail { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }

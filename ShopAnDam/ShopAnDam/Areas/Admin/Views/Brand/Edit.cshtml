@@ -10,11 +10,11 @@
 @section jsFooter{
     <script>
 
-            $('#btnSelectImage1').on('click', function (e) {
+            $('#btnSelectImage').on('click', function (e) {
                 e.preventDefault();
                 var finder = new CKFinder();
                 finder.selectActionFunction = function (url) {
-                    $('#txtImage1').val(url);
+                    $('#txtImage').val(url);
                 };
                 finder.popup();
             })
@@ -25,8 +25,6 @@
 <div class="row mt">
     <div class="col-lg-10">
         <div style="margin-left:20px">
-
-            <h4 class="mb"><i class="fa fa-angle-right"></i> Thông tin thương hiệu</h4>
             @using (Html.BeginForm("Edit", "Brand", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
@@ -42,10 +40,10 @@
                         @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
                         <div class="col-md-6">
                             <div class="input-group bootstrap-timepicker">
-                                @Html.TextBoxFor(model => model.Logo, htmlAttributes : new { @class = "form-control", @id = "txtImage1" })
+                                @Html.TextBoxFor(model => model.Logo, htmlAttributes : new { @class = "form-control", @id = "txtImage" })
                                 @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
                                 <span class="input-group-btn">
-                                    <a  href="#" class="btn btn-theme03" id="btnSelectImage1"><i class="fa fa-cloud-upload"></i></a>
+                                    <a  href="#" class="btn btn-theme03" id="btnSelectImage"><i class="fa fa-cloud-upload"></i></a>
                                 </span>
                             </div>
                         </div>

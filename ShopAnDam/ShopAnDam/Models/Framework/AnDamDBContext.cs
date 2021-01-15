@@ -21,10 +21,10 @@ namespace ShopAnDam.Models.Framework
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Good> Goods { get; set; }
         public virtual DbSet<Goods_Detail> Goods_Detail { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<Order_Detail> Order_Detail { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Product_Image> Product_Image { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
@@ -55,19 +55,9 @@ namespace ShopAnDam.Models.Framework
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Article>()
-                .HasMany(e => e.Reviews)
-                .WithRequired(e => e.Article)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<Brand>()
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Brand>()
-                .HasMany(e => e.Products)
-                .WithRequired(e => e.Brand)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Category>()
                 .Property(e => e.MetaTilte)
@@ -76,11 +66,6 @@ namespace ShopAnDam.Models.Framework
             modelBuilder.Entity<Category>()
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Category>()
-                .HasMany(e => e.Products)
-                .WithRequired(e => e.Category)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Contact>()
                 .Property(e => e.Email)
@@ -104,15 +89,13 @@ namespace ShopAnDam.Models.Framework
 
             modelBuilder.Entity<Customer>()
                 .HasMany(e => e.Orders)
-                .WithRequired(e => e.Customer)
-                .HasForeignKey(e => e.CustomersID)
-                .WillCascadeOnDelete(false);
+                .WithOptional(e => e.Customer)
+                .HasForeignKey(e => e.CustomersID);
 
             modelBuilder.Entity<Customer>()
                 .HasMany(e => e.Reviews)
-                .WithRequired(e => e.Customer)
-                .HasForeignKey(e => e.CustomersID)
-                .WillCascadeOnDelete(false);
+                .WithOptional(e => e.Customer)
+                .HasForeignKey(e => e.CustomersID);
 
             modelBuilder.Entity<Feedback>()
                 .Property(e => e.Email)
@@ -132,9 +115,12 @@ namespace ShopAnDam.Models.Framework
 
             modelBuilder.Entity<Goods_Detail>()
                 .HasMany(e => e.Goods)
-                .WithRequired(e => e.Goods_Detail)
-                .HasForeignKey(e => e.GoodID)
-                .WillCascadeOnDelete(false);
+                .WithOptional(e => e.Goods_Detail)
+                .HasForeignKey(e => e.GoodID);
+
+            modelBuilder.Entity<Image>()
+                .Property(e => e.CreateBy)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Menu>()
                 .Property(e => e.Target)
@@ -160,27 +146,6 @@ namespace ShopAnDam.Models.Framework
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Order>()
-                .HasMany(e => e.Order_Detail)
-                .WithRequired(e => e.Order)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Product_Image>()
-                .Property(e => e.CreateBy)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Product_Image>()
-                .HasMany(e => e.Articles)
-                .WithRequired(e => e.Product_Image)
-                .HasForeignKey(e => e.ImageID)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Product_Image>()
-                .HasMany(e => e.Products)
-                .WithRequired(e => e.Product_Image)
-                .HasForeignKey(e => e.ImageID)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<Product>()
                 .Property(e => e.Code)
                 .IsUnicode(false);
@@ -200,21 +165,6 @@ namespace ShopAnDam.Models.Framework
             modelBuilder.Entity<Product>()
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Product>()
-                .HasMany(e => e.Goods_Detail)
-                .WithRequired(e => e.Product)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Product>()
-                .HasMany(e => e.Order_Detail)
-                .WithRequired(e => e.Product)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Product>()
-                .HasMany(e => e.Reviews)
-                .WithRequired(e => e.Product)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Review>()
                 .Property(e => e.CreateBy)
@@ -248,11 +198,6 @@ namespace ShopAnDam.Models.Framework
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Supply>()
-                .HasMany(e => e.Goods)
-                .WithRequired(e => e.Supply)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<SystemConfig>()
                 .Property(e => e.ID)
                 .IsUnicode(false);
@@ -272,11 +217,6 @@ namespace ShopAnDam.Models.Framework
             modelBuilder.Entity<Topic>()
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Topic>()
-                .HasMany(e => e.Articles)
-                .WithRequired(e => e.Topic)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserGroup>()
                 .Property(e => e.ID)

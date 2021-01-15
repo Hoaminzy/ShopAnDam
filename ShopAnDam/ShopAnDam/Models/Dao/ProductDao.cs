@@ -1,5 +1,6 @@
 ﻿using PagedList;
 using ShopAnDam.Models.Framework;
+using ShopAnDam.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,78 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Products.ToList();
         }
-        public List<Product> ListAllProduct(int top)
+        public List<ProductViewmodel> ListAllProduct(int top)
         {
-            return db.Products.Where(x => x.Status == true).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+            //return db.Products.Where(x => x.CategoryID == CateID).ToList();
+            var model = from v in db.Products
+                        join ca in db.Categories on v.CategoryID equals ca.ID
+                        join i in db.Images on v.ID equals i.ProductID
+                        join b in db.Brands on v.BrandID equals b.ID
+                        select new ProductViewmodel()
+                        {
+                            ID = v.ID,
+                            Name = v.Name,
+                            Image = i.Image1,
+                            Price = v.Price,
+                            MotiPrice = v.MotionPrice,
+                            MetaTitle = v.MetaTitle,
+                            CreateDate = v.CreateDate,
+                            Status = v.Status,
+                            CateName = ca.Name,
+                            CateTiTle = ca.MetaTilte
+                        };
+
+            return model.Where(x => x.Status == true).OrderByDescending(x => x.CreateDate).Take(top).ToList();
         }
-        public List<Product> ListAllProductTopHot(int top)
+        public List<ProductViewmodel> ListAllProductTopHot(int top)
         {
-            return db.Products.Where( x => x.Status==true && x.TopHot!= null && x.TopHot>DateTime.Now).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+            var model = from v in db.Products
+                        join ca in db.Categories on v.CategoryID equals ca.ID
+                        join i in db.Images on v.ID equals i.ProductID
+                        join b in db.Brands on v.BrandID equals b.ID
+                        select new ProductViewmodel()
+                        {
+                            ID = v.ID,
+                            Name = v.Name,
+                            Image = i.Image1,
+                            Price = v.Price,
+                            MotiPrice = v.MotionPrice,
+                            MetaTitle = v.MetaTitle,
+                            TopHot = v.TopHot,
+                            CreateDate = v.CreateDate,
+                            Status = v.Status,
+                            CateName = ca.Name,
+                            CateTiTle = ca.MetaTilte
+                        };
+
+            return model.Where( x => x.Status==true && x.TopHot!= null && x.TopHot>DateTime.Now).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+        }
+
+        public List<ProductViewmodel> ListByCategoryByID( int CateID )
+        {
+            //return db.Products.Where(x => x.CategoryID == CateID).ToList();
+            var model = from v in db.Products
+                        join ca in db.Categories on v.CategoryID equals ca.ID
+                        where v.CategoryID == CateID
+                        join i in db.Images on v.ID equals i.ProductID
+                        join b in db.Brands on v.BrandID equals b.ID
+                        select new ProductViewmodel()
+                        {
+                            ID = v.ID,
+                            Name = v.Name,
+                            Image = i.Image1,
+                            Price = v.Price,
+                            MotiPrice = v.MotionPrice,
+                            MetaTitle = v.MetaTitle,
+                            TopHot = v.TopHot,
+                            Status = v.Status,
+                            CreateDate = v.CreateDate,
+                            CateName = ca.Name,
+                            CateTiTle = ca.MetaTilte
+                        };
+
+
+                return model.Where(x => x.Status==true).ToList();
         }
         public long Insert(Product entity)
         {
@@ -41,7 +107,6 @@ namespace ShopAnDam.Models.Dao
                 var product = db.Products.Find(entity.ID);
                 product.Name = entity.Name;
                 product.Code = entity.Code;
-                product.ImageID = entity.ImageID;
                 product.BrandID = entity.BrandID;
                 product.CategoryID = entity.CategoryID;
                 product.Title = entity.Title;
@@ -84,11 +149,11 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Categories.Where(x => x.Status == true).ToList();
         }
-
-        public List<Product_Image> ListAllImage()
+        public List<Image> ListAllImage()
         {
-            return db.Product_Image.ToList();
+            return db.Images.ToList();
         }
+
         public Product GetByID(string Name)
         {
             return db.Products.SingleOrDefault(x => x.Name == Name);

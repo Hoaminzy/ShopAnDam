@@ -18,22 +18,31 @@ namespace ShopAnDam.Areas.Admin.Controllers
             ViewBag.SearchString = searchString;
             return View(model);
         }
+        public void SetViewBag(long? selectedId = null)
+        {
+            var dao = new ImageDao();
+            ViewBag.ProductID = new SelectList(dao.ListAllProduct(), "ID", "Name", selectedId);
+            ViewBag.ArticleID = new SelectList(dao.ListAllArticle(), "ID", "Name", selectedId);
 
+        }
         public ActionResult Create()
         {
+            SetViewBag();
             return View();
         }
         [HttpGet]
         public ActionResult Edit(int id)
         {
             var Image = new ImageDao().ViewDetail(id);
+            SetViewBag();
+
             return View(Image);
         }
 
 
         [HttpPost]
 
-        public ActionResult Create(Product_Image img)
+        public ActionResult Create(Image img)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +65,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
             return View("Index");
         }
         [HttpPost]
-        public ActionResult Edit(Product_Image img)
+        public ActionResult Edit(Image img)
         {
             if (ModelState.IsValid)
             {

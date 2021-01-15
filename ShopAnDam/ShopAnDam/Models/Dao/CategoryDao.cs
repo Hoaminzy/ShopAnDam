@@ -57,9 +57,9 @@ namespace ShopAnDam.Models.Dao
             }
             return model.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
-        public List<Product_Image> ListAllImage()
+        public List<Image> ListAllImage()
         {
-            return db.Product_Image.ToList();
+            return db.Images.ToList();
         }
         public Category GetByID(string Name)
         {

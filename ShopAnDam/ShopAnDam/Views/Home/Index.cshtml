@@ -1,10 +1,11 @@
 ﻿@using ShopAnDam.Models.Framework;
+@using ShopAnDam.Models.ViewModel;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var slide = (List<Slide>)ViewBag.slide;
-    var product = (List<Product>)ViewBag.product;
-    var product1 = (List<Product>)ViewBag.product1;
+    var product = (List<ProductViewmodel>)ViewBag.product;
+    var product1 = (List<ProductViewmodel>)ViewBag.product1;
     var brand = (List<Brand>)ViewBag.brand;
     var article = (List<Article>)ViewBag.article;
 
@@ -15,7 +16,7 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
-    }
+}
 
 <!-- Hero Section Begin -->
 @section slide{
@@ -23,7 +24,7 @@
         <div class="hero-items owl-carousel">
             @foreach (var item in slide)
             {
-                <div class="single-hero-items set-bg"  data-setbg="@item.Image">
+                <div class="single-hero-items set-bg" data-setbg="@item.Image">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-5">
@@ -52,7 +53,7 @@
         <div class="row">
             @foreach (var item in brand)
             {
-                <div class="col-lg-4"  style="width:300px; height:300px">
+                <div class="col-lg-4" style="width:300px; height:300px">
                     <div class="single-banner">
                         <img src="@item.Logo" alt="Thương Hiệu">
                         <div class="inner-text">
@@ -88,27 +89,28 @@
                 <div class="product-slider owl-carousel">
                     @foreach (var item in product)
                     {
+                        var url = "chi-tiet/" + item.MetaTitle + "-" + item.ID;
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="@item.Product_Image.Image" alt="">
+                                <img src="@item.Image" alt="huhu">
                                 <div class="sale">Sale</div>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
                                 <ul>
-                                    <li class="w-icon active"><a href="#"  data-toggle="tooltip" data-placement="bottom" title="Thêm vào giỏ hàng"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">Xem chi tiết</a></li>
+                                    <li class="w-icon active"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Thêm vào giỏ hàng"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="@url">Xem chi tiết</a></li>
                                     <li class="w-icon"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Mua hàng"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">@item.Category.Name</div>
+                                <div class="catagory-name">@item.CateName</div>
                                 <a href="#">
                                     <h5>@item.Name</h5>
                                 </a>
                                 <div class="product-price">
                                     @item.Price
-                                    <span>@item.MotionPrice</span>
+                                    <span>@item.MotiPrice</span>
                                 </div>
                             </div>
                         </div>
@@ -177,7 +179,7 @@
                         var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="@item.Product_Image.Image" alt="@item.Name">
+                                <img src="@item.Image" alt="@item.Name">
                                 <div class="sale">New</div>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
@@ -189,19 +191,19 @@
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">@item.Category.Name</div>
+                                <div class="catagory-name">@item.CateName</div>
                                 <a href="#">
                                     <h5>@item.Name</h5>
                                 </a>
                                 <div class="product-price">
-                                   @(item.Price.HasValue ?  item.Price.Value.ToString("N0"): "Liên Hệ")
+                                    @(item.Price.HasValue ?  item.Price.Value.ToString("N0"): "Liên Hệ")
                                     @*<span>@item.Price</span>*@
                                 </div>
                             </div>
                         </div>
                     }
 
-            
+
                 </div>
             </div>
             <div class="col-lg-3 offset-lg-1">
@@ -269,7 +271,7 @@
             {
                 <div class="col-lg-4 col-md-6">
                     <div class="single-latest-blog">
-                        <img src="@item.Product_Image.Image" alt="@item.Name">
+                        <img src="@item.Images" alt="@item.Name">
                         <div class="latest-text">
                             <div class="tag-list">
                                 <div class="tag-item">
@@ -278,7 +280,7 @@
                                 </div>
                                 <div class="tag-item">
                                     <i class="fa fa-comment-o"></i>
-                                    @item.Reviews.Count
+                                    @*      @item.ViewCount*@
                                 </div>
                             </div>
                             <a href="#">

@@ -24,8 +24,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
         {
             var dao = new ProductDao();
             ViewBag.BrandID = new SelectList(dao.ListAllBrand(), "ID", "Name", selectedId);
-            ViewBag.CategoryID = new SelectList(dao.ListAllCategory(), "ID", "Name", selectedId);
-            ViewBag.ImageID = new SelectList(dao.ListAllImage(), "ID", "Image", selectedId);
+            ViewBag.CategoryID = new SelectList(dao.ListAllCategory(), "ID", "Name", selectedId);          
 
         }
         [HttpGet]

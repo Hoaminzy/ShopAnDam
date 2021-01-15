@@ -65,7 +65,6 @@
                         <th><i class="fa fa-bullhorn"></i> Tên sản phẩm</th>
                         <th><i class="fa fa-bullhorn"></i> Hãng</th>
                         <th><i class="fa fa-bullhorn"></i> Thuộc danh mục</th>
-                        <th><i class="fa fa-bullhorn"></i> Hình ảnh</th>
                         <th><i class="fa fa-bookmark"></i> Meta Tile</th>
                         <th><i class="fa fa-bookmark"></i> Số lượng</th>
                         <th><i class="fa fa-bookmark"></i> Giá</th>
@@ -81,9 +80,8 @@
                     <tr id="row_@item.ID">
                         <td>@item.Code</td>
                         <td>@item.Name</td>
-                        <td>@item.BrandID</td>
-                        <td>@item.CategoryID</td>
-                        <td>@item.ImageID</td>
+                        <td>@item.Brand.Name</td>
+                        <td>@item.Category.Name</td>
                         <td>@item.MetaTitle</td>
                         <td>@item.Quantity</td>
                         <td>@item.Price</td>
@@ -133,7 +131,7 @@
 </div>
 
 
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModal" role="dialog" tabindex="-1" data-keyboard="false" data-backdrop="static" >
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">

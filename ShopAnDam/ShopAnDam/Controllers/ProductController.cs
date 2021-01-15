@@ -24,6 +24,16 @@ namespace ShopAnDam.Controllers
             var model = new CategoryDao().getAll();
             return PartialView(model);
         }
+         public ActionResult CategoryView(int cateID)
+        {
+            var category = new CategoryDao().ViewDetail(cateID);
+            ViewBag.Category = category;
+            var model = new ProductDao().ListByCategoryByID(cateID) ;
+            return View(model);
+        }
+
+
+
 
     }
 }

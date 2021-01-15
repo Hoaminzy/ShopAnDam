@@ -27,9 +27,9 @@ namespace ShopAnDam.Models.Dao
             return db.Categories.Where(x => x.Status==true).ToList();
         }
 
-        public List<Product_Image> ListAllImage()
+        public List<Image> ListAllImage()
         {
-            return db.Product_Image.ToList();
+            return db.Images.ToList();
         }
     }
 }

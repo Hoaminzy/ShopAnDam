@@ -15,7 +15,7 @@ log on
   ,FILENAME='D:\BT\DATN\ShopAnDam\DB\AnDam.ldf'
 
 )
-
+use  ANDAM
 
 --tạo bảng nhóm người dừng
 create table UserGroup(
@@ -77,6 +77,8 @@ create table Category(
   ,CreateDate datetime default getdate()
   ,CreateBy varchar(50)
 )
+
+
 --Tạo bảng thương hiệu
 create table Brands(
   ID int primary key not null identity
@@ -87,18 +89,23 @@ create table Brands(
 )
 
 --tạo bảng ảnh sản phẩm
-create table Product_Image(
+create table Images(
 ID int primary key not null identity
+,ProductID int 
+,ArticleID int
 ,Image nvarchar(Max)
 ,CreateDate datetime default getdate()
 ,CreateBy varchar(50)
+ ,constraint FK_Product_Image foreign key (ProductID) references Products(ID)
+  ,constraint FK_img_Ar foreign key (ArticleID) references Article(ID)
 )
+
 --tạo bảng sản phẩm
+
 create table Products(
   ID int primary key not null identity
-  ,ImageID int not null
-  ,BrandID int not null
-  ,CategoryID int not null
+  ,BrandID int 
+  ,CategoryID int 
   ,Name nvarchar(150)
   ,Code varchar(50)
   ,Title nvarchar(50) 
@@ -108,18 +115,15 @@ create table Products(
   ,MotionPrice decimal(18,0)
   ,Quantity int default(0)
   ,IncludeVAT bit  -- bao gồm VAT chưa mặc định là rồi
-  ,Status bit default(0)
+  ,Status bit default(1)
   ,TopHot datetime
   ,ViewCount int default(0)
   ,Tags nvarchar(500)
   ,CreateDate datetime default getdate()
   ,CreateBy varchar(50)
-  ,constraint FK_Product_Image foreign key (ImageID) references Product_Image(ID)
   ,constraint FK_Product_Brand foreign key(BrandID) references Brands(ID)
   ,constraint FK_Product_Cate foreign key (CategoryID) references Category(ID)
 )
-
-
 
 --Tọa bảng nhà cung cấp (NCC)
 create table Supplies(
@@ -133,33 +137,30 @@ create table Supplies(
   ,CreateBy varchar(50)
 )
  create table Goods_Detail(
-  ID int primary key not null identity
-  ,ProductID int not null
+   GoodID int 
+  ,ProductID int 
   ,Name nvarchar(100)
-  ,Quantity int
-  ,Price decimal
+  ,Quantity int default(0)
+  ,Price decimal (18,0)
   ,CreateDate datetime default getdate()
   ,CreateBy varchar(50)
   ,constraint FK_Cate_Product foreign key (ProductID) references Products(ID)
+  ,constraint FK_Goods foreign key (GoodID) references Goods(ID)
 )
  --tạo bảng Product_Catagory
   create table Goods (
    ID int not null primary key identity
-   ,GoodID int not null
-   , SupplyID int not null
+   , SupplyID int 
+   ,Tongtien decimal(18,0) default(0)
    ,CreateDate datetime default getdate() --ngày lập
    ,CreateBy varchar(50) 
 	,constraint FK_Cate_Goods foreign key (SupplyID) references Supplies(ID)
-	 ,constraint FK_GoodDetails foreign key (GoodID) references Goods_Detail(ID)
 )
- --Taọ bảng Catagories
-
-
 
 --tạo bảng Hóa đơn
  create table Orders(
    ID bigint primary key not null identity
-   ,CustomersID int not null
+   ,CustomersID int
    ,NameShip nvarchar(50)
    ,PhoneShip varchar(12)
    ,AdressShip nvarchar(250)
@@ -175,11 +176,11 @@ create table Supplies(
  -- Taọ bảng chi tiết hóa đơn
  create table Order_Detail(
    ID int primary key not null identity
-   ,OrderID bigint not null
-   ,ProductID int not null
+   ,OrderID bigint 
+   ,ProductID int
    ,Quantity bigint default(1)
    ,Price decimal(18,0)
-   ,constraint FK_product_order foreign key (ProductID) references products(ID)
+   ,constraint FK_product_order foreign key (ProductID) references Products(ID)
    ,constraint FK_order foreign key (OrderID) references Orders(ID)
  )
 
@@ -198,11 +199,12 @@ create table Supplies(
  --tạo bảng bài viết
  create table Article(
    ID int primary key not null identity
-   ,TopicID int not null
-   ,ImageID int not null
+   ,TopicID int 
+   ,CustomerID int
    ,Name nvarchar(250)
    ,MetaTitle varchar(250)
    ,Title nvarchar(250)
+   ,Images nvarchar(500)
    ,Description nvarchar(250)
    ,Content nText
    ,ViewCount datetime
@@ -210,22 +212,22 @@ create table Supplies(
    ,CreateDate date default getdate()
    ,CreateBy varchar(50)
     ,constraint FK_topic_Ar foreign key (TopicID) references Topic(ID)
-	 ,constraint FK_img_Ar foreign key (ImageID) references Product_Image(ID)
+	 ,constraint FK_cus_Ar foreign key (CustomerID) references Customers(ID)
  )
  -- tạo bảng đánh giá
  create table Review(
     ID int primary key not null identity
-	,CustomersID int not null
-	,ProductID int not null
-	,ArticleID int not null
+	,CustomersID int 
+	,ProductID int 
+	,ArticleID int 
 	,comment nvarchar(255)
+	,SoSao int
 	,Status bit default(0)
 	,CreateDate datetime default getdate()
 	,CreateBy varchar(50)
 	,constraint FK_Review_customer foreign key (CustomersID) references Customers(ID)
 	,constraint FK_Product_review foreign key (ProductID) references Products(ID)
 	,constraint FK_review_Ar foreign key (ArticleID) references Article(ID)
- 
  )
  --tạo bảng menu
  create table Menu(
@@ -239,7 +241,6 @@ create table Supplies(
 	,CreateBy varchar(50)
  )
 
-
  create table Tags(
    ID varchar(50) not null primary key
    ,Name nvarchar(50)
@@ -249,6 +250,7 @@ create table Supplies(
     ArticleID int 
 	,TagID varchar(50)
  )
+
  create table About(
  ID int primary key not null identity
    ,MetaTitle varchar(250)
@@ -260,6 +262,7 @@ create table Supplies(
    ,CreateBy varchar(50)
     
  )
+
  create table Slide(
      ID int primary key not null identity
 	 ,Image nvarchar(250)
@@ -268,8 +271,7 @@ create table Supplies(
 	 ,Description nvarchar(250)
 	 ,Status bit default(0)
 	 ,CreateDate datetime default getdate()
-	 ,CreateBy varchar(50)
-	 
+	 ,CreateBy varchar(50)	 
  )
  create table Contact(
     ID int not null primary key identity

@@ -16,7 +16,7 @@ namespace ShopAnDam.Models.Framework
 
         public int ID { get; set; }
 
-        public int ProductID { get; set; }
+        public int? ProductID { get; set; }
 
         [StringLength(100)]
         public string Name { get; set; }

@@ -24,8 +24,6 @@ namespace ShopAnDam.Areas.Admin.Controllers
         {
             var dao = new ArticleDao();
             ViewBag.TopicID = new SelectList(dao.ListAllTopic(), "ID", "Name", selectedId);
-            ViewBag.ImageID = new SelectList(dao.ListAllImage(), "ID", "Image", selectedId);
-
         }
         [HttpGet]
         public ActionResult View(int id)
@@ -108,7 +106,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
             return Json(new
             {
                 status = result
-            }); ;
+            }); 
         }
 
     }

@@ -33,10 +33,10 @@ namespace ShopAnDam.Models.Dao
             {
                 var article = db.Articles.Find(entity.ID);
                 article.TopicID = entity.TopicID;
-                article.ImageID = entity.ImageID;
                 article.Name = entity.Name;
                 article.MetaTitle = entity.MetaTitle;
                 article.Title = entity.Title;
+                article.Images = entity.Images;
                 article.MetaTitle = entity.MetaTitle;
                 article.Description = entity.Description;
                 article.Content = entity.Content;
@@ -68,10 +68,6 @@ namespace ShopAnDam.Models.Dao
             return db.Topics.Where(x => x.Status == true).ToList();
         }
 
-        public List<Product_Image> ListAllImage()
-        {
-            return db.Product_Image.ToList();
-        }
         public Article GetByID(string Name)
         {
             return db.Articles.SingleOrDefault(x => x.Name == Name);

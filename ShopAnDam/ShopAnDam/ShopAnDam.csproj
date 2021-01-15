@@ -157,6 +157,7 @@
     <Content Include="Assets\admin\js\controller\Brands.js" />
     <Content Include="Assets\admin\js\controller\Category.js" />
     <Content Include="Assets\admin\js\controller\Product.js" />
+    <Content Include="Assets\admin\js\controller\Slide.js" />
     <Content Include="Assets\admin\js\controller\Supply.js" />
     <Content Include="Assets\admin\js\controller\Topic.js" />
     <Content Include="Assets\admin\js\controller\User.js" />
@@ -1557,6 +1558,9 @@
     <Content Include="Assets\Details\plugins\themify-icons\fonts\themify.eot" />
     <Content Include="Assets\Details\plugins\themify-icons\fonts\themify.ttf" />
     <Content Include="Assets\Details\plugins\themify-icons\fonts\themify.woff" />
+    <Content Include="Areas\Admin\Views\Slide\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Slide\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Slide\Edit.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -1667,6 +1671,7 @@
     <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SlideController.cs" />
     <Compile Include="Areas\Admin\Controllers\SupplyController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
@@ -1708,11 +1713,11 @@
     <Compile Include="Models\Framework\Feedback.cs" />
     <Compile Include="Models\Framework\Good.cs" />
     <Compile Include="Models\Framework\Goods_Detail.cs" />
+    <Compile Include="Models\Framework\Image.cs" />
     <Compile Include="Models\Framework\Menu.cs" />
     <Compile Include="Models\Framework\Order.cs" />
     <Compile Include="Models\Framework\Order_Detail.cs" />
     <Compile Include="Models\Framework\Product.cs" />
-    <Compile Include="Models\Framework\Product_Image.cs" />
     <Compile Include="Models\Framework\Review.cs" />
     <Compile Include="Models\Framework\Role.cs" />
     <Compile Include="Models\Framework\Role_User.cs" />
@@ -1724,6 +1729,7 @@
     <Compile Include="Models\Framework\User.cs" />
     <Compile Include="Models\Framework\UserGroup.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\ViewModel\ProductViewmodel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1743,6 +1749,8 @@
     <Content Include="Views\Shared\Category.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Product\CategoryView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1753,11 +1761,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Admin\Views\Menu\" />
     <Folder Include="Image\" />
-    <Folder Include="Models\ViewModel\" />
-    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

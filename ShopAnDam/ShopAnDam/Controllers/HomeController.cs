@@ -18,6 +18,7 @@ namespace ShopAnDam.Controllers
             //ViewBag.category = new CategoryDao().getAll();
             ViewBag.brand = new BrandDao().getall(3);
             ViewBag.article = new ArticleDao().List(3);
+            ViewBag.image = new ProductDao().ListAllImage();
             return View();
         }
         [ChildActionOnly]

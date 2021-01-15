@@ -10,9 +10,9 @@ namespace ShopAnDam.Models.Framework
     {
         public int ID { get; set; }
 
-        public long OrderID { get; set; }
+        public long? OrderID { get; set; }
 
-        public int ProductID { get; set; }
+        public int? ProductID { get; set; }
 
         public long? Quantity { get; set; }
 

@@ -10,9 +10,9 @@ namespace ShopAnDam.Models.Framework
     {
         public int ID { get; set; }
 
-        public int GoodID { get; set; }
+        public int? GoodID { get; set; }
 
-        public int SupplyID { get; set; }
+        public int? SupplyID { get; set; }
 
         public DateTime? CreateDate { get; set; }
 

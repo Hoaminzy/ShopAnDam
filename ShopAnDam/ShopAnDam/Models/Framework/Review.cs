@@ -11,14 +11,16 @@ namespace ShopAnDam.Models.Framework
     {
         public int ID { get; set; }
 
-        public int CustomersID { get; set; }
+        public int? CustomersID { get; set; }
 
-        public int ProductID { get; set; }
+        public int? ProductID { get; set; }
 
-        public int ArticleID { get; set; }
+        public int? ArticleID { get; set; }
 
         [StringLength(255)]
         public string comment { get; set; }
+
+        public int? SoSao { get; set; }
 
         public bool Status { get; set; }
 

@@ -17,19 +17,20 @@ namespace ShopAnDam.Models.Dao
         {
             db = new AnDamDBContext();
         }
-        public long Insert(Product_Image entity)
+        
+        public long Insert(Image entity)
         {
-            db.Product_Image.Add(entity);
+            db.Images.Add(entity);
             db.SaveChanges();
             return entity.ID;
         }
 
-        public bool Update(Product_Image entity)
+        public bool Update(Image entity)
         {
             try
             {
-                var img = db.Product_Image.Find(entity.ID);
-                img.Image = entity.Image;
+                var img = db.Images.Find(entity.ID);
+                img.Image1 = entity.Image1;
                 img.CreateDate = DateTime.Now;
                 img.CreateBy = entity.CreateBy;
                 db.SaveChanges();
@@ -40,24 +41,35 @@ namespace ShopAnDam.Models.Dao
                 return false;
             }
         }
-        public IEnumerable<Product_Image> ListAllPageList(string searchString, int page, int pageSize)
+        public IEnumerable<Image> ListAllPageList(string searchString, int page, int pageSize)
         {
 
-            IQueryable<Product_Image> model = db.Product_Image;
+            IQueryable<Image> model = db.Images;
             if (!string.IsNullOrEmpty(searchString))
             {//Contains: tìm kiếm gần đúng
-                model = model.Where(x => x.Image.Contains(searchString));
+                model = model.Where(x => x.Image1.Contains(searchString));
             }
             return model.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
-        public Product_Image GetByID(string Image)
+
+        public List<Product> ListAllProduct()
         {
-            return db.Product_Image.SingleOrDefault(x => x.Image == Image);
+            return db.Products.Where(x => x.Status == true).ToList();
         }
 
-        public Product_Image ViewDetail(int id)
+        public List<Article> ListAllArticle()
         {
-            return db.Product_Image.Find(id);
+            return db.Articles.Where(x => x.Status == true).ToList();
+        }
+
+        public Image GetByID(string Image1)
+        {
+            return db.Images.SingleOrDefault(x => x.Image1 == Image1);
+        }
+
+        public Image ViewDetail(int id)
+        {
+            return db.Images.Find(id);
         }
 
 
@@ -65,8 +77,8 @@ namespace ShopAnDam.Models.Dao
         {
             try
             {
-                var img = db.Product_Image.Find(id);
-                db.Product_Image.Remove(img);
+                var img = db.Images.Find(id);
+                db.Images.Remove(img);
                 db.SaveChanges();
                 return true;
             }
