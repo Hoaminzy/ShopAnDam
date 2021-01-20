@@ -1,0 +1,127 @@
+﻿@model List<ShopAnDam.Models.CartItem>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+
+    <script src="~/Assets/client/js/controller/Cart.js"></script>    
+}
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text product-more">
+                    <a href="./home.html"><i class="fa fa-home"></i> Trang chủ</a>
+                    <a href="./shop.html">Sản phẩm</a>
+                    <span>Giỏ hàng</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cart-table">
+                    @if (Model.Count > 0)
+                    {
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mã sản phẩm</th>
+                                    <th>Hình ảnh</th>
+                                    <th class="p-name">Tên sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th><a href="#" id="btnDeleteAll"><i class="ti-close"></i></a> </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr>
+                                        <td class=""><h5>@item.Product.Code</h5></td>
+                                        <td class="cart-pic first-row"><img src="" alt="ảnh"></td>
+                                        <td class="cart-title first-row">
+                                            <h5>@item.Product.Name</h5>
+                                        </td>
+                                        <td class="p-price first-row">@item.Product.Price.GetValueOrDefault(0).ToString("N0")</td>
+                                        <td class="qua-col first-row">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <input type="text" class="txtQuantity" value="@item.Quantity" data-id="@item.Product.ID">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="total-price first-row">@(item.Quantity * item.Product.Price.GetValueOrDefault(0))</td>
+                                        <td class="close-td first-row"><a href="#" data-id="@item.Product.ID" id="btnDelete"><i class="ti-close" ></i></a></td>
+                                    </tr>
+
+                                }
+
+
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mã sản phẩm</th>
+                                    <th>Hình ảnh</th>
+                                    <th class="p-name">Tên sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng tiền</th>
+                                    <th><i class="ti-close" ></i></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" style="color: #e7ab3c;text-transform: uppercase; font-style:normal; padding-top:20px; text-align:center">Chưa có sản phẩm nào trong giỏ hàng! <a href="/" style="color:blue; text-decoration:none">Mua hàng</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="cart-buttons">
+                            <a href="#" id="btnTiepTuc" class="primary-btn continue-shop">Continue shopping</a>
+                            <a href="#" id="btnUpdate" class="primary-btn up-cart">Update cart</a>
+                        </div>
+                        <div class="discount-coupon">
+                            <h6>Discount Codes</h6>
+                            <form action="#" class="coupon-form">
+                                <input type="text" placeholder="Enter your codes">
+                                <button type="submit" class="site-btn coupon-btn">Apply</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 offset-lg-4">
+                        <div class="proceed-checkout">
+                            <ul>
+                             @*   <li class="subtotal">Subtotal <span>$240.00</span></li>*@
+                                <li class="cart-total">Tổng tiền:  <span>$240.00</span></li>
+                            </ul>
+                            <a href="#" id="btnPayment" class="proceed-btn">TIẾN HÀNH THANH TOÁN</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shopping Cart Section End -->

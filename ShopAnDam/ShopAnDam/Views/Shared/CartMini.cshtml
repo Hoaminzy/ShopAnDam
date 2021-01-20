@@ -1,0 +1,64 @@
+﻿@model List<ShopAnDam.Models.CartItem>
+<div class="col-lg-3 text-right col-md-3">
+    <ul class="nav-right">
+        <li class="heart-icon">
+            <a href="#">
+                <i class="icon_heart_alt"></i>
+                <span>1</span>
+            </a>
+        </li>
+        <li class="cart-icon">
+            <a href="/gio-hang">
+                <i class="icon_bag_alt"></i>
+                <span>@Model.Count()</span>
+            </a>
+            <div class="cart-hover">
+                <div class="select-items">
+                    @if(Model.Count>0){
+                    <table>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="si-pic"><img src="~/Assets/client/img/select-product-1.jpg" alt=""></td>
+                                    <td class="si-text">
+                                        <div class="product-selected">
+                                            <p>@item.Product.Price.GetValueOrDefault(0).ToString("N0") x @item.Quantity </p>
+                                            <h6>@item.Product.Name</h6>
+                                        </div>
+                                    </td>
+                                    <td class="si-close">
+                                        <i class="ti-close"></i>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                    }
+                    else
+                    {
+                <table>
+                    <tbody>
+                            <tr>
+                                <td><span style="margin-left:50px; text-align: center">GIỎ HÀNG TRỐNG</span></td>
+                            </tr>
+                    </tbody>
+                </table>
+                    }
+
+                </div>
+                <div class="select-total">
+                    <span>Tổng tiền: </span>
+                    <h5>$15.00</h5>
+                </div>
+                <div class="select-button">
+                    <a href="/gio-hang" class="primary-btn view-card">XEM GIỎ HÀNG</a>
+                    <a href="/thanh-toan" class="primary-btn checkout-btn">THANH TOÁN</a>
+                </div>
+            </div>
+        </li>
+        <li class="cart-price">$150.00</li>
+    </ul>
+</div>

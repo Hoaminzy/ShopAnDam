@@ -14,5 +14,6 @@ namespace ShopAnDam.Common
         public static string SESSION_PERMITIONS = "SESSION_PERMITIONS";
 
         public static string CartSession = "CartSession";
+       
     }
 }

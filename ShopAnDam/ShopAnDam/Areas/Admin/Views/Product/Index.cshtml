@@ -11,10 +11,10 @@
         $(document).ready(function () {
             $("#show").click(function () {
                 var url = $("#Modal").data("url");
-
                 $.get(url, function (data) {
-                    $("#Container").html(data);
-                    $("#Modal").modal("show");
+                    
+                        $("#Container").html(data);
+                        $("#Modal").modal("show");
                 });
 
             });

@@ -1,5 +1,6 @@
 ﻿using PagedList;
 using ShopAnDam.Models.Framework;
+using ShopAnDam.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,34 @@ namespace ShopAnDam.Models.Dao
         }
         public List<Article> List(int top)
         {
-            return db.Articles.Where(x => x.Status == true).OrderByDescending(x => x.CreateDate).Take(3).ToList();
+            return db.Articles.Where(x => x.Status == true).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+        }
+        public List<ArticleViewModel> ListAll()
+        {
+            var model = from a in db.Articles
+                        join b in db.Topics on a.TopicID equals b.ID
+                        join i in db.Images on a.ID equals i.ArticleID
+                        join d in db.Users on a.UserID equals d.ID
+                        join e in db.Customers on a.CustomerID equals e.ID
+                        join f in db.Reviews on a.ID equals f.ArticleID
+            select new ArticleViewModel()
+            {
+                ID = a.ID,
+                Name = a.Name,
+                MetaTitle = a.MetaTitle,
+                Title = a.Title,
+                Images1 = a.Images,
+                Description = a.Description,
+                Content = a.Content,
+                status = a.Status,
+                CreateDate = a.CreateDate,
+                TopicName = b.Name,
+                HinhAnh = i.Image1,
+                CustomerName = e.Name,
+                UserName = d.Name,
+                comment = f.comment
+            };
+            return model.Where(x => x.status == true).OrderByDescending(x => x.CreateDate).ToList();
         }
 
         public long Insert(Article entity)

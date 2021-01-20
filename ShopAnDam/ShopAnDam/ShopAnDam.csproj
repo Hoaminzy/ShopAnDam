@@ -1317,6 +1317,7 @@
     <Content Include="Assets\client\img\select-product-2.jpg" />
     <Content Include="Assets\client\img\time-bg.jpg" />
     <Content Include="Assets\client\js\bootstrap.min.js" />
+    <Content Include="Assets\client\js\controller\Cart.js" />
     <Content Include="Assets\client\js\controller\Contact.js" />
     <Content Include="Assets\client\js\imagesloaded.pkgd.min.js" />
     <Content Include="Assets\client\js\jquery-3.3.1.min.js" />
@@ -1679,6 +1680,8 @@
     <Compile Include="Common\CommonConStants.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\UserLogin.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1689,6 +1692,7 @@
     <Compile Include="Areas\Admin\Code\CustomMemberShipProvider.cs" />
     <Compile Include="Areas\Admin\Code\SessionHelper.cs" />
     <Compile Include="Areas\Admin\Code\UserSession.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Dao\ArticleDao.cs" />
     <Compile Include="Models\Dao\BrandDao.cs" />
     <Compile Include="Models\Dao\CategoryDao.cs" />
@@ -1729,6 +1733,7 @@
     <Compile Include="Models\Framework\User.cs" />
     <Compile Include="Models\Framework\UserGroup.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\ViewModel\ArticleViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductViewmodel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1751,6 +1756,11 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Product\CategoryView.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Shared\CartMini.cshtml" />
+    <Content Include="Views\Cart\Payment.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

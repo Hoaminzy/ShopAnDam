@@ -72,7 +72,10 @@ namespace ShopAnDam.Models.Dao
             return db.Images.Find(id);
         }
 
-
+        public List<Image> ViewImageByIDProduct(int ID)
+        {
+            return db.Images.Where(x => x.ProductID != null && x.ProductID == ID).OrderByDescending(x => x.Image1).ToList();
+        }
         public bool Delete(int id)
         {
             try

@@ -1,12 +1,15 @@
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\ShopAnDam.Tests.dll.config
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\ShopAnDam.Tests.dll
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\ShopAnDam.Tests.pdb
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\ShopAnDam.dll
+D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\EntityFramework.dll
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\System.Web.Mvc.dll
+D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\PagedList.dll
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\System.Web.WebPages.dll
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\System.Web.WebPages.Razor.dll
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\System.Web.Razor.dll
@@ -16,7 +19,9 @@ D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\ShopAnDam.pdb
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\ShopAnDam.dll.config
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\EntityFramework.xml
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\System.Web.Mvc.xml
+D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\PagedList.xml
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\System.Web.WebPages.xml
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\System.Web.Razor.xml
@@ -26,7 +31,3 @@ D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\obj\Debug\ShopAnDam.Tests.csproj.
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\obj\Debug\ShopAnDam.Tests.csproj.CopyComplete
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\obj\Debug\ShopAnDam.Tests.dll
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\obj\Debug\ShopAnDam.Tests.pdb
-D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\EntityFramework.dll
-D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\PagedList.dll
-D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\EntityFramework.xml
-D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam.Tests\bin\Debug\PagedList.xml

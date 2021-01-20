@@ -20,6 +20,8 @@ namespace ShopAnDam.Models.Framework
 
         public int? TopicID { get; set; }
 
+        public int? UserID { get; set; }
+        public int? CustomerID { get; set; }
         [StringLength(250)]
         public string Name { get; set; }
 
@@ -55,5 +57,8 @@ namespace ShopAnDam.Models.Framework
         public virtual ICollection<Review> Reviews { get; set; }
 
         public virtual Topic Topic { get; set; }
+
+        public virtual User User { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

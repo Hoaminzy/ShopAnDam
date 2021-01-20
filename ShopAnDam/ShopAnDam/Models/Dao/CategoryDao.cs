@@ -20,6 +20,8 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Categories.Where(x => x.Status == true).OrderBy(x => x.CreateDate).ToList();
         }
+
+        
         public long Insert(Category entity)
         {
             db.Categories.Add(entity);

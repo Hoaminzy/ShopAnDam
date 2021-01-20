@@ -22,8 +22,14 @@ namespace ShopAnDam
           );
 
             routes.MapRoute(
+              name: "San Pham ",
+              url: "san-pham",
+              defaults: new { controller = "Product", action = "Index", id = UrlParameter.Optional },
+              new[] { "ShopAnDam.Controllers" }
+          );
+            routes.MapRoute(
               name: "Product Category",
-              url: "san-pham/{metaTitle}-{id}",
+              url: "san-pham/{metaTitle}/{id}",
               defaults: new { controller = "Product", action = "CategoryView", id = UrlParameter.Optional },
               new[] { "ShopAnDam.Controllers" }
           );
@@ -35,13 +41,13 @@ namespace ShopAnDam
     );
             routes.MapRoute(
              name: "Product Details",
-            url: "chi-tiet/{metaTitle}-{id}",
+            url: "chi-tiet/{metaTitle}/{id}",
              defaults: new { controller = "Product", action = "Details", id = UrlParameter.Optional },
             new[] { "ShopAnDam.Controllers" }
             );
             routes.MapRoute(
             name: "Article",
-           url: "chi-tiet/{metaTitle}-{id}",
+           url: "bai-viet",
             defaults: new { controller = "Article", action = "Index", id = UrlParameter.Optional },
            new[] { "ShopAnDam.Controllers" }
            );
@@ -51,6 +57,24 @@ namespace ShopAnDam
             defaults: new { controller = "Article", action = "Details", id = UrlParameter.Optional },
            new[] { "ShopAnDam.Controllers" }
            );
+            routes.MapRoute(
+        name: "Cart",
+        url: "gio-hang",
+        defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
+        namespaces: new[] { "OnlineShop.Controllers" }
+    );
+            routes.MapRoute(
+        name: "Add Cart",
+       url: "them-gio-hang",
+        defaults: new { controller = "Cart", action = "AddItem", id = UrlParameter.Optional },
+       new[] { "ShopAnDam.Controllers" }
+       );
+            routes.MapRoute(
+ name: "Payment",
+url: "thanh-toan",
+ defaults: new { controller = "Cart", action = "Payment", id = UrlParameter.Optional },
+new[] { "ShopAnDam.Controllers" }
+);
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

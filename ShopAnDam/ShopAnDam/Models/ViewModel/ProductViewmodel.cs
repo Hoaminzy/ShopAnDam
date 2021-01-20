@@ -8,7 +8,11 @@ namespace ShopAnDam.Models.ViewModel
     public class ProductViewmodel
     {
         public int ID { get; set; }
+        public int Code { get; set; }
         public string Name { get; set; }
+
+        public string Title { get; set; }
+        public string Description { get; set; }
         public string Image { get; set; }
         public decimal? Price { get; set; }
         public decimal? MotiPrice { get; set; }
@@ -18,5 +22,6 @@ namespace ShopAnDam.Models.ViewModel
         public DateTime? CreateDate { get; set; }
         public string CateName { get; set; }
         public string CateTiTle { get; set; }
+        public string Comment { get; set; }
     }
 }

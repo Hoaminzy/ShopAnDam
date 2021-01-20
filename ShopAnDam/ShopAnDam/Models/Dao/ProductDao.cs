@@ -89,8 +89,6 @@ namespace ShopAnDam.Models.Dao
                             CateName = ca.Name,
                             CateTiTle = ca.MetaTilte
                         };
-
-
                 return model.Where(x => x.Status==true).ToList();
         }
         public long Insert(Product entity)
@@ -164,7 +162,38 @@ namespace ShopAnDam.Models.Dao
             return db.Products.Find(id);
         }
 
+        public ProductViewmodel ViewProductDetail(int ProductID)// lấy thông tin sản phẩm theo id
+        {
+            var model = from v in db.Products
+                        join ca in db.Categories on v.CategoryID equals ca.ID
+                        where v.ID == ProductID
+                        join i in db.Images on v.ID equals i.ProductID
+                        join b in db.Brands on v.BrandID equals b.ID
+                        join c in db.Reviews on v.ID equals c.ProductID
+                        select new ProductViewmodel()
+                        {
+                            ID = v.ID,
+                            Name = v.Name,
+                            Title = v.Title,
+                            Description= v.Description,
+                            Image = i.Image1,
+                            Price = v.Price,
+                            MotiPrice = v.MotionPrice,
+                            MetaTitle = v.MetaTitle,
+                            TopHot = v.TopHot,
+                            Status = v.Status,
+                            CreateDate = v.CreateDate,
+                            CateName = ca.Name,
+                            CateTiTle = ca.MetaTilte,
+                            Comment = c.comment
+                            
+                            
+                        };
+            return (ProductViewmodel)model;
+        }
 
+      
+       
         public bool Delete(int id)
         {
             try

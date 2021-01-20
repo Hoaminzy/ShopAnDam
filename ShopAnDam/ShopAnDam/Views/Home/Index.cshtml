@@ -176,7 +176,7 @@
                 <div class="product-slider owl-carousel">
                     @foreach (var item in product1)
                     {
-                        var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                        var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
                         <div class="product-item">
                             <div class="pi-pic">
                                 <img src="@item.Image" alt="@item.Name">
@@ -185,7 +185,7 @@
                                     <i class="icon_heart_alt"></i>
                                 </div>
                                 <ul>
-                                    <li class="w-icon active"><a href="@url" data-toggle="tooltip" data-placement="bottom" title="Thêm vào giỏ hàng"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="w-icon active"><a href="/them-gio-hang?ProductID=@item.ID&Quantity=1" data-toggle="tooltip" data-placement="bottom" title="Thêm vào giỏ hàng"><i class="icon_bag_alt"></i></a></li>
                                     <li class="quick-view"><a href="@url">Xem chi tiết</a></li>
                                     <li class="w-icon"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Mua hàng"><i class="fa fa-random"></i></a></li>
                                 </ul>

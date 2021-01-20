@@ -430,7 +430,7 @@ ol {
 }
 
 .inner-header .advanced-search .category-btn {
-	max-width: 30%;
+	max-width: 35%;
 	float: left;
 	background: transparent;
 	border: none;
@@ -464,7 +464,7 @@ ol {
 }
 
 .inner-header .advanced-search .input-group {
-	max-width: 70%;
+	max-width: 67%;
 	height: 100%;
 }
 
@@ -660,8 +660,8 @@ ol {
 }
 
 .nav-item .nav-depart .depart-btn {
-	background: #3b3b3b;
-	color: #ffffff;
+	background: #3b3b3b; /*Màu xám ở ô danh mục sản phẩm*/
+	color: #ffffff;/*Màu trắng của chữ*/
 	padding: 14px 84px 14px 18px;
 	cursor: pointer;
 	position: relative;
@@ -794,7 +794,7 @@ ol {
 
 .nav-item .nav-menu li .dropdown li {
 	display: block;
-	margin-left: 0;
+	margin-left: 50px;
 }
 
 .nav-item .nav-menu li .dropdown li:hover>a {
@@ -811,6 +811,47 @@ ol {
 .slicknav_menu {
 	display: none;
 }
+/*----------Category menu-----------*/
+
+/*---------------------------------*/
+
+
+
+/*.depart-btn .depart-hover li .dropdown {
+	position: absolute;
+	left: 200px;
+	top: 0px;
+	width: 200px;
+	z-index: -1;
+	background: #e5e5e5;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+	display: none;
+}
+
+.depart-btn .depart-hover li .dropdown li {
+	margin-left: 5px;
+	
+}
+.depart-btn .depart-hover li:hover .dropdown {
+	opacity: 1;
+	visibility: visible;
+	display: block;
+}
+	.depart-btn .depart-hover li .dropdown li:hover > a {
+		background: transparent;
+		color: #e7ab3c;
+	
+	}
+
+.depart-btn .depart-hover li .dropdown li a {
+	border-right: 0;
+	padding: 13px 20px 12px 30px;
+	text-transform: capitalize;
+}*/
 
 /*---------------------
   Hero Section
