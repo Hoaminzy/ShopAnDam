@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 @section jsFooter{
 
@@ -39,7 +40,7 @@
                                     <th>Giá</th>
                                     <th>Số lượng</th>
                                     <th>Thành tiền</th>
-                                    <th><a href="#" id="btnDeleteAll"><i class="ti-close"></i></a> </th>
+                                    <th><a href="#" id="btnDeleteAll" style="text-decoration:none; color: black"><i class="ti-close"></i></a> </th>
                                 </tr>
                             </thead>
 
@@ -47,14 +48,25 @@
 
                                 @foreach (var item in Model)
                                 {
-
+                                    var url = "/chi-tiet/" + item.Product.MetaTitle + "/" + item.Product.ID;
                                     <tr>
                                         <td class=""><h5>@item.Product.Code</h5></td>
                                         <td class="cart-pic first-row"><img src="" alt="ảnh"></td>
                                         <td class="cart-title first-row">
-                                            <h5>@item.Product.Name</h5>
+                                            <h5><a href="@url" style="color:black">@item.Product.Name</a></h5>
                                         </td>
-                                        <td class="p-price first-row">@item.Product.Price.GetValueOrDefault(0).ToString("N0")</td>
+                                        <td class="p-price first-row">
+                                            @if (item.Product.MotionPrice != null)
+                                            {
+                                                @(item.Product.MotionPrice.HasValue&&(item.Product.MotionPrice.ToString()!="0")? item.Product.MotionPrice.Value.ToString("N0"): item.Product.Price.Value.ToString("N0"))
+
+                                            }
+                                            else
+                                            {
+                                                <span>@(item.Product.MotionPrice.HasValue&&(item.Product.MotionPrice.ToString() != "0") ? item.Product.Price.Value.ToString("N0") : " ")</span>
+
+                                            }
+                                        </td>
                                         <td class="qua-col first-row">
                                             <div class="quantity">
                                                 <div class="pro-qty">
@@ -62,7 +74,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="total-price first-row">@(item.Quantity * item.Product.Price.GetValueOrDefault(0))</td>
+                                        <td class="total-price first-row">@((item.Product.MotionPrice.HasValue && (item.Product.MotionPrice.ToString() != "0") ? (item.Product.MotionPrice * item.Quantity).Value.ToString("N0") : (item.Product.Price * item.Quantity).Value.ToString("N0")))</td>
                                         <td class="close-td first-row"><a href="#" data-id="@item.Product.ID" id="btnDelete"><i class="ti-close" ></i></a></td>
                                     </tr>
 
@@ -97,20 +109,20 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="cart-buttons">
-                            <a href="#" id="btnTiepTuc" class="primary-btn continue-shop">Continue shopping</a>
-                            <a href="#" id="btnUpdate" class="primary-btn up-cart">Update cart</a>
+                            <a href="#" id="btnTiepTuc" class="primary-btn continue-shop">Tiếp tục mua hàng</a>
+                            <a href="#" id="btnUpdate" class="primary-btn up-cart">Cập nhật giỏ hàng</a>
                         </div>
                         <div class="discount-coupon">
-                            <h6>Discount Codes</h6>
-                            <form action="#" class="coupon-form">
+                            <h6>Mã giảm giá</h6>
+                            <form action="#" class="coupon-form" style="width:390px">
                                 <input type="text" placeholder="Enter your codes">
-                                <button type="submit" class="site-btn coupon-btn">Apply</button>
+                                <button type="submit" class="site-btn coupon-btn" >Sử dụng</button>
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-4 offset-lg-4">
+                    <div class="col-lg-4 offset-lg-2">
                         <div class="proceed-checkout">
                             <ul>
                              @*   <li class="subtotal">Subtotal <span>$240.00</span></li>*@

@@ -89,7 +89,7 @@
                 <div class="product-slider owl-carousel">
                     @foreach (var item in product)
                     {
-                        var url = "chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                        var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
                         <div class="product-item">
                             <div class="pi-pic">
                                 <img src="@item.Image" alt="huhu">
@@ -98,7 +98,7 @@
                                     <i class="icon_heart_alt"></i>
                                 </div>
                                 <ul>
-                                    <li class="w-icon active"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Thêm vào giỏ hàng"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="w-icon active"><a href="/them-gio-hang?ProductID=@item.ID&Quantity=1" data-toggle="tooltip" data-placement="bottom" title="Thêm vào giỏ hàng"><i class="icon_bag_alt"></i></a></li>
                                     <li class="quick-view"><a href="@url">Xem chi tiết</a></li>
                                     <li class="w-icon"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Mua hàng"><i class="fa fa-random"></i></a></li>
                                 </ul>
@@ -109,8 +109,8 @@
                                     <h5>@item.Name</h5>
                                 </a>
                                 <div class="product-price">
-                                    @item.Price
-                                    <span>@item.MotiPrice</span>
+                                    @(item.MotiPrice.HasValue&&(item.MotiPrice.ToString()!="0")? item.MotiPrice.Value.ToString("N0"): item.Price.Value.ToString("N0"))
+                                    <span> @(item.MotiPrice.HasValue&&(item.MotiPrice.ToString() != "0") ? item.Price.Value.ToString("N0") : " ")</span>
                                 </div>
                             </div>
                         </div>
@@ -164,48 +164,52 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8">
-                <div class="filter-control">
-                    @*<ul>
-                            <li class="active">Clothings</li>
-                            <li>HandBag</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li>
-                        </ul>*@
-                    <h2>New Arrivals</h2>
-                </div>
-                <div class="product-slider owl-carousel">
-                    @foreach (var item in product1)
-                    {
-                        var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="@item.Image" alt="@item.Name">
-                                <div class="sale">New</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
+
+                
+                    <div class="filter-control">
+                        @*<ul>
+                    <li class="active">Clothings</li>
+                    <li>HandBag</li>
+                    <li>Shoes</li>
+                    <li>Accessories</li>
+                     </ul>*@
+                        <h2>New Arrivals</h2>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        @foreach (var item in product1)
+                        {
+                            var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
+                            <div class="product-item">
+                                <div class="pi-pic">
+                                    <img src="@item.Image" alt="@item.Name">
+                                    <div class="sale">New</div>
+                                    <div class="icon">
+                                        <i class="icon_heart_alt"></i>
+                                    </div>
+                                    <ul>
+                                        <li class="w-icon active"><a href="/them-gio-hang?ProductID=@item.ID&Quantity=1" data-toggle="tooltip" data-placement="bottom" title="Thêm vào giỏ hàng"><i class="icon_bag_alt"></i></a></li>
+                                        <li class="quick-view"><a href="@url">Xem chi tiết</a></li>
+                                        <li class="w-icon"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Mua hàng"><i class="fa fa-random"></i></a></li>
+                                    </ul>
                                 </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="/them-gio-hang?ProductID=@item.ID&Quantity=1" data-toggle="tooltip" data-placement="bottom" title="Thêm vào giỏ hàng"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="@url">Xem chi tiết</a></li>
-                                    <li class="w-icon"><a href="#" data-toggle="tooltip" data-placement="bottom" title="Mua hàng"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">@item.CateName</div>
-                                <a href="#">
-                                    <h5>@item.Name</h5>
-                                </a>
-                                <div class="product-price">
-                                    @(item.Price.HasValue ?  item.Price.Value.ToString("N0"): "Liên Hệ")
-                                    @*<span>@item.Price</span>*@
+                                <div class="pi-text">
+                                    <div class="catagory-name">@item.CateName</div>
+                                    <a href="#">
+                                        <h5>@item.Name</h5>
+                                    </a>
+                                    <div class="product-price">
+                                        @(item.MotiPrice.HasValue&&(item.MotiPrice.ToString()!="0")? item.MotiPrice.Value.ToString("N0"): item.Price.Value.ToString("N0"))
+                                        <span> @(item.MotiPrice.HasValue&&(item.MotiPrice.ToString() != "0") ? item.Price.Value.ToString("N0") : " ")</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    }
+                        
+                        }
 
 
+
+                    </div>
                 </div>
-            </div>
             <div class="col-lg-3 offset-lg-1">
                 <div class="product-large set-bg m-large" data-setbg="Assets/client/img/products/man-large.jpg">
                     <h2>Bột ăn dặm</h2>

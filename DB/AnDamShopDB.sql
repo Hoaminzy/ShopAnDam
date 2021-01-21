@@ -161,6 +161,7 @@ create table Supplies(
  create table Orders(
    ID bigint primary key not null identity
    ,CustomersID int
+   ,UserID int
    ,NameShip nvarchar(50)
    ,PhoneShip varchar(12)
    ,AdressShip nvarchar(250)
@@ -171,8 +172,13 @@ create table Supplies(
    ,CreateDate datetime default getdate()
    ,CreateBy varchar(50)
    ,constraint FK_Order_customer foreign key (CustomersID) references Customers(ID)
+   ,constraint FK_Order_user foreign key (UserID) references Users(ID)
  )
-
+ alter table Orders
+ add
+   UserID int
+   ,constraint FK_Order_user foreign key (UserID) references Users(ID) --đã hạy ngày 15.1
+ 
  -- Taọ bảng chi tiết hóa đơn
  create table Order_Detail(
    ID int primary key not null identity
@@ -201,6 +207,7 @@ create table Supplies(
    ID int primary key not null identity
    ,TopicID int 
    ,CustomerID int
+    ,UserID int
    ,Name nvarchar(250)
    ,MetaTitle varchar(250)
    ,Title nvarchar(250)
@@ -212,8 +219,10 @@ create table Supplies(
    ,CreateDate date default getdate()
    ,CreateBy varchar(50)
     ,constraint FK_topic_Ar foreign key (TopicID) references Topic(ID)
-	 ,constraint FK_cus_Ar foreign key (CustomerID) references Customers(ID)
+	,constraint FK_cus_Ar foreign key (CustomerID) references Customers(ID)
+	 ,constraint FK_Ar_user foreign key (UserID) references Users(ID) --đã hạy ngày 15.1
  )
+ 
  -- tạo bảng đánh giá
  create table Review(
     ID int primary key not null identity

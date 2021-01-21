@@ -20,6 +20,29 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Products.ToList();
         }
+        public List<ProductViewmodel> ListAll()
+        {
+            var model = from v in db.Products
+                        join ca in db.Categories on v.CategoryID equals ca.ID
+                        join i in db.Images on v.ID equals i.ProductID
+                        join b in db.Brands on v.BrandID equals b.ID
+                        select new ProductViewmodel()
+                        {
+                            ID = v.ID,
+                            Name = v.Name,
+                            Image = i.Image1,
+                            Price = v.Price,
+                            Quantity = v.Quantity,
+                            MotiPrice = v.MotionPrice,
+                            MetaTitle = v.MetaTitle,
+                            CreateDate = v.CreateDate,
+                            Status = v.Status,
+                            CateName = ca.Name,
+                            CateTiTle = ca.MetaTilte
+                        };
+
+            return model.Where(x => x.Status == true).OrderByDescending(x => x.CreateDate).ToList();
+        }
         public List<ProductViewmodel> ListAllProduct(int top)
         {
             //return db.Products.Where(x => x.CategoryID == CateID).ToList();
@@ -33,6 +56,7 @@ namespace ShopAnDam.Models.Dao
                             Name = v.Name,
                             Image = i.Image1,
                             Price = v.Price,
+                            Quantity = v.Quantity,
                             MotiPrice = v.MotionPrice,
                             MetaTitle = v.MetaTitle,
                             CreateDate = v.CreateDate,
@@ -55,6 +79,7 @@ namespace ShopAnDam.Models.Dao
                             Name = v.Name,
                             Image = i.Image1,
                             Price = v.Price,
+                            Quantity = v.Quantity,
                             MotiPrice = v.MotionPrice,
                             MetaTitle = v.MetaTitle,
                             TopHot = v.TopHot,
@@ -64,7 +89,7 @@ namespace ShopAnDam.Models.Dao
                             CateTiTle = ca.MetaTilte
                         };
 
-            return model.Where( x => x.Status==true && x.TopHot!= null && x.TopHot>DateTime.Now).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+            return model.Where( x => x.Status==true && x.TopHot!= null && x.TopHot>DateTime.Now &&x.MotiPrice !=null).OrderByDescending(x => x.CreateDate).Take(top).ToList();
         }
 
         public List<ProductViewmodel> ListByCategoryByID( int CateID )
@@ -81,6 +106,7 @@ namespace ShopAnDam.Models.Dao
                             Name = v.Name,
                             Image = i.Image1,
                             Price = v.Price,
+                            Quantity = v.Quantity,
                             MotiPrice = v.MotionPrice,
                             MetaTitle = v.MetaTitle,
                             TopHot = v.TopHot,

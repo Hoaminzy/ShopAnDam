@@ -3,16 +3,18 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var image = (List<ShopAnDam.Models.Framework.Image>)ViewBag.image;
-    var category = (ShopAnDam.Models.Framework.Category)ViewBag.category;
-}
+    //var category = (List<ShopAnDam.Models.Framework.Category>)ViewBag.category;
+    //var cate = (ShopAnDam.Models.Framework.Category)ViewBag.category;
+
+}   
 <!-- Breadcrumb Section Begin -->
 <div class="breacrumb-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text product-more">
-                    <a href="./home.html"><i class="fa fa-home"></i> Trang chủ</a>
-                    <a href="./shop.html">Sản phẩm</a>
+                    <a href="/" rel="nofollow"><i class="fa fa-home"></i> Trang chủ</a>
+                    <a href="/san-pham" rel="nofollow">Sản phẩm</a>
                     <span>Chi tiết sản phẩm</span>
                 </div>
             </div>
@@ -20,244 +22,551 @@
     </div>
 </div>
 <!-- Breadcrumb Section Begin -->
-<div class="container single_product_container">
-    <div class="row">
-        <div class="col-lg-7">
-            <div class="single_product_pics">
-                <div class="row">
-                    @if (image.Count > 0)
-                    {
-                        var firstImage = image.FirstOrDefault().Image1;
-                        <div class="col-lg-3 thumbnails_col order-lg-1 order-2">
-                            <div class="single_product_thumbnails">
-                                <ul>
-                                    @foreach (var item in image)
-                                    {
-                                        <li><img src="@item.Image1" alt="" data-image="@item.Image1"></li>
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-9 image_col order-lg-2 order-1">
-                            <div class="single_product_image">
-                                <div class="single_product_image_background" s tyle="background-image: url(@firstImage)">
-
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-
-                    }
-
-
-
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-5">
-            <div class="product_details">
-                <div class="product_details_title">
-                    <h2>@Model.Name</h2>
-                    <p>@Model.Title</p>
-                </div>
-                <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
-                    <span class="ti-truck"></span><span>Miễn phí vận chuyển</span>
-                </div>
-                <div class="original_price">@Model.Price</div>
-                <div class="product_price">@Model.MotionPrice</div>
-                <ul class="star_rating">
-                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                </ul>
-                @*<div class="product_color">
-                    <span>Select Color:</span>
-                    <ul>
-                        <li style="background: #e54e5d"></li>
-                        <li style="background: #252525"></li>
-                        <li style="background: #60b3f3"></li>
-                    </ul>
-                </div>*@
-                <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
-                    <span>Quantity:</span>
-                    <div class="quantity_selector">
-                        <span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                        <span id="quantity_value">1</span>
-                        <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                    </div>
-                    <div class="red_button add_to_cart_button"><a href="/them-gio-hang?ProductID=@Model.ID&Quantity=1">add to cart</a></div>
-                    <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<!-- Tabs -->
-
-<div class="tabs_section_container">
-
+<!-- Product Shop Section Begin -->
+<section class="product-shop spad page-details">
     <div class="container">
         <div class="row">
-            <div class="col">
-                <div class="tabs_container">
-                    <ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
-                        <li class="tab active" data-active-tab="tab_1"><span>Description</span></li>
-                        <li class="tab" data-active-tab="tab_2"><span>Additional Information</span></li>
-                        <li class="tab" data-active-tab="tab_3"><span>Reviews (2)</span></li>
+            <div class="col-lg-3">
+                @*<div class="filter-widget">
+                    <h4 class="fw-title">Danh mục sản phẩm</h4>
+                    <ul class="filter-catagories">
+                       
+                            <li><a href="/san-pham/@cate.MetaTilte/@cate.ID">@cate.Name</a></li>
+
+                        
                     </ul>
+                </div>*@
+                <div class="filter-widget">
+                    <h4 class="fw-title">Brand</h4>
+                    <div class="fw-brand-check">
+                        <div class="bc-item">
+                            <label for="bc-calvin">
+                                Calvin Klein
+                                <input type="checkbox" id="bc-calvin">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="bc-item">
+                            <label for="bc-diesel">
+                                Diesel
+                                <input type="checkbox" id="bc-diesel">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="bc-item">
+                            <label for="bc-polo">
+                                Polo
+                                <input type="checkbox" id="bc-polo">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="bc-item">
+                            <label for="bc-tommy">
+                                Tommy Hilfiger
+                                <input type="checkbox" id="bc-tommy">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-widget">
+                    <h4 class="fw-title">Price</h4>
+                    <div class="filter-range-wrap">
+                        <div class="range-slider">
+                            <div class="price-input">
+                                <input type="text" id="minamount">
+                                <input type="text" id="maxamount">
+                            </div>
+                        </div>
+                        <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                             data-min="33" data-max="98">
+                            <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                        </div>
+                    </div>
+                    <a href="#" class="filter-btn">Filter</a>
+                </div>
+                <div class="filter-widget">
+                    <h4 class="fw-title">Color</h4>
+                    <div class="fw-color-choose">
+                        <div class="cs-item">
+                            <input type="radio" id="cs-black">
+                            <label class="cs-black" for="cs-black">Black</label>
+                        </div>
+                        <div class="cs-item">
+                            <input type="radio" id="cs-violet">
+                            <label class="cs-violet" for="cs-violet">Violet</label>
+                        </div>
+                        <div class="cs-item">
+                            <input type="radio" id="cs-blue">
+                            <label class="cs-blue" for="cs-blue">Blue</label>
+                        </div>
+                        <div class="cs-item">
+                            <input type="radio" id="cs-yellow">
+                            <label class="cs-yellow" for="cs-yellow">Yellow</label>
+                        </div>
+                        <div class="cs-item">
+                            <input type="radio" id="cs-red">
+                            <label class="cs-red" for="cs-red">Red</label>
+                        </div>
+                        <div class="cs-item">
+                            <input type="radio" id="cs-green">
+                            <label class="cs-green" for="cs-green">Green</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-widget">
+                    <h4 class="fw-title">Size</h4>
+                    <div class="fw-size-choose">
+                        <div class="sc-item">
+                            <input type="radio" id="s-size">
+                            <label for="s-size">s</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" id="m-size">
+                            <label for="m-size">m</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" id="l-size">
+                            <label for="l-size">l</label>
+                        </div>
+                        <div class="sc-item">
+                            <input type="radio" id="xs-size">
+                            <label for="xs-size">xs</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-widget">
+                    <h4 class="fw-title">Tags</h4>
+                    <div class="fw-tags">
+                        <a href="#">Towel</a>
+                        <a href="#">Shoes</a>
+                        <a href="#">Coat</a>
+                        <a href="#">Dresses</a>
+                        <a href="#">Trousers</a>
+                        <a href="#">Men's hats</a>
+                        <a href="#">Backpack</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-6">
+                        @if (image.Count > 1)
+                        {
+                            <div class="product-pic-zoom">
+                                <img class="product-big-img" src="@image.FirstOrDefault().Image1" alt="@Model.Name">
+                                <div class="zoom-icon">
+                                    <i class="fa fa-search-plus"></i>
+                                </div>
+                            </div>
+
+                            <div class="product-thumbs">
+                                <div class="product-thumbs-track ps-slider owl-carousel">
+                                    @foreach (var item in image)
+                                    {
+                                        <div class="pt active" data-imgbigurl="@item.Image1">
+                                            <img src="@item.Image1" alt="">
+                                        </div>
+                                    }
+
+
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="product-pic-zoom">
+                                <img class="product-big-img" src="@image.FirstOrDefault().Image1" alt="@Model.Name">
+                                <div class="zoom-icon">
+                                    <i class="fa fa-search-plus"></i>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="product-details">
+                            <div class="pd-title">
+                                @*<span>@cate.Name</span>*@
+                                <h3>@Model.Name</h3>
+                                <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
+                            </div>
+                            <div class="pd-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <span>(5)</span>
+                            </div>
+
+                            <div class="pd-desc">
+                                <p>
+                                    @Model.Title
+                                </p>
+
+                                <h4>@Model.Price <span>@Model.MotionPrice</span></h4>
+
+
+                            </div>
+                            @*<div class="pd-color">
+            <h6>Color</h6>
+            <div class="pd-color-choose">
+                <div class="cc-item">
+                    <input type="radio" id="cc-black">
+                    <label for="cc-black"></label>
+                </div>
+                <div class="cc-item">
+                    <input type="radio" id="cc-yellow">
+                    <label for="cc-yellow" class="cc-yellow"></label>
+                </div>
+                <div class="cc-item">
+                    <input type="radio" id="cc-violet">
+                    <label for="cc-violet" class="cc-violet"></label>
+                </div>
+            </div>
+        </div>*@
+                            @*<div class="pd-size-choose">
+            <div class="sc-item">
+                <input type="radio" id="sm-size">
+                <label for="sm-size">s</label>
+            </div>
+            <div class="sc-item">
+                <input type="radio" id="md-size">
+                <label for="md-size">m</label>
+            </div>
+            <div class="sc-item">
+                <input type="radio" id="lg-size">
+                <label for="lg-size">l</label>
+            </div>
+            <div class="sc-item">
+                <input type="radio" id="xl-size">
+                <label for="xl-size">xs</label>
+            </div>
+        </div>*@
+                            @if (Model.Quantity > 0)
+                            {
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1" class="txtQuantity">
+                                    </div>
+                                    <a href="/them-gio-hang?ProductID=@Model.ID&Quantity=1" class="primary-btn pd-cart" id="btnUpdate">Thêm giỏ hàng</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="outofdate  d-flex flex-row align-items-center justify-content-center" style="margin-bottom:10px">
+                                    <h4>Hết hàng</h4>
+                                </div>
+
+                                @*<div class="quantity">
+
+                                    <a href="/them-gio-hang?ProductID=@Model.ID&Quantity=1" class="primary-btn pd-cart " style="margin-left:70px">Thêm giỏ hàng</a>
+                                </div>*@
+                            }
+
+                            <ul class="pd-tags">
+                                @*<li><span>CATEGORIES</span>: @cate.Name</li>*@
+                                <li><span>TAGS</span>: Clothing, T-shirt, Woman</li>
+                            </ul>
+                            <div class="pd-share">
+                                <div class="p-code">Mã sản phẩm : @Model.Code</div>
+                                <div class="pd-social">
+                                    <a href="#"><i class="ti-facebook"></i></a>
+                                    <a href="#"><i class="ti-twitter-alt"></i></a>
+                                    <a href="#"><i class="ti-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-tab">
+                    <div class="tab-item">
+                        <ul class="nav" role="tablist">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#tab-1" role="tab">MÔ TẢ SẢN PHẨM</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#tab-2" role="tab">THÔNG TIN SẢN PHẨM</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#tab-3" role="tab">ĐÁNH GIÁ</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-item-content">
+                        <div class="tab-content">
+                            <div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
+                                <div class="product-content">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <h5>MÔ TẢ</h5>
+                                            <p>
+                                               @Model.Description
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <img src="@image.OrderByDescending(x=>x.CreateDate).FirstOrDefault().Image1" alt="@Model.Name">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-2" role="tabpanel">
+                                <div class="specification-table">
+                                    <table>
+                                        <tr>
+                                            <td class="p-catagory">Customer Rating</td>
+                                            <td>
+                                                <div class="pd-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <span>(5)</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-catagory">Giá</td>
+                                            <td>
+                                                <div class="p-price">
+
+                                                    @if(@Model.Price != null)
+                                                    {
+                                                        @Model.Price
+                                                    }
+                                                    else
+                                                    {
+                                                        @Model.MotionPrice
+
+                                                    }
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-catagory">Add To Cart</td>
+                                            <td>
+                                                <div class="cart-add">+ add to cart</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-catagory">Availability</td>
+                                            <td>
+                                                <div class="p-stock">22 in stock</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-catagory">Weight</td>
+                                            <td>
+                                                <div class="p-weight">1,3kg</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-catagory">Size</td>
+                                            <td>
+                                                <div class="p-size">Xxl</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-catagory">Color</td>
+                                            <td><span class="cs-color"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-catagory">Sku</td>
+                                            <td>
+                                                <div class="p-code">00012</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-3" role="tabpanel">
+                                <div class="customer-review-option">
+                                    <h4>2 Comments</h4>
+                                    <div class="comment-option">
+                                        <div class="co-item">
+                                            <div class="avatar-pic">
+                                                <img src="img/product-single/avatar-1.png" alt="">
+                                            </div>
+                                            <div class="avatar-text">
+                                                <div class="at-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                                <h5>Brandon Kelley <span>27 Aug 2019</span></h5>
+                                                <div class="at-reply">Nice !</div>
+                                            </div>
+                                        </div>
+                                        <div class="co-item">
+                                            <div class="avatar-pic">
+                                                <img src="img/product-single/avatar-2.png" alt="">
+                                            </div>
+                                            <div class="avatar-text">
+                                                <div class="at-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                                <h5>Roy Banks <span>27 Aug 2019</span></h5>
+                                                <div class="at-reply">Nice !</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="personal-rating">
+                                        <h6>Your Ratind</h6>
+                                        <div class="rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                    </div>
+                                    <div class="leave-comment">
+                                        <h4>Leave A Comment</h4>
+                                        <form action="#" class="comment-form">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <input type="text" placeholder="Name">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="text" placeholder="Email">
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <textarea placeholder="Messages"></textarea>
+                                                    <button type="submit" class="site-btn">Send message</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Shop Section End -->
+<!-- Related Products Section End -->
+<div class="related-products spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Related Products</h2>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col">
-
-                <!-- Tab Description -->
-
-                <div id="tab_1" class="tab_container active">
-                    <div class="row">
-                        <div class="col-lg-5 desc_col">
-                            <div class="tab_title">
-                                <h4>Description</h4>
-                            </div>
-                            <div class="tab_text_block">
-                                <h2>Pocket cotton sweatshirt</h2>
-                                <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-                            </div>
-                            <div class="tab_image">
-                                <img src="~/Assets/Details/images/desc_1.jpg" alt="">
-                            </div>
-                            <div class="tab_text_block">
-                                <h2>Pocket cotton sweatshirt</h2>
-                                <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-                            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="product-item">
+                    <div class="pi-pic">
+                        <img src="img/products/women-1.jpg" alt="">
+                        <div class="sale">Sale</div>
+                        <div class="icon">
+                            <i class="icon_heart_alt"></i>
                         </div>
-                        <div class="col-lg-5 offset-lg-2 desc_col">
-                            <div class="tab_image">
-                                <img src="~/Assets/Details/images/desc_2.jpg" alt="">
-                            </div>
-                            <div class="tab_text_block">
-                                <h2>Pocket cotton sweatshirt</h2>
-                                <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-                            </div>
-                            <div class="tab_image desc_last">
-                                <img src="~/Assets/Details/images/desc_3.jpg" alt="">
-                            </div>
+                        <ul>
+                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="pi-text">
+                        <div class="catagory-name">Coat</div>
+                        <a href="#">
+                            <h5>Pure Pineapple</h5>
+                        </a>
+                        <div class="product-price">
+                            $14.00
+                            <span>$35.00</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Tab Additional Info -->
-
-                <div id="tab_2" class="tab_container">
-                    <div class="row">
-                        <div class="col additional_info_col">
-                            <div class="tab_title additional_info_title">
-                                <h4>Additional Information</h4>
-                            </div>
-                            <p>COLOR:<span>Gold, Red</span></p>
-                            <p>SIZE:<span>L,M,XL</span></p>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="product-item">
+                    <div class="pi-pic">
+                        <img src="img/products/women-2.jpg" alt="">
+                        <div class="icon">
+                            <i class="icon_heart_alt"></i>
+                        </div>
+                        <ul>
+                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="pi-text">
+                        <div class="catagory-name">Shoes</div>
+                        <a href="#">
+                            <h5>Guangzhou sweater</h5>
+                        </a>
+                        <div class="product-price">
+                            $13.00
                         </div>
                     </div>
                 </div>
-
-                <!-- Tab Reviews -->
-
-                <div id="tab_3" class="tab_container">
-                    <div class="row">
-
-                        <!-- User Reviews -->
-
-                        <div class="col-lg-6 reviews_col">
-                            <div class="tab_title reviews_title">
-                                <h4>Reviews (2)</h4>
-                            </div>
-
-                            <!-- User Review -->
-
-                            <div class="user_review_container d-flex flex-column flex-sm-row">
-                                <div class="user">
-                                    <div class="user_pic"></div>
-                                    <div class="user_rating">
-                                        <ul class="star_rating">
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="review">
-                                    <div class="review_date">27 Aug 2016</div>
-                                    <div class="user_name">Brandon William</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-                            </div>
-
-                            <!-- User Review -->
-
-                            <div class="user_review_container d-flex flex-column flex-sm-row">
-                                <div class="user">
-                                    <div class="user_pic"></div>
-                                    <div class="user_rating">
-                                        <ul class="star_rating">
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="review">
-                                    <div class="review_date">27 Aug 2016</div>
-                                    <div class="user_name">Brandon William</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-                            </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="product-item">
+                    <div class="pi-pic">
+                        <img src="img/products/women-3.jpg" alt="">
+                        <div class="icon">
+                            <i class="icon_heart_alt"></i>
                         </div>
-
-                        <!-- Add Review -->
-
-                        <div class="col-lg-6 add_review_col">
-
-                            <div class="add_review">
-                                <form id="review_form" action="post">
-                                    <div>
-                                        <h1>Add Review</h1>
-                                        <input id="review_name" class="form_input input_name" type="text" name="name" placeholder="Name*" required="required" data-error="Name is required.">
-                                        <input id="review_email" class="form_input input_email" type="email" name="email" placeholder="Email*" required="required" data-error="Valid email is required.">
-                                    </div>
-                                    <div>
-                                        <h1>Your Rating:</h1>
-                                        <ul class="user_star_rating">
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                        </ul>
-                                        <textarea id="review_message" class="input_review" name="message" placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
-                                    </div>
-                                    <div class="text-left text-sm-right">
-                                        <button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
-                                    </div>
-                                </form>
-                            </div>
-
+                        <ul>
+                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="pi-text">
+                        <div class="catagory-name">Towel</div>
+                        <a href="#">
+                            <h5>Pure Pineapple</h5>
+                        </a>
+                        <div class="product-price">
+                            $34.00
                         </div>
-
                     </div>
                 </div>
-
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="product-item">
+                    <div class="pi-pic">
+                        <img src="img/products/women-4.jpg" alt="">
+                        <div class="icon">
+                            <i class="icon_heart_alt"></i>
+                        </div>
+                        <ul>
+                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="pi-text">
+                        <div class="catagory-name">Towel</div>
+                        <a href="#">
+                            <h5>Converse Shoes</h5>
+                        </a>
+                        <div class="product-price">
+                            $34.00
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </div>
+<!-- Related Products Section End -->
