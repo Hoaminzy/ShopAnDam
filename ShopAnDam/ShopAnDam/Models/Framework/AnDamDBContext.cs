@@ -20,7 +20,6 @@ namespace ShopAnDam.Models.Framework
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Good> Goods { get; set; }
-        public virtual DbSet<Goods_Detail> Goods_Detail { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<Order_Detail> Order_Detail { get; set; }
@@ -102,21 +101,12 @@ namespace ShopAnDam.Models.Framework
                 .IsUnicode(false);
 
             modelBuilder.Entity<Good>()
-                .Property(e => e.CreateBy)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Goods_Detail>()
-                .Property(e => e.Price)
+                .Property(e => e.Tongtien)
                 .HasPrecision(18, 0);
 
-            modelBuilder.Entity<Goods_Detail>()
+            modelBuilder.Entity<Good>()
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Goods_Detail>()
-                .HasMany(e => e.Goods)
-                .WithOptional(e => e.Goods_Detail)
-                .HasForeignKey(e => e.GoodID);
 
             modelBuilder.Entity<Image>()
                 .Property(e => e.CreateBy)

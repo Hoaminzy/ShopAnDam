@@ -92,7 +92,7 @@
                         var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="@item.Image" alt="huhu">
+                                <img src="@item.HinhAnh" alt="@item.Name">
                                 <div class="sale">Sale</div>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
@@ -181,7 +181,7 @@
                             var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
                             <div class="product-item">
                                 <div class="pi-pic">
-                                    <img src="@item.Image" alt="@item.Name">
+                                    <img src="@item.HinhAnh" alt="@item.Name">
                                     <div class="sale">New</div>
                                     <div class="icon">
                                         <i class="icon_heart_alt"></i>
@@ -287,10 +287,10 @@
                                     @*      @item.ViewCount*@
                                 </div>
                             </div>
-                            <a href="#">
-                                <h4>@item.Topic.Name</h4>
+                            <a href="">
+                                <h4>@item.Title</h4>
                             </a>
-                            <p>@item.Title </p>
+                            <p>@item.Topic.Name </p>
                         </div>
                     </div>
                 </div>

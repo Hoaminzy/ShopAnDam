@@ -10,9 +10,9 @@ namespace ShopAnDam.Models.Framework
     {
         public int ID { get; set; }
 
-        public int? GoodID { get; set; }
-
         public int? SupplyID { get; set; }
+
+        public decimal? Tongtien { get; set; }
 
         public DateTime? CreateDate { get; set; }
 
@@ -20,7 +20,5 @@ namespace ShopAnDam.Models.Framework
         public string CreateBy { get; set; }
 
         public virtual Supply Supply { get; set; }
-
-        public virtual Goods_Detail Goods_Detail { get; set; }
     }
 }

@@ -51,7 +51,7 @@
                                     var url = "/chi-tiet/" + item.Product.MetaTitle + "/" + item.Product.ID;
                                     <tr>
                                         <td class=""><h5>@item.Product.Code</h5></td>
-                                        <td class="cart-pic first-row"><img src="" alt="ảnh"></td>
+                                        <td class="cart-pic first-row"><img src="@item.Product.image" alt="@item.Product.Name"></td>
                                         <td class="cart-title first-row">
                                             <h5><a href="@url" style="color:black">@item.Product.Name</a></h5>
                                         </td>

@@ -8,6 +8,13 @@ namespace ShopAnDam.Models.Framework
 
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            Articles = new HashSet<Article>();
+            Orders = new HashSet<Order>();
+        }
+
         public int ID { get; set; }
 
         [StringLength(50)]
@@ -34,6 +41,12 @@ namespace ShopAnDam.Models.Framework
         public string CreateBy { get; set; }
 
         public bool Status { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Article> Articles { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
 
         public virtual UserGroup UserGroup { get; set; }
     }

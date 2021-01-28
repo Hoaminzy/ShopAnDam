@@ -23,5 +23,13 @@ namespace ShopAnDam.Areas.Admin.Controllers
             var dao = new CustomerDao().ViewDetais(id);
             return View(dao);
         }
+        public JsonResult ChangeCustomer(long id)
+        {
+            var result = new ProductDao().ChangeStatus(id);
+            return Json(new
+            {
+                status = result
+            });
+        }
     }
 }

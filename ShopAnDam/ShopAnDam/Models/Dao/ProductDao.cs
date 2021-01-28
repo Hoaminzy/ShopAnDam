@@ -33,6 +33,7 @@ namespace ShopAnDam.Models.Dao
                             Image = i.Image1,
                             Price = v.Price,
                             Quantity = v.Quantity,
+                            HinhAnh = v.image,
                             MotiPrice = v.MotionPrice,
                             MetaTitle = v.MetaTitle,
                             CreateDate = v.CreateDate,
@@ -57,6 +58,7 @@ namespace ShopAnDam.Models.Dao
                             Image = i.Image1,
                             Price = v.Price,
                             Quantity = v.Quantity,
+                            HinhAnh = v.image,
                             MotiPrice = v.MotionPrice,
                             MetaTitle = v.MetaTitle,
                             CreateDate = v.CreateDate,
@@ -79,6 +81,7 @@ namespace ShopAnDam.Models.Dao
                             Name = v.Name,
                             Image = i.Image1,
                             Price = v.Price,
+                            HinhAnh = v.image,
                             Quantity = v.Quantity,
                             MotiPrice = v.MotionPrice,
                             MetaTitle = v.MetaTitle,
@@ -106,6 +109,7 @@ namespace ShopAnDam.Models.Dao
                             Name = v.Name,
                             Image = i.Image1,
                             Price = v.Price,
+                            HinhAnh = v.image,
                             Quantity = v.Quantity,
                             MotiPrice = v.MotionPrice,
                             MetaTitle = v.MetaTitle,
@@ -224,8 +228,8 @@ namespace ShopAnDam.Models.Dao
         {
             try
             {
-                var Product = db.Products.Find(id);
-                db.Products.Remove(Product);
+                var pro = db.Products.Find(id);
+                db.Products.Remove(pro);
                 db.SaveChanges();
                 return true;
             }
@@ -237,10 +241,15 @@ namespace ShopAnDam.Models.Dao
 
         public bool ChangeStatus(long id)
         {
-            var Product = db.Products.Find(id);
-            Product.Status = !Product.Status;
+            var pro = db.Products.Find(id);
+            pro.Status = !pro.Status;
             db.SaveChanges();
-            return Product.Status;
+            return pro.Status;
+        }
+
+        public bool CheckCode(string code)
+        {
+            return db.Products.Count(x => x.Code == code) > 0;
         }
     }
 }

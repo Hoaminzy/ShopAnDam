@@ -1,4 +1,4 @@
-﻿
+﻿@using ShopAnDam.Common
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -47,7 +47,25 @@
                     </div>
                 </div>
                 <div class="ht-right">
-                    <a href="#" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
+
+                    @{
+                        var session = (CustomerLogin)Session[ShopAnDam.Common.CommonConStants.USER_SESSION];
+
+                    }
+                    @if (session == null)
+                    {
+                        <a href="/dang-nhap" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
+                    }
+                    else
+                    {
+                        <a href="/logout" class="login-panel"><i class="fa fa-eraser"></i>Đăng xuất</a>
+                        <a href="/tai-khoan" class="login-panel"><i class="fa fa-user" style="margin-right:5px"></i>Chào @session.UserName</a>
+
+
+                    }
+
+
+
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="~/Assets/client/img/flag-1.jpg" data-imagecss="flag yt"

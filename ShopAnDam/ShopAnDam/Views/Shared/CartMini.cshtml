@@ -21,7 +21,7 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td class="si-pic"><img src="~/Assets/client/img/select-product-1.jpg" alt=""></td>
+                                    <td class="si-pic"><img src="@item.Product.image" alt="@item.Product.Name"></td>
                                     <td class="si-text">
                                         <div class="product-selected">
                                             <p>@item.Product.Price.GetValueOrDefault(0).ToString("N0") x @item.Quantity </p>

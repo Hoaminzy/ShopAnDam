@@ -46,7 +46,7 @@
     {
     <div class="form-group col-lg-12">
         <div class="col-md-8">
-            <a class="btn btn-theme" id="show"><i class="fa fa-plus"></i>Thêm mới</a>
+            <a href="/Admin/Product/Create" class="btn btn-theme" ><i class="fa fa-plus"></i>Thêm mới</a>
         </div>
         <div class="input-append col-md-3">
             <input type="text" class="form-control " value="@ViewBag.SearchString" name="searchString" placeholder="Nhập từ khóa cần tìm">
@@ -88,8 +88,8 @@
                         <td><a href="#" class="label label-success label-mini btn-active" data-id="@item.ID">@(item.Status ?"Kích hoạt": "Khóa")</a></td>
                         <td>@item.CreateDate</td>
                         <td>
-                            <a class="btn btn-success btn-xs "  onclick="Details(@item.ID)" data-id="@item.ID" id="show"><i class="fa fa-check"></i></a>
-                            <a onclick="Details(@item.ID)" data-id="@item.ID" id="show" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-success btn-xs "  onclick="View(@item.ID)" data-id="@item.ID" ><i class="fa fa-check"></i></a>
+                            <a href="/Admin/Product/Edit/@item.ID" data-id="@item.ID" id="show" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                             @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
                        {
                            Confirm = "Bạn có muốn xóa bản ghi này?",

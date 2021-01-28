@@ -143,12 +143,20 @@ namespace ShopAnDam.Models.Dao
 
       public bool ChangeStatus(long id)
         {
-            var user = db.Users.Find(id);
+            try
+            {
+                var user = db.Users.Find(id);
                 user.Status = !user.Status;
-            db.SaveChanges();
+                db.SaveChanges();
                 return user.Status;
+            }catch(Exception ex)
+            {
+                return false;
             }
-        }
+            }
+      
+    }
+
 
 }
        

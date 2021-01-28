@@ -13,9 +13,10 @@ namespace ShopAnDam.Models.ViewModel
         public int? Quantity { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Image { get; set; }
+        public string HinhAnh { get; set; } // lấy hình ảnh trong bảng sản phẩm
+        public string Image { get; set; } //liên kết với bảng hình ảnh
         public decimal? Price { get; set; }
-        public decimal? MotiPrice { get; set; }
+        public decimal? MotiPrice { get;set; }
         public string MetaTitle { get; set; }
         public bool Status { get; set; }
         public DateTime? TopHot { get; set; }

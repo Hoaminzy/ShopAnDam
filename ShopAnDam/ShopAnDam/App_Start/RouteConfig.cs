@@ -13,7 +13,8 @@ namespace ShopAnDam
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-
+            routes.IgnoreRoute("{*botdetect}",
+            new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
             routes.MapRoute(
               name: "Product ",
               url: "san-pham/{metaTitle}-{id}",
@@ -40,6 +41,24 @@ namespace ShopAnDam
         new[] { "ShopAnDam.Controllers" }
     );
             routes.MapRoute(
+name: "Dang Ky",
+url: "dang-ky",
+defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional },
+new[] { "ShopAnDam.Controllers" }
+);
+            routes.MapRoute(
+name: "Dang Nhap",
+url: "dang-nhap",
+defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional },
+new[] { "ShopAnDam.Controllers" }
+);
+            routes.MapRoute(
+name: "Dang Xuat",
+url: "dang-xuat",
+defaults: new { controller = "User", action = "Logout", id = UrlParameter.Optional },
+new[] { "ShopAnDam.Controllers" }
+);
+            routes.MapRoute(
              name: "Product Details",
             url: "chi-tiet/{metaTitle}/{id}",
              defaults: new { controller = "Product", action = "Details", id = UrlParameter.Optional },
@@ -53,7 +72,7 @@ namespace ShopAnDam
            );
             routes.MapRoute(
             name: "Article Details",
-           url: "chi-tiet/{metaTitle}-{id}",
+           url: "chi-tiet/{metaTitle}/{id}",
             defaults: new { controller = "Article", action = "Details", id = UrlParameter.Optional },
            new[] { "ShopAnDam.Controllers" }
            );

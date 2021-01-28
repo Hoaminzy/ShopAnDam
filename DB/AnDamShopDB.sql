@@ -60,12 +60,21 @@ create table Role_User(
 create table Customers(
   ID int primary key not null identity
   ,Name nvarchar(100)
+   ,UserName nvarchar(50)
+ ,PassWord nvarchar(50)
+   ,ProvinID int
+   ,DistricID int 
+  ,Status bit default(1)
   ,Address nvarchar(200) 
   ,Email varchar(50)
   ,Phone varchar(12)
   ,Createdate datetime default getdate()
   ,CreateBy varchar(50)
+
+
 )
+
+
 --tạo bảng loại sản phẩm
 create table Category(
   ID int primary key not null identity
@@ -108,6 +117,7 @@ create table Products(
   ,CategoryID int 
   ,Name nvarchar(150)
   ,Code varchar(50)
+  ,Image nvarchar(500)
   ,Title nvarchar(50) 
   ,MetaTitle varchar(150)
   ,Description ntext
@@ -124,6 +134,8 @@ create table Products(
   ,constraint FK_Product_Brand foreign key(BrandID) references Brands(ID)
   ,constraint FK_Product_Cate foreign key (CategoryID) references Category(ID)
 )
+
+
 
 --Tọa bảng nhà cung cấp (NCC)
 create table Supplies(
@@ -164,6 +176,8 @@ create table Supplies(
    ,UserID int
    ,NameShip nvarchar(50)
    ,PhoneShip varchar(12)
+    ,ProvinID int
+   ,DistricID int
    ,AdressShip nvarchar(250)
    ,MailShip varchar(50)
    ,Node nvarchar(250)
@@ -172,12 +186,8 @@ create table Supplies(
    ,CreateDate datetime default getdate()
    ,CreateBy varchar(50)
    ,constraint FK_Order_customer foreign key (CustomersID) references Customers(ID)
-   ,constraint FK_Order_user foreign key (UserID) references Users(ID)
+   ,constraint FK_Order_user foreign key (UserID) references Users(ID)----đã hạy ngày 15.1
  )
- alter table Orders
- add
-   UserID int
-   ,constraint FK_Order_user foreign key (UserID) references Users(ID) --đã hạy ngày 15.1
  
  -- Taọ bảng chi tiết hóa đơn
  create table Order_Detail(

@@ -11,7 +11,6 @@ namespace ShopAnDam.Models.Framework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            Goods_Detail = new HashSet<Goods_Detail>();
             Images = new HashSet<Image>();
             Order_Detail = new HashSet<Order_Detail>();
             Reviews = new HashSet<Review>();
@@ -60,12 +59,12 @@ namespace ShopAnDam.Models.Framework
         [StringLength(50)]
         public string CreateBy { get; set; }
 
+        [StringLength(500)]
+        public string image { get; set; }
+
         public virtual Brand Brand { get; set; }
 
         public virtual Category Category { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Goods_Detail> Goods_Detail { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images { get; set; }

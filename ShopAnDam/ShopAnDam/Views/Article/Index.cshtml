@@ -101,13 +101,14 @@
                 <div class="row">
                     @foreach (var item in article)
                     {
+                        var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
                         <div class="col-lg-6 col-sm-6">
                             <div class="blog-item">
                                 <div class="bi-pic">
                                     <img src="@item.HinhAnh" alt="@item.Name">
                                 </div>
                                 <div class="bi-text">
-                                    <a href="/chi-tiet">
+                                    <a href="@url">
                                         <h4>@item.Title</h4>
                                     </a>
                                     <p>@item.TopicName <span>- @item.CreateDate</span></p>

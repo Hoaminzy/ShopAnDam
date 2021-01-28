@@ -15,5 +15,10 @@ namespace ShopAnDam.Controllers
             ViewBag.article = new ArticleDao().ListAll();
             return View();
         }
+
+        public ActionResult Details()
+        {
+            return View();
+        }
     }
 }

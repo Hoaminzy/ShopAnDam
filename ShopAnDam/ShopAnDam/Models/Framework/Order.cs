@@ -33,7 +33,7 @@ namespace ShopAnDam.Models.Framework
         [StringLength(250)]
         public string Node { get; set; }
 
-        public int Status { get; set; }
+        public int? Status { get; set; }
 
         public int? Payment_Method { get; set; }
 
@@ -42,9 +42,17 @@ namespace ShopAnDam.Models.Framework
         [StringLength(50)]
         public string CreateBy { get; set; }
 
+        public int? UserID { get; set; }
+
+        public int? ProvinID { get; set; }
+
+        public int? DistricID { get; set; }
+
         public virtual Customer Customer { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Detail> Order_Detail { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

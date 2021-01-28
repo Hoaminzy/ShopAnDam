@@ -20,8 +20,6 @@ namespace ShopAnDam.Models.Framework
 
         public int? TopicID { get; set; }
 
-        public int? UserID { get; set; }
-        public int? CustomerID { get; set; }
         [StringLength(250)]
         public string Name { get; set; }
 
@@ -50,6 +48,14 @@ namespace ShopAnDam.Models.Framework
         [StringLength(50)]
         public string CreateBy { get; set; }
 
+        public int? UserID { get; set; }
+
+        public int? CustomerID { get; set; }
+
+        public virtual Customer Customer { get; set; }
+
+        public virtual User User { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images1 { get; set; }
 
@@ -57,8 +63,5 @@ namespace ShopAnDam.Models.Framework
         public virtual ICollection<Review> Reviews { get; set; }
 
         public virtual Topic Topic { get; set; }
-
-        public virtual User User { get; set; }
-        public virtual Customer Customer { get; set; }
     }
 }

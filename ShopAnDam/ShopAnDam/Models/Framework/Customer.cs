@@ -11,6 +11,7 @@ namespace ShopAnDam.Models.Framework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer()
         {
+            Articles = new HashSet<Article>();
             Orders = new HashSet<Order>();
             Reviews = new HashSet<Review>();
         }
@@ -33,6 +34,21 @@ namespace ShopAnDam.Models.Framework
 
         [StringLength(50)]
         public string CreateBy { get; set; }
+
+        [StringLength(50)]
+        public string UserName { get; set; }
+
+        [StringLength(50)]
+        public string PassWord { get; set; }
+
+        public int? ProvinID { get; set; }
+
+        public int? DistricID { get; set; }
+
+        public bool Status { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Article> Articles { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

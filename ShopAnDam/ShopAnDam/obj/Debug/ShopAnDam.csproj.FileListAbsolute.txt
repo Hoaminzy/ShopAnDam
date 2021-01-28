@@ -80,3 +80,7 @@ D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam\obj\Debug\ShopAnDam.csproj.CoreCompileI
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam\obj\Debug\ShopAnDam.csproj.CopyComplete
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam\obj\Debug\ShopAnDam.dll
 D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam\obj\Debug\ShopAnDam.pdb
+D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam\bin\BotDetect.dll
+D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam\bin\BotDetect.Web.Mvc.dll
+D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam\bin\System.Data.SQLite.dll
+D:\BT\DATN\ShopAnDam\ShopAnDam\ShopAnDam\bin\System.Data.SQLite.xml

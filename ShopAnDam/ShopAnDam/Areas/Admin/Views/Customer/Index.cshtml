@@ -62,6 +62,7 @@
                         <th><i class="fa fa-bookmark"></i> Địa chỉ</th>
                         <th><i class="fa fa-bookmark"></i> Email</th>
                         <th><i class="fa fa-bookmark"></i> Số điện thoại</th>
+                        <th><i class="fa fa-bookmark"></i> Trạng thái</th>
                         <th><i class=" fa fa-edit"></i> Hành động</th>
                     </tr>
                 </thead>
@@ -69,25 +70,26 @@
 
                     @foreach (var item in Model)
                     {
-                        <tr id="row_@item.ID">
-                            <td></td>
-                            <td>@item.ID</td>
-                            <td>@item.Name</td>
-                            <td>@item.Address</td>
-                            <td>@item.Email</td>
-                            <td>@item.Phone</td>
-                            <td>
-                                <a class="btn btn-success btn-xs" id="show" onclick="Details(@item.ID)" data-id="@item.ID"><i class="fa fa-check"></i></a>
-                                @*<a onclick="Details(@item.ID)" data-id="@item.ID" id="show" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                         @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
-                                    {
-                                        Confirm = "Bạn có muốn xóa bản ghi này?",
-                                        OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                        HttpMethod = "Delete"
-                                    }, new { @class = "btn btn-danger btn-xs fa fa-trash-o " }
-                                        )*@
-                            </td>
-                        </tr>
+                    <tr id="row_@item.ID">
+                        <td></td>
+                        <td>@item.ID</td>
+                        <td>@item.Name</td>
+                        <td>@item.Address</td>
+                        <td>@item.Email</td>
+                        <td>@item.Phone</td>
+                        <td><a href="#" class="label label-success label-mini btn-active" data-id="@item.ID">@(item.Status ?"Kích hoạt": "Khóa")</a></td>
+                        <td>
+                            <a class="btn btn-success btn-xs" id="show" onclick="Details(@item.ID)" data-id="@item.ID"><i class="fa fa-check"></i></a>
+                            @*<a onclick="Details(@item.ID)" data-id="@item.ID" id="show" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                 @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
+            {
+                Confirm = "Bạn có muốn xóa bản ghi này?",
+                OnComplete = "$('#row_" + @item.ID + "').remove()",
+                HttpMethod = "Delete"
+            }, new { @class = "btn btn-danger btn-xs fa fa-trash-o " }
+                )*@
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

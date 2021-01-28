@@ -1,0 +1,125 @@
+﻿@model ShopAnDam.Models.ViewModel.RegisterViewModel
+@using BotDetect.Web.Mvc;
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
+      rel="stylesheet" type="text/css" />
+@{ MvcCaptcha registerCapcha = new MvcCaptcha("registerCapcha"); }
+
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+
+    <script src="~/Assets/client/js/controller/userController.js"></script>
+}
+
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <a href="/" rel="nofollow"><i class="fa fa-home"></i> Trang chủ</a>
+                    <span>Đăng ký</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Form Section Begin -->
+<!-- Register Section Begin -->
+<div class="register-login-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="register-form">
+                    <h2>Register</h2>
+                    @using (Html.BeginForm("Register", "User", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        if (ViewBag.Success != null)
+                        {
+                            <div class=" alert alert-success">Tạo tài khoản thành công!</div>
+                        }
+                        <div class="group-input">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "col-sm-6 col-sm-6 control-label" })
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(model => model.UserName, htmlAttributes: new { @class = "form-control", @id = "name" })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            @Html.LabelFor(model => model.PassWord, htmlAttributes: new { @class = "col-sm-6 col-sm-6 control-label" })
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(model => model.PassWord, htmlAttributes: new { @class = "form-control", @type = "password" })
+                                @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "col-sm-6 col-sm-6 control-label" })
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "form-control", @type = "password" })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-sm-6 col-sm-6 control-label" })
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(model => model.Name, htmlAttributes: new { @class = "form-control", @id = "name" })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-sm-6 col-sm-6 control-label" })
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(model => model.Email, htmlAttributes: new { @class = "form-control", @id = "name" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "col-sm-6 col-sm-6 control-label" })
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(model => model.Phone, htmlAttributes: new { @class = "form-control", @type = "number" })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            @Html.LabelFor(model => model.ProvintID, htmlAttributes: new { @class = "col-sm-6 col-sm-6 control-label" })
+                            <div class="col-sm-12">
+                                @Html.DropDownList("ProvintID", new SelectList(new string[] { }), htmlAttributes: new { @class = "form-control", @id = "ddlProvint" })
+                                @Html.ValidationMessageFor(model => model.ProvintID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            @Html.LabelFor(model => model.DistrictID, htmlAttributes: new { @class = "col-sm-6 col-sm-6 control-label" })
+                            <div class="col-sm-12">
+                                @Html.DropDownList("DistrictID", new SelectList(new string[] { }), htmlAttributes: new { @class = "form-control", @id = "ddlDistrict" })
+                                @Html.ValidationMessageFor(model => model.DistrictID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "col-sm-6 col-sm-6 control-label" })
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(model => model.Address, htmlAttributes: new { @class = "form-control", @id = "name" })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-input">
+                            <div class="col-md-offset-2 col-md-10">
+                                @Html.Captcha(registerCapcha)
+                                @Html.TextBox("CaptchaCode")
+                            </div>
+                        </div>
+                        <button type="submit" id="btnDangKi" class="site-btn register-btn">Đăng ký</button>
+                    }
+                    <div class="switch-login">
+                        <a href="./login.html" class="or-login">Or Login</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Register Form Section End -->

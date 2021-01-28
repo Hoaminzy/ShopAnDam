@@ -49,14 +49,13 @@ namespace ShopAnDam.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(Product Product)
+        public ActionResult Create(Product pro)
         {
             if (ModelState.IsValid)
             {
                 var dao = new ProductDao();
-                Product.CreateDate = DateTime.Now;
-
-                long id = dao.Insert(Product);
+                pro.CreateDate = DateTime.Now;
+                long id = dao.Insert(pro);
                 if (id > 0)
                 {
                     SetAlert("Thêm thành công!", "success");
