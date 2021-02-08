@@ -20,14 +20,14 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Articles.Where(x => x.Status == true).OrderByDescending(x => x.CreateDate).Take(top).ToList();
         }
-        public List<ArticleViewModel> ListAll()
+        public IEnumerable<ArticleViewModel> ListAllPading(int page, int pageSize)
         {
-            var model = from a in db.Articles
+            IQueryable<ArticleViewModel> model = from a in db.Articles
                         join b in db.Topics on a.TopicID equals b.ID
-                        join i in db.Images on a.ID equals i.ArticleID
-                        join d in db.Users on a.UserID equals d.ID
-                        join e in db.Customers on a.CustomerID equals e.ID
-                        join f in db.Reviews on a.ID equals f.ArticleID
+                        //join i in db.Images on a.ID equals i.ArticleID
+                        //join d in db.Users on a.UserID equals d.ID
+                        //join e in db.Customers on a.CustomerID equals e.ID
+                        //join f in db.Reviews on a.ID equals f.ArticleID
             select new ArticleViewModel()
             {
                 ID = a.ID,
@@ -35,17 +35,24 @@ namespace ShopAnDam.Models.Dao
                 MetaTitle = a.MetaTitle,
                 Title = a.Title,
                 Images1 = a.Images,
-                Description = a.Description,
-                Content = a.Content,
-                status = a.Status,
+                //Description = a.Description,
+                //Content = a.Content,
+                Status = a.Status,
                 CreateDate = a.CreateDate,
                 TopicName = b.Name,
-                HinhAnh = i.Image1,
-                CustomerName = e.Name,
-                UserName = d.Name,
-                comment = f.comment
+                //HinhAnh = i.Image1,
+                //CustomerName = e.Name,
+                //UserName = d.Name,
+                //Comment = f.comment
             };
-            return model.Where(x => x.status == true).OrderByDescending(x => x.CreateDate).ToList();
+            return model.Where(x => x.Status == true).OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
+        }
+
+        public IEnumerable<Article> ListAllByPage()
+        {
+            IQueryable<Article> model = db.Articles;
+            return model.Where(x => x.Status == true).OrderByDescending(x => x.CreateDate).ToList();
+
         }
 
         public long Insert(Article entity)

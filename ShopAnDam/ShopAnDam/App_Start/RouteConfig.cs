@@ -72,7 +72,7 @@ new[] { "ShopAnDam.Controllers" }
            );
             routes.MapRoute(
             name: "Article Details",
-           url: "chi-tiet/{metaTitle}/{id}",
+           url: "bai-viet/{metaTitle}/{id}",
             defaults: new { controller = "Article", action = "Details", id = UrlParameter.Optional },
            new[] { "ShopAnDam.Controllers" }
            );

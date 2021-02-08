@@ -9,7 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
-using ShopAnDam.Common;
+
 
 namespace ShopAnDam.Controllers
 {
@@ -30,7 +30,7 @@ namespace ShopAnDam.Controllers
         }
         public ActionResult Logout()
         {
-            Session[ShopAnDam.Common.CommonConStants.USER_SESSION] = null;
+            Session[CommonConStants.USER_SESSION] = null;
             return Redirect("/");
         }
         [HttpPost]

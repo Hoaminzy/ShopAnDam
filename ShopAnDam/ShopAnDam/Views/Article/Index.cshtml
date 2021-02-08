@@ -1,8 +1,8 @@
-﻿@using ShopAnDam.Models.ViewModel;
+﻿@model IEnumerable<ShopAnDam.Models.ViewModel.ArticleViewModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Bài viết";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var article = (List<ArticleViewModel>)ViewBag.article;
+ //  var article = (List<ShopAnDam.Models.ViewModel.ArticleViewModel>)ViewBag.article;
 }
 
 
@@ -99,93 +99,94 @@
             </div>
             <div class="col-lg-9 order-1 order-lg-2">
                 <div class="row">
-                    @foreach (var item in article)
+                    @foreach (var item in Model)
                     {
-                        var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
+                        var url = "/bai-viet/" + item.MetaTitle + "/" + item.ID;
                         <div class="col-lg-6 col-sm-6">
                             <div class="blog-item">
                                 <div class="bi-pic">
-                                    <img src="@item.HinhAnh" alt="@item.Name">
+                                    <img style="width:300px; height: 300px" src="@item.Images1" alt="@item.Name">
                                 </div>
                                 <div class="bi-text">
                                     <a href="@url">
                                         <h4>@item.Title</h4>
                                     </a>
-                                    <p>@item.TopicName <span>- @item.CreateDate</span></p>
-                                    <div class="tag-item">
+                                    <p>@item.TopicName*<span>- @item.CreateDate</span></p>
+                                    @*<div class="tag-item">
                                         <i class="fa fa-comment-o"></i>
-                                      @item.comment.Count()
-                                    </div>
+                                    @item.Comment.Count()
+                                    </div>*@
                                 </div>
                             </div>
                         </div>
                     }
 
                     @*<div class="col-lg-6 col-sm-6">
-                        <div class="blog-item">
-                            <div class="bi-pic">
-                                <img src="Assets/client/img/blog/blog-2.jpg" alt="">
-                            </div>
-                            <div class="bi-text">
-                                <a href="./blog-details.html">
-                                    <h4>This was one of our first days in Hawaii last week.</h4>
-                                </a>
-                                <p>Fashion <span>- May 19, 2019</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="blog-item">
-                            <div class="bi-pic">
-                                <img src="Assets/client/img/blog/blog-3.jpg" alt="">
-                            </div>
-                            <div class="bi-text">
-                                <a href="./blog-details.html">
-                                    <h4>Last week I had my first work trip of the year to Sonoma Valley</h4>
-                                </a>
-                                <p>travel <span>- May 19, 2019</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="blog-item">
-                            <div class="bi-pic">
-                                <img src="Assets/client/img/blog/blog-4.jpg" alt="">
-                            </div>
-                            <div class="bi-text">
-                                <a href="./blog-details.html">
-                                    <h4>Happppppy New Year! I know I am a little late on this post</h4>
-                                </a>
-                                <p>Fashion <span>- May 19, 2019</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="blog-item">
-                            <div class="bi-pic">
-                                <img src="Assets/client/img/blog/blog-5.jpg" alt="">
-                            </div>
-                            <div class="bi-text">
-                                <a href="./blog-details.html">
-                                    <h4>Absolue collection. The Lancome team has been one…</h4>
-                                </a>
-                                <p>Model <span>- May 19, 2019</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="blog-item">
-                            <div class="bi-pic">
-                                <img src="Assets/client/img/blog/blog-6.jpg" alt="">
-                            </div>
-                            <div class="bi-text">
-                                <a href="./blog-details.html">
-                                    <h4>Writing has always been kind of therapeutic for me</h4>
-                                </a>
-                                <p>Fashion <span>- May 19, 2019</span></p>
-                            </div>
-                        </div>
-                    </div>*@
+            <div class="blog-item">
+                <div class="bi-pic">
+                    <img src="Assets/client/img/blog/blog-2.jpg" alt="">
+                </div>
+                <div class="bi-text">
+                    <a href="./blog-details.html">
+                        <h4>This was one of our first days in Hawaii last week.</h4>
+                    </a>
+                    <p>Fashion <span>- May 19, 2019</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            <div class="blog-item">
+                <div class="bi-pic">
+                    <img src="Assets/client/img/blog/blog-3.jpg" alt="">
+                </div>
+                <div class="bi-text">
+                    <a href="./blog-details.html">
+                        <h4>Last week I had my first work trip of the year to Sonoma Valley</h4>
+                    </a>
+                    <p>travel <span>- May 19, 2019</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            <div class="blog-item">
+                <div class="bi-pic">
+                    <img src="Assets/client/img/blog/blog-4.jpg" alt="">
+                </div>
+                <div class="bi-text">
+                    <a href="./blog-details.html">
+                        <h4>Happppppy New Year! I know I am a little late on this post</h4>
+                    </a>
+                    <p>Fashion <span>- May 19, 2019</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            <div class="blog-item">
+                <div class="bi-pic">
+                    <img src="Assets/client/img/blog/blog-5.jpg" alt="">
+                </div>
+                <div class="bi-text">
+                    <a href="./blog-details.html">
+                        <h4>Absolue collection. The Lancome team has been one…</h4>
+                    </a>
+                    <p>Model <span>- May 19, 2019</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            <div class="blog-item">
+                <div class="bi-pic">
+                    <img src="Assets/client/img/blog/blog-6.jpg" alt="">
+                </div>
+                <div class="bi-text">
+                    <a href="./blog-details.html">
+                        <h4>Writing has always been kind of therapeutic for me</h4>
+                    </a>
+                    <p>Fashion <span>- May 19, 2019</span></p>
+                </div>
+            </div>
+        </div>*@
+
                     <div class="col-lg-12">
                         <div class="loading-more">
                             <i class="icon_loading"></i>
@@ -194,6 +195,50 @@
                             </a>
                         </div>
                     </div>
+                    @if (ViewBag.TotalPage > 1)
+                    {
+                        var pageDisplay = (int)ViewBag.MaxPage;
+                        int totalPage = (int)ViewBag.TotalPage;
+                        int currentPage = ((int)ViewBag.Page);
+
+                        // Create numeric links
+                        var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+                        var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+
+                        var link = "/bai-viet";
+                        <nav>
+                            <ul class="pagination">
+                                @if (currentPage > ViewBag.First)
+                                {
+                                    <li class="page-item"><a href="@link?page=@ViewBag.First" title="Trang đầu" class="first page-link"><i class="fa fa-angle-double-left"></i></a></li>
+                                    <li class="page-item">
+                                        <a href="@link?page=@ViewBag.Prev" title="Trang trước" class="prev page-link"><i class="fa fa-angle-left"></i></a>
+                                    </li>
+
+                                }
+                                @for (int i = startPageIndex; i <= endPageIndex; i++)
+                                {
+                                    if (currentPage == i)
+                                    {
+
+                                        <li class="page-item"> <a href="@link?page=@i" class="active page-link" title="Trang @i">@i</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item"><a href="@link?page=@i" title="Trang @i" class="pos page-link">@i</a></li>
+                                    }
+                                }
+                                @if (currentPage < totalPage)
+                                {
+                                    <li class="page-item"><a href="@link?page=@ViewBag.Next" class="next page-link" title="Trang sau"><i class="fa fa-angle-right"></i></a></li>
+                                    <li class="page-item"> <a href="@link?page=@ViewBag.Last" class="last page-link" title="Trang cuối"><i class="fa fa-angle-double-right"></i></a></li>
+                                }
+
+                            </ul>
+                        </nav>
+
+                    }
+
                 </div>
             </div>
         </div>

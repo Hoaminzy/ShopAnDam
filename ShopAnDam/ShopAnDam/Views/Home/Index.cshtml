@@ -55,7 +55,7 @@
             {
                 <div class="col-lg-4" style="width:300px; height:300px">
                     <div class="single-banner">
-                        <img src="@item.Logo" alt="Thương Hiệu">
+                        <img style="width:300px; height: 250px" src="@item.Logo" alt="Thương Hiệu">
                         <div class="inner-text">
                             <h4>@item.Name</h4>
                         </div>
@@ -271,26 +271,27 @@
             </div>
         </div>
         <div class="row">
-            @foreach (var item in article)
+            @foreach (var ar in article)
             {
+                var url = "/bai-viet/" + ar.MetaTitle + "/" + ar.ID;
                 <div class="col-lg-4 col-md-6">
                     <div class="single-latest-blog">
-                        <img src="@item.Images" alt="@item.Name">
+                        <img style="width: 300px; height: 300px"  src="@ar.Images" alt="@ar.Name">
                         <div class="latest-text">
                             <div class="tag-list">
                                 <div class="tag-item">
                                     <i class="fa fa-calendar-o"></i>
-                                    @(item.CreateDate.HasValue?item.CreateDate.Value.ToString("dd/MM/yyyy"):"")
+                                    @(ar.CreateDate.HasValue?ar.CreateDate.Value.ToString("dd/MM/yyyy"):"")
                                 </div>
                                 <div class="tag-item">
                                     <i class="fa fa-comment-o"></i>
-                                    @*      @item.ViewCount*@
+                                        @ar.ViewCount
                                 </div>
                             </div>
-                            <a href="">
-                                <h4>@item.Title</h4>
+                            <a href="@url">
+                                <h4>@ar.Title</h4>
                             </a>
-                            <p>@item.Topic.Name </p>
+                            <p>@ar.Topic.Name </p>
                         </div>
                     </div>
                 </div>

@@ -47,7 +47,7 @@ namespace ShopAnDam.Models.Dao
         public List<ProductViewmodel> ListAllProduct(int top)
         {
             //return db.Products.Where(x => x.CategoryID == CateID).ToList();
-            var model = from v in db.Products
+            IQueryable<ProductViewmodel> model = from v in db.Products
                         join ca in db.Categories on v.CategoryID equals ca.ID
                         join i in db.Images on v.ID equals i.ProductID
                         join b in db.Brands on v.BrandID equals b.ID
@@ -98,7 +98,7 @@ namespace ShopAnDam.Models.Dao
         public List<ProductViewmodel> ListByCategoryByID( int CateID )
         {
             //return db.Products.Where(x => x.CategoryID == CateID).ToList();
-            var model = from v in db.Products
+            IQueryable<ProductViewmodel> model = from v in db.Products
                         join ca in db.Categories on v.CategoryID equals ca.ID
                         where v.CategoryID == CateID
                         join i in db.Images on v.ID equals i.ProductID
@@ -194,7 +194,7 @@ namespace ShopAnDam.Models.Dao
 
         public ProductViewmodel ViewProductDetail(int ProductID)// lấy thông tin sản phẩm theo id
         {
-            var model = from v in db.Products
+            IQueryable<ProductViewmodel> model = from v in db.Products
                         join ca in db.Categories on v.CategoryID equals ca.ID
                         where v.ID == ProductID
                         join i in db.Images on v.ID equals i.ProductID

@@ -8,6 +8,7 @@ namespace ShopAnDam.Models.Framework
 
     public partial class Order_Detail
     {
+        [Key]
         public int ID { get; set; }
 
         public long? OrderID { get; set; }

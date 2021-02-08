@@ -31,7 +31,7 @@ namespace ShopAnDam.Models.Framework
         public string MailShip { get; set; }
 
         [StringLength(250)]
-        public string Node { get; set; }
+        public string Note { get; set; }
 
         public int? Status { get; set; }
 

@@ -14,13 +14,13 @@ namespace ShopAnDam.Models.ViewModel
         public string Images1 { get; set; }
         public string Description { get; set; }
         public  string Content { get; set; }
-        public bool status { get; set; }
+        public bool Status { get; set; }
         public DateTime? CreateDate { get; set; }
         public string TopicName { get; set; }
         public string HinhAnh { get; set; }
         public string CustomerName { get; set; }
         public string UserName { get; set; }
 
-        public string comment { get; set; }
+        public string Comment { get; set; }
     }
 }

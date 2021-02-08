@@ -13,7 +13,7 @@ namespace ShopAnDam.Models.Framework
         [StringLength(50)]
         public string GroupID { get; set; }
 
-        [Key]
+     
         [Column(Order = 1)]
         [StringLength(50)]
         public string RoleID { get; set; }
