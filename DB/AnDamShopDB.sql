@@ -181,6 +181,7 @@ create table Supplies(
    ,AdressShip nvarchar(250)
    ,MailShip varchar(50)
    ,Node nvarchar(250)
+   ,FormOfPayment nvarchar(50)
    ,Status int default(0)
    ,Payment_Method int default(0)
    ,CreateDate datetime default getdate()
@@ -299,7 +300,13 @@ create table Supplies(
 	,SDT varchar(12)
 	,Status bit default(0)
  ) 
- 
+  create table PaymentStatus
+  (
+  ID int primary key identity not null,
+  Name nvarchar(50),
+  Status bit default(0),
+  CreateDate datetime default getdate()
+  )
  --Tạo bảng liên hệ
  create table Feedback(
    ID int primary key not null
