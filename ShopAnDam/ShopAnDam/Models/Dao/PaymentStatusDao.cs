@@ -15,7 +15,7 @@ namespace ShopAnDam.Models.Dao
         }
        public List<PaymentStatus> ListAllPayment()
         {
-            return db.PaymentStatuss.OrderBy(x => x.CreateDate).ToList();
+            return db.PaymentStatus.OrderBy(x => x.CreateDate).ToList();
         }
     }
 }

@@ -33,8 +33,11 @@ namespace ShopAnDam.Models.Framework
         [StringLength(250)]
         public string Note { get; set; }
 
-        public int? Status { get; set; }
+        public int Status { get; set; }
+
+        [StringLength(50)]
         public string FormOfPayment { get; set; }
+
         public int? Payment_Method { get; set; }
 
         public DateTime? CreateDate { get; set; }

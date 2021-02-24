@@ -1481,6 +1481,10 @@
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Order\OrderDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\CanceledOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\Sales.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\ReportOrder.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -1641,12 +1645,13 @@
     <Compile Include="Models\Framework\Contact.cs" />
     <Compile Include="Models\Framework\Customer.cs" />
     <Compile Include="Models\Framework\Feedback.cs" />
-    <Compile Include="Models\Framework\PaymentStatus.cs" />
     <Compile Include="Models\Framework\Good.cs" />
+    <Compile Include="Models\Framework\Goods_Detail.cs" />
     <Compile Include="Models\Framework\Image.cs" />
     <Compile Include="Models\Framework\Menu.cs" />
     <Compile Include="Models\Framework\Order.cs" />
     <Compile Include="Models\Framework\Order_Detail.cs" />
+    <Compile Include="Models\Framework\PaymentStatus.cs" />
     <Compile Include="Models\Framework\Product.cs" />
     <Compile Include="Models\Framework\Review.cs" />
     <Compile Include="Models\Framework\Role.cs" />
@@ -1705,7 +1710,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Menu\" />
-    <Folder Include="Areas\Admin\Views\Report\" />
     <Folder Include="Image\" />
   </ItemGroup>
   <ItemGroup>

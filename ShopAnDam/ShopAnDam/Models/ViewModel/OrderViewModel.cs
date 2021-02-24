@@ -13,6 +13,7 @@ namespace ShopAnDam.Models.ViewModel
         public User user { get; set; }
         public Order order { get; set; }
         public PaymentStatus paymentStatus{get; set;}
+      //  public Goods_Detail goods_Detail { get; set}
         public int ID { get; set; }
         [Display(Name = "Tên người nhận")]
         public string NameShip { get; set; }
@@ -33,7 +34,8 @@ namespace ShopAnDam.Models.ViewModel
         public DateTime? CreateDate { get; set; }
         [Display(Name = "Đơn giá")]
         public decimal? Price { get; set; }
-       
+        [Display(Name = "Giá Nhập")]
+        public decimal? Prices { get; set; }
         [Display(Name = "Số lượng")]
         public int? Quantity { get; set; }
         [Display(Name = "Trạng thái")]

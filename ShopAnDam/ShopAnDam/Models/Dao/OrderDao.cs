@@ -52,7 +52,7 @@ namespace ShopAnDam.Models.Dao
             totalRecord = db.Order_Detail.Where(x => x.OrderID == orderid).Count();
             var model = (from a in db.Order_Detail
                          join b in db.Orders on a.OrderID equals b.ID
-                            join c in db.PaymentStatuss on b.Status equals c.ID
+                         join c in db.PaymentStatus on b.Status equals c.ID
                          join d in db.Products on a.ProductID equals d.ID
                          where a.OrderID == orderid
                          select new
@@ -107,6 +107,74 @@ namespace ShopAnDam.Models.Dao
                 return false;
             }
 
+        }
+
+        public IEnumerable<Order> ListAllCancelOrderPaging(string SearchHoaDon, int page, int pageSize)
+        {
+            IQueryable<Order> model = db.Orders;
+            if (!string.IsNullOrEmpty(SearchHoaDon))
+            {
+                model = model.Where(x => x.NameShip.Contains(SearchHoaDon) && x.Status == 4);
+            }
+            return model.Where(x => x.Status == 4).OrderByDescending(x => x.ID).ToPagedList(page, pageSize);
+        }
+        public IEnumerable<Order> ListAllOrderPaging(string SearchHoaDon, int page, int pageSize)
+        {
+            IQueryable<Order> model = db.Orders;
+            if (!string.IsNullOrEmpty(SearchHoaDon))
+            {
+                model = model.Where(x => x.NameShip.Contains(SearchHoaDon));
+            }
+            return model.OrderByDescending(x => x.ID).ToPagedList(page, pageSize);
+        }
+
+        public List<OrderViewModel> ListDetailByOrder(ref int totalRecord, int page = 1, int pageSize = 10)
+        {
+            //Hóa đơn đã gia thành công
+            totalRecord = db.Orders.Count();
+            var model = (from a in db.Orders
+                         join b in db.Order_Detail on a.ID equals b.OrderID
+                         join c in db.Products on b.ProductID equals c.ID
+                         join d in db.Good_Detail on b.ProductID equals d.ProductID
+                         where a.Status == 3
+                         group new { d.Prices, b.Price, b.Quantity, a.CreateDate } by new { a.ID } into g
+
+
+                         select new
+                         {
+                             ID = g.Key.ID,
+                             CreateDate = g.Select(e => e.CreateDate).FirstOrDefault(),
+                             Prices = g.Sum(l => l.Prices * l.Quantity),
+                             Quantity = g.Count(),
+                             Price = g.Sum(w => w.Price * w.Quantity),
+                         })
+                         .AsEnumerable().Select(x => new OrderViewModel()
+                         {
+                             ID = (int)x.ID,
+                             CreateDate = x.CreateDate,
+                             Quantity = x.Quantity,
+                             Price = x.Price,
+                             Prices = x.Prices,
+                         });
+            model.OrderByDescending(x => x.CreateDate).Skip((page - 1) * pageSize).Take(pageSize);
+            return model.ToList();
+        }
+
+        public int CountPendingOrders()//đêm số lượng hóa đơn chưa xử lý
+        {
+            return db.Orders.Count(x => x.ID == 1);
+        }
+        public IEnumerable<Order> getOrderByIdUser(int id)
+        {
+            IQueryable<Order> model = db.Orders;
+            return model = model.Where(x => x.CustomersID == id).OrderByDescending(x => x.CreateDate);
+        }
+        public int CancelOrder(int id)
+        {
+            var cancel = db.Orders.Find(id);
+            cancel.Status = 4;
+            db.SaveChanges();
+            return cancel.Status;
         }
     }
    

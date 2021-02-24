@@ -149,7 +149,7 @@ namespace ShopAnDam.Controllers
         {
             var xmlDoc = XDocument.Load(Server.MapPath(@"~/Assets/client/Data/Provinces_Data.xml"));
 
-            var xElement = xmlDoc.Element("Root").Elements("Item")
+              var xElement = xmlDoc.Element("Root").Elements("Item")
                 .Single(x => x.Attribute("type").Value == "province" && int.Parse(x.Attribute("id").Value) == provinceID);
 
             var list = new List<DistrictViewModel>();
