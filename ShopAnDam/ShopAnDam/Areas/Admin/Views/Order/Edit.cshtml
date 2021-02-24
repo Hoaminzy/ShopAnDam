@@ -1,0 +1,62 @@
+﻿@model ShopAnDam.Models.Framework.Order
+@{
+    ViewBag.Title = "Chỉnh sửa";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt">
+    <div class="col-lg-12">
+        <div>
+            @using (Html.BeginForm("Edit", "Order", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-row col-lg-12">
+                    <div class="form-group col-md-6 col-md-offset-3">
+                       <b>Trạng Thái: </b> @Html.DropDownListFor(model => model.Status, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-horizontal col-lg-12">
+                    <div class=" col-md-6 col-md-offset-3" >
+                        <div class="form-group">
+                            <b> Mã Hóa Đơn:</b> <b> HD</b> @Html.DisplayFor(model => model.ID, new { htmlAttributes = new { @class = "col-sm-2 col-sm-2 control-label" } })
+                        </div>
+                        <div class="form-group">
+                            <b>Tên Khách Hàng:</b>    @Html.DisplayFor(model => model.NameShip, new { htmlAttributes = new { @class = "col-sm-2 col-sm-2 control-label" } })
+                        </div>
+
+                        <div class="form-group">
+                            <b>Số Điện Thoại:</b>  @Html.DisplayFor(model => model.PhoneShip, new { htmlAttributes = new { @class = "col-sm-2 col-sm-2 " } })
+
+                        </div>
+                        <div class="form-group">
+                            <b>Email:</b>    @Html.DisplayFor(model => model.MailShip, new { htmlAttributes = new { @class = "col-sm-2 col-sm-2 control-label" } })
+
+                        </div>
+                        <div class="form-group">
+                            <b> Địa Chỉ:</b>  @Html.DisplayFor(model => model.AdressShip, new { htmlAttributes = new { @class = "col-sm-2 col-sm-2 control-label" } })
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-6 col-md-3">
+                                <button type="submit" class="btn btn-theme"><i class="fa fa-plus"></i>Cập nhật</button>
+
+                            </div>
+
+                            <div class=" col-md-2">
+                                <a href="/Admin/Product/Index" class="btn btn-theme04"><i class="fa fa-plus"></i>Hủy</a>
+
+                            </div>
+                        </div>
+                    </div>
+                  
+
+                </div>
+            }
+        </div>
+    </div>
+    <!-- col-lg-12-->
+</div>
+
+

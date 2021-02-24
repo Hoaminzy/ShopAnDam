@@ -105,40 +105,10 @@
             </div>
             <div class="col-lg-9 order-1 order-lg-2">
                 <div class="row">
-                    @*<div class="col-lg-4 col-sm-4">
-                            @foreach (var item in Model)
-                            {
-                                <div class="product-item">
-                                <div class="pi-pic">
-                                    <img src="~/Assets/client/img/products/women-1.jpg" alt="">
-                                    <div class="sale">Sale</div>
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
-                                    <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                    <div class="catagory-name">@item.CategoryID</div>
-                                    <a href="#">
-                                        <h5>@item.Name</h5>
-                                    </a>
-                                    <div class="product-price">
-                                        @item.MotionPrice
-                                        <span>@item.Price</span>
-                                    </div>
-                                </div>
-                            </div>
-                            }
-
-                        </div>*@
-                    <div class="col-lg-4 col-sm-4">
-                        @foreach (var item in Model)
-                        {
-                            var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                    @foreach (var item in Model)
+                    {
+                        var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
+                        <div class="col-lg-4 col-sm-4">
                             <div class="product-item">
                                 <div class="pi-pic">
                                     <a href="@url"><img src="@item.Image" /></a>
@@ -146,8 +116,8 @@
                                         <i class="icon_heart_alt"></i>
                                     </div>
                                     <ul>
-                                        <li class="w-icon active"><a href="/gio-hang/@item.Image"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="/chi-tiet/@item.ID">Xem chi tiết</a></li>
+                                        <li class="w-icon active"><a href="/them-gio-hang?ProductID=@item.ID&Quantity=1"><i class="icon_bag_alt"></i></a></li>
+                                        <li class="quick-view"><a href="@url">Xem chi tiết</a></li>
                                         <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                     </ul>
                                 </div>
@@ -157,63 +127,14 @@
                                         <h5>@item.Name</h5>
                                     </a>
                                     <div class="product-price">
-                                       @item.MotiPrice
+                                        @item.MotiPrice
                                         <span>@item.Price</span>
                                     </div>
                                 </div>
                             </div>
-
-                        }
-
-                    </div>
-                    @*<div class="col-lg-4 col-sm-4">
-                            <div class="product-item">
-                                <div class="pi-pic">
-                                    <img src="~/Assets/client/img/products/women-3.jpg" alt="">
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
-                                    <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                    <div class="catagory-name">Towel</div>
-                                    <a href="#">
-                                        <h5>Pure Pineapple</h5>
-                                    </a>
-                                    <div class="product-price">
-                                        $34.00
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-lg-4 col-sm-4">
-                            <div class="product-item">
-                                <div class="pi-pic">
-                                    <img src="~/Assets/client/img/products/women-4.jpg" alt="">
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
-                                    <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                    <div class="catagory-name">Towel</div>
-                                    <a href="#">
-                                        <h5>Converse Shoes</h5>
-                                    </a>
-                                    <div class="product-price">
-                                        $34.00
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
+                    }
+
                     <div class="col-lg-12">
                         <div class="loading-more">
                             <i class="icon_loading"></i>

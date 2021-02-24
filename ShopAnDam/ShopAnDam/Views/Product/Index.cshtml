@@ -166,15 +166,15 @@
                 </div>
                 <div class="product-list">
                     <div class="row">
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="product-item">
-                               
-                                @foreach (var item in Model)
-                                {
-                                    var img = Model.FirstOrDefault().Image;
-                                    var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
+
+                        @foreach (var item in Model)
+                        {
+                        //    var img = Model.FirstOrDefault().HinhAnh;
+                            var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="@img" alt="@item.Name">
+                                        <img src="@item.HinhAnh" alt="@item.Name">
                                         <div class="sale pp-sale">Sale</div>
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
@@ -187,7 +187,7 @@
                                     </div>
                                     <div class="pi-text">
                                         <div class="catagory-name">@item.CateName</div>
-                                        <a href="#">
+                                        <a href="@url">
                                             <h5>@item.Name</h5>
                                         </a>
                                         <div class="product-price">
@@ -196,11 +196,12 @@
                                             <span> @item.MotiPrice</span>
                                         </div>
                                     </div>
-                                }
+                                   
 
+                                </div>
                             </div>
+                        }
                         </div>
-                    </div>
             </div>
             @*<div class="loading-more">
                 <i class="icon_loading"></i>

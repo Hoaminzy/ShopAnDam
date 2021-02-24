@@ -15,7 +15,7 @@
     <script src="~/Assets/admin/js/controller/Category.js"></script>
     <script>
         $(document).ready(function () {
-            $("#show").click(function () {
+            $("#show1").click(function () {
                 var url = $("#Modal").data("url");
 
                 $.get(url, function (data) {
@@ -43,7 +43,7 @@
     {
     <div class="form-group col-lg-12">
         <div class="col-md-8">
-            <a class="btn btn-theme" id="show"><i class="fa fa-plus"></i>Thêm mới</a>
+            <a class="btn btn-theme" id="show1"><i class="fa fa-plus"></i>Thêm mới</a>
         </div>
         <div class="input-append col-md-3">
             <input type="text" class="form-control " value="@ViewBag.SearchString" name="searchString" placeholder="Nhập từ khóa cần tìm">

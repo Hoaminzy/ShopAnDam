@@ -34,7 +34,7 @@ namespace ShopAnDam.Models.Framework
         public string Note { get; set; }
 
         public int? Status { get; set; }
-
+        public string FormOfPayment { get; set; }
         public int? Payment_Method { get; set; }
 
         public DateTime? CreateDate { get; set; }

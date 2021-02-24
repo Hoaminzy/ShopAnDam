@@ -22,6 +22,7 @@ namespace ShopAnDam.Models.Framework
         public virtual DbSet<Good> Goods { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
+        public virtual DbSet<PaymentStatus> PaymentStatuss { get; set; }
         public virtual DbSet<Order_Detail> Order_Detail { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
