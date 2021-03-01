@@ -22,6 +22,7 @@ namespace ShopAnDam.Models.Framework
 
         [StringLength(100)]
         public string MetaTilte { get; set; }
+        public int? ParentID { get; set; }
 
         public int? DisplayOrder { get; set; }
 

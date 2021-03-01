@@ -48,7 +48,8 @@ namespace ShopAnDam.Areas.Admin.Controllers
         }
 
 
-        [HttpPost]
+      //  [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(Product pro)
         {
             if (ModelState.IsValid)
@@ -70,7 +71,8 @@ namespace ShopAnDam.Areas.Admin.Controllers
             }
             return PartialView("Index");
         }
-        [HttpPost]
+        // [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(Product Product)
         {
             if (ModelState.IsValid)

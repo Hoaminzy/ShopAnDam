@@ -18,6 +18,7 @@ namespace ShopAnDam.Models.Framework
         public string Link { get; set; }
 
         public int? DisplayOrder { get; set; }
+        public int? ParentID { get; set; }
 
         [StringLength(50)]
         public string Target { get; set; }

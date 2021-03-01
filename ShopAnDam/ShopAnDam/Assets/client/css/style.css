@@ -627,7 +627,7 @@ ol {
 	letter-spacing: 2px;
 	display: block;
 	text-align: center;
-	background: #191919;
+	background: #08967A;
 	color: #ffffff;
 	padding: 15px 30px 12px;
 	margin-bottom: 10px;
@@ -649,7 +649,7 @@ ol {
 }
 
 .nav-item {
-	background: #252525;
+	background: #08967A;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -659,13 +659,13 @@ ol {
 	float: left;
 }
 
-.nav-item .nav-depart .depart-btn {
-	background: #3b3b3b; /*Màu xám ở ô danh mục sản phẩm*/
-	color: #ffffff;/*Màu trắng của chữ*/
-	padding: 14px 84px 14px 18px;
-	cursor: pointer;
-	position: relative;
-}
+	.nav-item .nav-depart .depart-btn {
+		background: #f6bd54; /*Màu xám ở ô danh mục sản phẩm*/
+		color: #ffffff; /*Màu trắng của chữ*/
+		padding: 14px 84px 14px 18px;
+		cursor: pointer;
+		position: relative;
+	}
 
 .nav-item .nav-depart .depart-btn:hover .depart-hover {
 	top: 52px;
@@ -696,7 +696,7 @@ ol {
 	margin-left: 16px;
 }
 
-.nav-item .nav-depart .depart-btn .depart-hover {
+.nav-item .nav-depart .depart-btn .depart-hover  {
 	position: absolute;
 	width: 100%;
 	background: #fff;
@@ -735,6 +735,7 @@ ol {
 
 .nav-item .nav-depart .depart-btn .depart-hover li a:hover {
 	color: #e7ab3c;
+	
 }
 
 .nav-item .nav-menu {
@@ -760,7 +761,7 @@ ol {
 	font-weight: 700;
 	display: block;
 	color: #ffffff;
-	border-right: 2px solid #3b3b3b;
+	border-right: 2px solid #08967A; 
 	text-transform: uppercase;
 	padding: 16px 42px 15px;
 	-webkit-transition: all 0.3s;
@@ -778,23 +779,23 @@ ol {
 	top: 52px;
 }
 
-.nav-item .nav-menu li .dropdown {
-	position: absolute;
-	right: 0;
-	top: 82px;
-	width: 200px;
-	z-index: 99;
-	background: #252525;
-	opacity: 0;
-	visibility: hidden;
-	-webkit-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-}
+	.nav-item .nav-menu li .dropdown {
+		position: absolute;
+		right: 0;
+		top: 82px;
+		width: 170px;
+		z-index: 99;
+		background: #08967A;
+		opacity: 0;
+		visibility: hidden;
+		-webkit-transition: all 0.3s;
+		-o-transition: all 0.3s;
+		transition: all 0.3s;
+	}
 
 .nav-item .nav-menu li .dropdown li {
 	display: block;
-	margin-left: 50px;
+	margin-left: 5px;
 }
 
 .nav-item .nav-menu li .dropdown li:hover>a {
@@ -861,7 +862,7 @@ ol {
 	height: 725px;
 	padding-top: 210px;
 }
-
+      
 .hero-items .single-hero-items span {
 	color: #e7ab3c;
 	font-size: 12px;
@@ -1542,7 +1543,7 @@ ol {
 -----------------------*/
 
 .footer-section {
-	background: #191919;
+	background:#a1832f;
 	padding-top: 75px;
 }
 
@@ -1560,7 +1561,7 @@ ol {
 
 .footer-left ul li {
 	list-style: none;
-	color: #b2b2b2;
+	color: #e8e8e8;
 	font-size: 16px;
 	line-height: 30px;
 }
@@ -1573,7 +1574,7 @@ ol {
 	display: inline-block;
 	height: 40px;
 	width: 40px;
-	background: #434445;
+	background: #eac826;
 	color: #ffffff;
 	text-align: center;
 	line-height: 40px;
@@ -1618,11 +1619,11 @@ ol {
 	list-style: none;
 }
 
-.footer-widget ul li a {
-	line-height: 36px;
-	font-size: 16px;
-	color: #b2b2b2;
-}
+	.footer-widget ul li a {
+		line-height: 36px;
+		font-size: 16px;
+		color: #e8e8e8;
+	}
 
 .newslatter-item h5 {
 	color: #ffffff;
@@ -1631,7 +1632,7 @@ ol {
 }
 
 .newslatter-item p {
-	color: #b2b2b2;
+	color: #e8e8e8;
 	line-height: 26px;
 }
 
@@ -1641,7 +1642,7 @@ ol {
 
 .newslatter-item .subscribe-form input {
 	color: #b2b2b2;
-	background: #303030;
+	background: #ffffff;
 	width: 100%;
 	height: 46px;
 	font-size: 16px;
@@ -1650,7 +1651,7 @@ ol {
 }
 
 .newslatter-item .subscribe-form input::-webkit-input-placeholder {
-	color: #b2b2b2;
+	color: #252525;
 }
 
 .newslatter-item .subscribe-form input::-moz-placeholder {
@@ -1685,7 +1686,7 @@ ol {
 }
 
 .copyright-reserved {
-	border-top: 1px solid #303030;
+	border-top: 1px solid #e8e8e8;
 	padding: 15px 0;
 	margin-top: 45px;
 }
@@ -1698,18 +1699,17 @@ ol {
 	margin-left:450px;
 }
 
-.copyright-reserved .copyright-text a {
-	color: #b2b2b2;
+	.copyright-reserved .copyright-text a {
+		color: #e8e8e8;
+	}
 
-}
+	.copyright-reserved .copyright-text i {
+		color: #e8e8e8;
+	}
 
-.copyright-reserved .copyright-text i {
-	color: #cc2424;
-}
-
-.copyright-reserved .copyright-text a:hover {
-	color: #e7ab3c;
-}
+	.copyright-reserved .copyright-text a:hover {
+		color: #e8e8e8;
+	}
 
 .copyright-reserved .payment-pic {
 	float: right;

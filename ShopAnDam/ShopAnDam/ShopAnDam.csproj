@@ -1247,6 +1247,7 @@
     <Content Include="Assets\client\fonts\ElegantIcons.svg" />
     <Content Include="Assets\client\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\client\fonts\themify.svg" />
+    <Content Include="Assets\client\img\andam88.jpg" />
     <Content Include="Assets\client\img\banner-1.jpg" />
     <Content Include="Assets\client\img\banner-2.jpg" />
     <Content Include="Assets\client\img\banner-3.jpg" />
@@ -1293,6 +1294,7 @@
     <Content Include="Assets\client\img\logo-carousel\logo-3.png" />
     <Content Include="Assets\client\img\logo-carousel\logo-4.png" />
     <Content Include="Assets\client\img\logo-carousel\logo-5.png" />
+    <Content Include="Assets\client\img\logo.jpg" />
     <Content Include="Assets\client\img\logo.png" />
     <Content Include="Assets\client\img\payment-method.png" />
     <Content Include="Assets\client\img\product-single\avatar-1.png" />
@@ -1671,7 +1673,9 @@
     <Compile Include="Models\ViewModel\ProductViewmodel.cs" />
     <Compile Include="Models\ViewModel\ProvinceViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
+    <Compile Include="NganLuong\APICheckoutV3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VNPAY\VnPayLibrary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

@@ -28,7 +28,7 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-row">
-                    <div class="form-group col-lg-6">
+                    <div class="form-group col-lg-4 col-sm-offset-2">
                         @Html.LabelFor(model => model.ProductID, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
                         @Html.DropDownListFor(model => model.ProductID, null, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })

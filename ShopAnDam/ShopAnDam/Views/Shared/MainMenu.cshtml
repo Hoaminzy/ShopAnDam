@@ -1,9 +1,22 @@
 ﻿@model List<ShopAnDam.Models.Framework.Menu>
 <nav class="nav-menu mobile-menu">
     <ul>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Where(x => x.ParentID ==null))
         {
-            <li><a href="@item.Link" target="@item.Target" rel="nofollow">@item.Name</a></li>
+            var child = Model.Where(x => x.ParentID == item.ID);
+        <li>
+            <a href="@item.Link" target="@item.Target" rel="nofollow">@item.Name</a>
+            @if (child.Count() > 0)
+            {
+        <ul class="dropdown">
+            @foreach (var childItem in child)
+            {
+                <li><a href="@childItem.Link" target="@childItem.Target"><i class="fa fa-arrows"></i>@childItem.Name</a></li>
+            }
+
+        </ul>
+            }
+        </li>
         }
 
         @*<li><a href="./shop.html">Shop</a></li>

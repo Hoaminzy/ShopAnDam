@@ -46,7 +46,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
 
         public ActionResult Create(Article article)
         {
@@ -70,7 +70,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
             }
             return View("Index");
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(Article article)
         {
             if (ModelState.IsValid)
