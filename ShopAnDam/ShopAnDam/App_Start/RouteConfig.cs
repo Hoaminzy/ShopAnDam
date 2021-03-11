@@ -15,6 +15,8 @@ namespace ShopAnDam
 
             routes.IgnoreRoute("{*botdetect}",
             new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
+
+           
             routes.MapRoute(
               name: "Product ",
               url: "san-pham/{metaTitle}-{id}",
@@ -41,23 +43,47 @@ namespace ShopAnDam
         new[] { "ShopAnDam.Controllers" }
     );
             routes.MapRoute(
-name: "Dang Ky",
-url: "dang-ky",
-defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional },
-new[] { "ShopAnDam.Controllers" }
-);
+             name: "Create Good ",
+             url: "them-phieu",
+             defaults: new { controller = "Good", action = "Create", id = UrlParameter.Optional },
+             new[] { "ShopAnDam.Controllers" }
+         );
             routes.MapRoute(
-name: "Dang Nhap",
-url: "dang-nhap",
-defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional },
-new[] { "ShopAnDam.Controllers" }
-);
+            name: "Dang Ky",
+            url: "dang-ky",
+            defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional },
+            new[] { "ShopAnDam.Controllers" }
+            );
             routes.MapRoute(
-name: "Dang Xuat",
-url: "dang-xuat",
-defaults: new { controller = "User", action = "Logout", id = UrlParameter.Optional },
-new[] { "ShopAnDam.Controllers" }
-);
+            name: "Dang Nhap",
+            url: "dang-nhap",
+            defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional },
+            new[] { "ShopAnDam.Controllers" }
+            );
+          routes.MapRoute(
+            name: "Dang Xuat",
+            url: "dang-xuat",
+            defaults: new { controller = "User", action = "Logout", id = UrlParameter.Optional },
+            new[] { "ShopAnDam.Controllers" }
+            );
+            routes.MapRoute(
+         name: "Tai Khoan",
+         url: "tai-khoan",
+         defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional },
+         new[] { "ShopAnDam.Controllers" }
+         );
+   //         routes.MapRoute(
+   //            name: "Doi Mat Khau",
+   //            url: "doi-mat-khau",
+   //            defaults: new { controller = "Account", action = "ChangePassword", id = UrlParameter.Optional },
+   //            new[] { "ShopAnDam.Controllers" }
+   //            );
+   //         routes.MapRoute(
+   //name: "Thay Doi Thong Tin",
+   //url: "thay-doi-thong-tin",
+   //defaults: new { controller = "Account", action = "EditAccount", id = UrlParameter.Optional },
+   //new[] { "ShopAnDam.Controllers" }
+   //);
             routes.MapRoute(
              name: "Product Details",
             url: "chi-tiet/{metaTitle}/{id}",

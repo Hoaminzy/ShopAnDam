@@ -1,4 +1,4 @@
-namespace ShopAnDam.Models.Framework
+﻿namespace ShopAnDam.Models.Framework
 {
     using System;
     using System.Collections.Generic;
@@ -17,18 +17,25 @@ namespace ShopAnDam.Models.Framework
         }
 
         public int ID { get; set; }
-
+        [Display(Name = "Thương hiệu")]
         public int? BrandID { get; set; }
-
+        [Display(Name = "Danh mục sản phẩm")]
         public int? CategoryID { get; set; }
 
         [StringLength(150)]
+        [Display(Name = "Tên sản phẩm")]
+        [Required(ErrorMessage = "Hãy nhập tên sản phẩm")]
         public string Name { get; set; }
-
+      
+        
         [StringLength(50)]
+        [Display(Name = "Mã sản phẩm")]
+        [Required(ErrorMessage = "Hãy nhập mã sản phẩm")]
         public string Code { get; set; }
 
         [StringLength(150)]
+        [Display(Name = "Tiêu đề ngắn")]
+        [Required(ErrorMessage = "Hãy nhập tiêu đề sản phẩm")]
         public string Title { get; set; }
 
         [StringLength(150)]
@@ -36,11 +43,13 @@ namespace ShopAnDam.Models.Framework
 
         [Column(TypeName = "ntext")]
         public string Description { get; set; }
-
+        [Display(Name = "Đơn giá")]
+        [Required(ErrorMessage = "Hãy nhập giá sản phẩm")]
         public decimal? Price { get; set; }
-
+        [Display(Name = "Giá khuyến mại")]
         public decimal? MotionPrice { get; set; }
-
+        [Display(Name = "Số lượng")]
+        [Required(ErrorMessage = "Hãy nhập số lượng sản phẩm")]
         public int? Quantity { get; set; }
 
         public bool IncludeVAT { get; set; }
@@ -60,6 +69,8 @@ namespace ShopAnDam.Models.Framework
         public string CreateBy { get; set; }
 
         [StringLength(500)]
+        [Display(Name = "Hình ảnh")]
+        [Required(ErrorMessage = "Bạn chưa chọn hình ảnh sản phẩm")]
         public string image { get; set; }
 
         public virtual Brand Brand { get; set; }

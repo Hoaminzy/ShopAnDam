@@ -9,14 +9,10 @@ namespace ShopAnDam.Models.Framework
     public class Goods_Detail
     {
         [Key]
+        public int ID { get; set; }
         public int GoodID { get; set; }
 
-        public int? ProductID { get; set; }
-        [StringLength(100)]
-        public string Name { get; set; }
-        public int? Quantity { get; set; }
-
-        public decimal? Prices { get; set; }
+    
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

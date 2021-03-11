@@ -12,7 +12,7 @@
 }
 @section jsFooter{
 
-    <script src="~/Assets/admin/js/controller/Article.js"></script>
+   @* <script src="~/Assets/admin/js/controller/Article.js"></script>*@
     <script>
         $(document).ready(function () {
             $("#show").click(function (e) {
@@ -134,13 +134,6 @@
                         <td>
                             <a class="btn btn-success btn-xs " href="/Admin/Order/OrderDetails/@item.ID"  data-id="@item.ID"  ><i class="fa fa-check"></i></a>
                             <a href="/Admin/Order/Edit/@item.ID" data-id="@item.ID" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                            @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
-                       {
-                           Confirm = "Bạn có muốn xóa bản ghi này?",
-                           OnComplete = "$('#row_" + @item.ID + "').remove()",
-                           HttpMethod = "Delete"
-                       }, new { @class = "btn btn-danger btn-xs fa fa-trash-o " }
-                           )
                         </td>
                     </tr>
                     }

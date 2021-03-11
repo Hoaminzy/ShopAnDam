@@ -49,6 +49,12 @@ namespace ShopAnDam.Models.Dao
             }
             return model.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
+
+        public List<Supply> ListAll()
+        {
+
+            return db.Supplies.Where(x => x.Status == true).OrderByDescending(x => x.Name).ToList();
+        }
         public Supply GetByID(string Name)
         {
             return db.Supplies.SingleOrDefault(x => x.Name == Name);

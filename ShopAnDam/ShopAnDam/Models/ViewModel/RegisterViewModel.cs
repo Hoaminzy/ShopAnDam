@@ -26,11 +26,12 @@ namespace ShopAnDam.Models.ViewModel
         public string Name { get; set; }
         [Display(Name = "Email *")]
         [Required(ErrorMessage = "Yêu cầu nhập email.")]
-
+        [RegularExpression(@"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", ErrorMessage = "Email không đúng định dạng")]
         public string Email { get; set; }
 
         [Display(Name = "Số điện thoại *")]
         [Required(ErrorMessage = "Yêu cầu nhập số điện thoại")]
+        [RegularExpression(@"0[0-9\s.-]{9,13}", ErrorMessage = "Số điện thoại không đúng định dạng")]
         public string Phone { get; set; }
         [Display(Name = "Thành phố *")]
         [Required(ErrorMessage = "Yêu cầu chọn thành phố")]

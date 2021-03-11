@@ -1,4 +1,4 @@
-namespace ShopAnDam.Models.Framework
+﻿namespace ShopAnDam.Models.Framework
 {
     using System;
     using System.Collections.Generic;
@@ -19,16 +19,24 @@ namespace ShopAnDam.Models.Framework
         public int ID { get; set; }
 
         [StringLength(100)]
+      /*  [Display(Name = "Họ và Tên")]*/
         public string Name { get; set; }
 
         [StringLength(200)]
+       /* [Display(Name = "Địa Chỉ")]*/
+
         public string Address { get; set; }
 
         [StringLength(50)]
+        /*[Display(Name = "Email")]*/
+
         public string Email { get; set; }
 
         [StringLength(12)]
+        /*[Display(Name = "Số điện thoại")]*/
+
         public string Phone { get; set; }
+        /*[Display(Name = "Ngày tạo")]*/
 
         public DateTime? Createdate { get; set; }
 
@@ -36,14 +44,21 @@ namespace ShopAnDam.Models.Framework
         public string CreateBy { get; set; }
 
         [StringLength(50)]
+      /*  [Display(Name = "Tên tài khoản")]*/
+
         public string UserName { get; set; }
 
         [StringLength(50)]
+ /*       [Display(Name = "Mật khẩu")]*/
+
         public string PassWord { get; set; }
+       /* [Display(Name = "Tỉnh thành")]*/
 
-        public int? ProvinID { get; set; }
+        public int ProvinID { get; set; }
+       /* [Display(Name = "Quận huyện")]*/
 
-        public int? DistricID { get; set; }
+        public int DistricID { get; set; }
+        /*[Display(Name = "Trạng thái")]*/
 
         public bool Status { get; set; }
 

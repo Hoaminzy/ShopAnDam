@@ -11,14 +11,14 @@ namespace ShopAnDam.Models.Framework
         public int ID { get; set; }
 
         public int? SupplyID { get; set; }
+        public int? ProductID { get; set; }
+        public int Quantity { get; set; }
 
-        public decimal? Tongtien { get; set; }
-
+        public decimal? Prices { get; set; }
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]
         public string CreateBy { get; set; }
 
-        public virtual Supply Supply { get; set; }
     }
 }

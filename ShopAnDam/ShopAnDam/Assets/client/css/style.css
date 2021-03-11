@@ -99,7 +99,7 @@ a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #fff;
+	color: #457bfa;
 }
 
 ul,
@@ -269,14 +269,14 @@ ol {
 -----------------------*/
 
 .ht-right .lan-selector {
-	max-width: 142px;
+	max-width: 150px;
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
 }
 
 .ht-right .lan-selector .ddcommon {
-	max-width: 142px;
+	max-width: 150px;
 	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
 	outline: none;
@@ -2900,7 +2900,7 @@ ol {
 	font-size: 14px;
 	font-weight: 700;
 	color: #ffffff;
-	background: #252525;
+	background: #e7ab3c;
 	text-transform: uppercase;
 	padding: 15px 25px 14px 25px;
 	display: block;
@@ -3129,11 +3129,11 @@ ol {
 	text-align: center;
 }
 
-.checkout-form .place-order .order-total .order-btn .place-btn {
-	padding: 13px 40px 11px;
-	background: #000000;
-	border-color: #000000;
-}
+	.checkout-form .place-order .order-total .order-btn .place-btn {
+		padding: 13px 40px 11px;
+		background: #e7ab3c;
+		border-color: #e7ab3c;
+	}
 
 /*---------------------
   Blog Section
@@ -3766,7 +3766,7 @@ ol {
 -----------------------*/
 
 .faq-section {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 54px;
 }
 

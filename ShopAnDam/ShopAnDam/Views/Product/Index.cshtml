@@ -190,11 +190,21 @@
                                         <a href="@url">
                                             <h5>@item.Name</h5>
                                         </a>
-                                        <div class="product-price">
-                                            @(item.Price.HasValue ?  item.Price.Value.ToString("N0"): "Liên Hệ")
+                                        @if (@item.MotiPrice != 0)
+                                        {
+                                            <div class="product-price">
+                                                @item.MotiPrice
+                                                <span> @(item.Price.HasValue ?  item.Price.Value.ToString("N0"): "Liên Hệ")</span>
 
-                                            <span> @item.MotiPrice</span>
-                                        </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="product-price">
+                                                @item.Price
+                                            </div>
+                                        }
+
                                     </div>
                                    
 

@@ -103,10 +103,6 @@ namespace ShopAnDam.Models.Framework
                 .IsUnicode(false);
 
             modelBuilder.Entity<Good>()
-                .Property(e => e.Tongtien)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<Good>()
                 .Property(e => e.CreateBy)
                 .IsUnicode(false);
 
@@ -125,10 +121,6 @@ namespace ShopAnDam.Models.Framework
             modelBuilder.Entity<Order_Detail>()
                 .Property(e => e.Price)
                 .HasPrecision(18, 0);
-
-            modelBuilder.Entity<Goods_Detail>()
-              .Property(e => e.Prices)
-              .HasPrecision(18, 0);
 
             modelBuilder.Entity<Order>()
                 .Property(e => e.PhoneShip)

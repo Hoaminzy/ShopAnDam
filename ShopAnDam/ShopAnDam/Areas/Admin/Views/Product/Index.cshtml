@@ -68,7 +68,7 @@
                         <th><i class="fa fa-bullhorn"></i> Thuộc danh mục</th>
                         <th><i class="fa fa-bookmark"></i> Meta Tile</th>
                         <th><i class="fa fa-bookmark"></i> Số lượng</th>
-                        <th><i class="fa fa-bookmark"></i> Giá</th>
+                        <th><i class="fa fa-bookmark"></i> Giá bán</th>
                         <th><i class=" fa fa-edit"></i>Trạng thái</th>
                         <th><i class=" fa fa-edit"></i> Ngày tạo</th>
                         <th><i class=" fa fa-edit"></i> Hành động</th>
@@ -90,7 +90,7 @@
                         <td><a href="#" class="label label-success label-mini btn-active" data-id="@item.ID">@(item.Status ?"Kích hoạt": "Khóa")</a></td>
                         <td>@item.CreateDate</td>
                         <td>
-                            <a class="btn btn-success btn-xs " onclick="View(@item.ID)" data-id="@item.ID"><i class="fa fa-check"></i></a>
+                          @*  <a class="btn btn-success btn-xs " onclick="View(@item.ID)" data-id="@item.ID"><i class="fa fa-check"></i></a>*@
                             <a href="/Admin/Product/Edit/@item.ID" data-id="@item.ID" id="show" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                             @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
                        {

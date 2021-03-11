@@ -18,7 +18,7 @@ namespace ShopAnDam.Models.Dao
         }
         public List<Product> List()
         {
-            return db.Products.ToList();
+            return db.Products.Where(x => x.Status==true).OrderByDescending(x=> x.Name).ToList();
         }
         public List<ProductViewmodel> ListAll()
         {
@@ -123,6 +123,8 @@ namespace ShopAnDam.Models.Dao
         }
         public long Insert(Product entity)
         {
+            entity.CreateDate = DateTime.Now;
+            entity.ViewCount = 0;
             db.Products.Add(entity);
             db.SaveChanges();
             return entity.ID;
@@ -238,7 +240,23 @@ namespace ShopAnDam.Models.Dao
                 return false;
             }
         }
+        public bool AddQuantity(int id, int? quantity)
+        {
+            try
+            {
+                var product = db.Products.Find(id);
+                product.Quantity = product.Quantity + quantity;
+                db.SaveChanges();
+                return true;
 
+            }
+
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
         public bool ChangeStatus(long id)
         {
             var pro = db.Products.Find(id);

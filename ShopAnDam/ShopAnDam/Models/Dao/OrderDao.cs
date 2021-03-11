@@ -135,7 +135,7 @@ namespace ShopAnDam.Models.Dao
             var model = (from a in db.Orders
                          join b in db.Order_Detail on a.ID equals b.OrderID
                          join c in db.Products on b.ProductID equals c.ID
-                         join d in db.Good_Detail on b.ProductID equals d.ProductID
+                         join d in db.Goods on b.ProductID equals d.ProductID
                          where a.Status == 3
                          group new { d.Prices, b.Price, b.Quantity, a.CreateDate } by new { a.ID } into g
 
@@ -164,10 +164,10 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Orders.Count(x => x.ID == 1);
         }
-        public IEnumerable<Order> getOrderByIdUser(int id)
+        public IEnumerable<Order> getOrderByIdUser(long id)
         {
             IQueryable<Order> model = db.Orders;
-            return model = model.Where(x => x.CustomersID == id).OrderByDescending(x => x.CreateDate);
+            return  model.Where(x => x.CustomersID == id).OrderByDescending(x => x.CreateDate).ToList();
         }
         public int CancelOrder(int id)
         {

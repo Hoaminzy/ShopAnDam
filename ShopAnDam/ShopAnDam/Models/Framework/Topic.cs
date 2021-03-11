@@ -1,4 +1,4 @@
-namespace ShopAnDam.Models.Framework
+﻿namespace ShopAnDam.Models.Framework
 {
     using System;
     using System.Collections.Generic;
@@ -18,17 +18,23 @@ namespace ShopAnDam.Models.Framework
         public int ID { get; set; }
 
         [StringLength(150)]
+        [Display(Name = "Chủ đề")]
+        [Required(ErrorMessage = "Hãy nhập chủ đề")]
         public string Name { get; set; }
 
         [StringLength(150)]
+        [Display(Name = "Tiêu đề")]
+        [Required(ErrorMessage = "Hãy nhập tiêu đề")]
         public string MetaTilte { get; set; }
-
+        [Display(Name = "Vị tí hiển thị")]
+        [Required(ErrorMessage = "Hãy nhập vị trí hiển thị")]
         public int? DisplayOrder { get; set; }
 
         [StringLength(100)]
         public string SeoTitle { get; set; }
-
+        [Display(Name = "Trạng thái")]
         public bool Status { get; set; }
+        [Display(Name = "Ngày tạo")]
 
         public DateTime? CreateDate { get; set; }
 

@@ -48,9 +48,12 @@ namespace ShopAnDam.Controllers
                     userSession.UserName = user.UserName;
                     userSession.CustomerID = user.ID;
                     userSession.PassWord = user.PassWord;
+                    userSession.Name = user.Name;
                     userSession.Email = user.Email;
                     userSession.Phone = user.Phone;
                     userSession.Address = user.Address;
+                    //userSession.ProvinID = user.ProvinID;
+                  //  userSession.DistricID = user.DistricID;
                     Session.Add(CommonConStants.USER_SESSION, userSession);
                     return Redirect("/");
                 }
@@ -76,7 +79,7 @@ namespace ShopAnDam.Controllers
 
             [HttpPost]
         [CaptchaValidation("CaptchaCode", "registerCapcha", "Mã xác nhận không đúng!")]
-        public ActionResult Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel model, FormCollection formcollection)
         {
             if (ModelState.IsValid)
             {
@@ -89,14 +92,22 @@ namespace ShopAnDam.Controllers
                 {
                     ModelState.AddModelError("", "Email đã tồn tại!");
                 }
+                else if (dao.CheckEmail(model.Phone))
+                {
+                    ModelState.AddModelError("", "Số điện thoại đã được sử dụng!");
+                }
                 else
                 {
+                    var TenTinhThanh = formcollection["hdnTenTinhThanh"];
+                    var TenQuanHuyen = formcollection["hdnTenQuanHuyen"];
+
                     var customer = new Customer();
                     customer.Name = model.Name;
                     customer.UserName = model.UserName;
                     customer.PassWord = Encryptor.MD5Hash(model.PassWord);
                     customer.Phone = model.Phone;
                     customer.Email = model.Email;
+                    customer.Address = model.Address + "," + TenQuanHuyen + "," + TenTinhThanh;
                     if (!string.IsNullOrEmpty(model.ProvintID))
                     {
                         customer.ProvinID = int.Parse(model.ProvintID);
@@ -105,7 +116,6 @@ namespace ShopAnDam.Controllers
                     {
                         customer.DistricID = int.Parse(model.DistrictID);
                     }
-                    customer.Address = model.Address;
                     customer.Createdate = DateTime.Now;
                     //  customer.Status = true;
                     var result = dao.Insert(customer);
@@ -128,15 +138,17 @@ namespace ShopAnDam.Controllers
         public  JsonResult LoadProvince()
         {
             var xmlDoc = XDocument.Load(Server.MapPath(@"~/Assets/client/Data/Provinces_Data.xml"));
-            var xElement = xmlDoc.Element("Root").Elements("Item").Where(x => x.Attribute("type").Value == "province");
+
+            var xElements = xmlDoc.Element("Root").Elements("Item").Where(x => x.Attribute("type").Value == "province");
             var list = new List<ProvinceViewModel>();
-            ProvinceViewModel provinceViewModel = null;
-            foreach (var item in xElement.Elements("Item"))
+            ProvinceViewModel tinhThanh = null;
+            foreach (var item in xElements)
             {
-                provinceViewModel = new ProvinceViewModel();
-                provinceViewModel.ID = int.Parse(item.Attribute("id").Value);
-                provinceViewModel.Name = item.Attribute("value").Value;
-                list.Add(provinceViewModel);
+                tinhThanh = new ProvinceViewModel();
+                tinhThanh.ID = int.Parse(item.Attribute("id").Value);
+                tinhThanh.Name = item.Attribute("value").Value;
+                list.Add(tinhThanh);
+
             }
             return Json(new
             {
@@ -145,22 +157,23 @@ namespace ShopAnDam.Controllers
             });
         }
 
-        public JsonResult LoadDistrict(int provinceID)
+  
+     public JsonResult LoadDistrict(int tinhThanhID)
         {
             var xmlDoc = XDocument.Load(Server.MapPath(@"~/Assets/client/Data/Provinces_Data.xml"));
 
-              var xElement = xmlDoc.Element("Root").Elements("Item")
-                .Single(x => x.Attribute("type").Value == "province" && int.Parse(x.Attribute("id").Value) == provinceID);
+            var xElement = xmlDoc.Element("Root").Elements("Item")
+                .Single(x => x.Attribute("type").Value == "province" && int.Parse(x.Attribute("id").Value) == tinhThanhID);
 
             var list = new List<DistrictViewModel>();
-            DistrictViewModel district = null;
+            DistrictViewModel quanhuyen = null;
             foreach (var item in xElement.Elements("Item").Where(x => x.Attribute("type").Value == "district"))
             {
-                district = new DistrictViewModel();
-                district.ID = int.Parse(item.Attribute("id").Value);
-                district.Name = item.Attribute("value").Value;
-                district.ProvinceID = int.Parse(xElement.Attribute("id").Value);
-                list.Add(district);
+                quanhuyen = new DistrictViewModel();
+                quanhuyen.ID = int.Parse(item.Attribute("id").Value);
+                quanhuyen.Name = item.Attribute("value").Value;
+                quanhuyen.ProvinceID = int.Parse(xElement.Attribute("id").Value);
+                list.Add(quanhuyen);
 
             }
             return Json(new
@@ -169,5 +182,6 @@ namespace ShopAnDam.Controllers
                 status = true
             });
         }
+    
     }
 }

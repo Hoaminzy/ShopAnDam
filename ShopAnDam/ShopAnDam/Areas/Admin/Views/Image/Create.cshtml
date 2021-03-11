@@ -27,23 +27,24 @@
             {
                 @Html.AntiForgeryToken()
 
-                <div class="form-row">
-                    <div class="form-group col-lg-4 col-sm-offset-2">
-                        @Html.LabelFor(model => model.ProductID, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
-                        @Html.DropDownListFor(model => model.ProductID, null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.ArticleID, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
-                        @Html.DropDownListFor(model => model.ArticleID, null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.ArticleID, "", new { @class = "text-danger" })
-                    </div>                 
+            <div class="form-row">
+                <div class="form-group col-lg-6 ">
+                    @Html.LabelFor(model => model.ProductID, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
+                    @Html.DropDownListFor(model => model.ProductID, null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
                 </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.ArticleID, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
+                    @Html.DropDownListFor(model => model.ArticleID, null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ArticleID, "", new { @class = "text-danger" })
+                </div>
+              
+            </div>
                 <div class="form-horizontal ">
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Image1, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <div class="input-group">
                                 @Html.TextBoxFor(model => model.Image1, new { @class = "form-control", @id = "txtImage" })
                                 @Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })
@@ -56,7 +57,7 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.CreateDate, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
-                        <div class="col-sm-6">
+                        <div class="col-sm-8">
                             @Html.TextBoxFor(model => model.CreateDate, htmlAttributes: new { @class = "form-control", @type = "date" })
                             @Html.ValidationMessageFor(model => model.CreateDate, "", new { @class = "text-danger" })
                         </div>

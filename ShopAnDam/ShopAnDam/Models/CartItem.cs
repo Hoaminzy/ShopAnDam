@@ -9,6 +9,7 @@ namespace ShopAnDam.Models
     [Serializable]
     public class CartItem
     {
+        public Customer customer { get; set; }
         public Product Product { get; set; }
         public int Quantity { get; set; }
     }

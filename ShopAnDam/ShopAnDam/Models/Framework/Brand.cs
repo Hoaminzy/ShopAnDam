@@ -1,4 +1,4 @@
-namespace ShopAnDam.Models.Framework
+﻿namespace ShopAnDam.Models.Framework
 {
     using System;
     using System.Collections.Generic;
@@ -17,11 +17,15 @@ namespace ShopAnDam.Models.Framework
         public int ID { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Thương hiệu")]
+        [Required(ErrorMessage = "Hãy nhập tên thương hiệu")]
         public string Name { get; set; }
 
         [StringLength(255)]
+        [Display(Name = "Hình ảnh")]
+        [Required(ErrorMessage = "Bạn chưa chọn logo cho thương hiệu")]
         public string Logo { get; set; }
-
+        [Display(Name = "Ngày tạo")]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

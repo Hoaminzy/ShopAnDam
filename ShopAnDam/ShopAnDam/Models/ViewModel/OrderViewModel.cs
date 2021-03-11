@@ -48,5 +48,8 @@ namespace ShopAnDam.Models.ViewModel
         
         [Display(Name = "Tên sản phẩm")]
         public string ProductName { get; set; }
+
+        [Display(Name = "Tổng Tiền:")]
+        public decimal TotalPrice { get; set; }
     }
 }

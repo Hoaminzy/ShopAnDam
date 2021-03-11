@@ -1,4 +1,5 @@
-﻿using ShopAnDam.Models.Dao;
+﻿using ShopAnDam.Common;
+using ShopAnDam.Models.Dao;
 using ShopAnDam.Models.Framework;
 using System;
 using System.Collections.Generic;
@@ -52,9 +53,15 @@ namespace ShopAnDam.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var session = (UserLogin)Session[CommonConStants.USER_SESSION];
                 var dao = new ArticleDao();
                 article.CreateDate = DateTime.Now;
-
+                var ar = new Article();
+                if(session != null)
+                {
+                    ar.CreateBy = session.UserName;
+                }
+              
                 long id = dao.Insert(article);
                 if (id > 0)
                 {

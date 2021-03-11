@@ -1,4 +1,5 @@
 ﻿using PagedList;
+using ShopAnDam.Common;
 using ShopAnDam.Models.Framework;
 using ShopAnDam.Models.ViewModel;
 using System;

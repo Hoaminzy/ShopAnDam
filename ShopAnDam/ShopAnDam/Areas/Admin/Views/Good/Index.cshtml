@@ -1,0 +1,112 @@
+﻿@model PagedList.IPagedList<ShopAnDam.Models.Framework.Goods_Detail>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header{
+    Danh sách người dùng
+}
+@section jsFooter{
+
+    <script src="~/Assets/admin/js/controller/.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#show").click(function () {
+                var url = $("#Modal").data("url");
+
+                $.get(url, function (data) {
+                    $("#Container").html(data);
+                    $("#Modal").modal("show");
+                });
+
+            });
+        });
+
+    </script>
+}
+<div class="row mt">
+
+    @Html.BeginForm("Index", "Good", FormMethod.Get)
+    {
+    <div class="form-group col-lg-12">
+        <div class="col-md-8">
+            <a class="btn btn-theme"  href="#" id="show"><i class="fa fa-plus"></i>Thêm mới</a>
+        </div>
+        <div class="input-append col-md-3">
+            <input type="text" class="form-control " value="@ViewBag.SearchSanPham" name="searchString" placeholder="Nhập từ khóa cần tìm">
+            <span class="input-group-btn add-on">
+                <button class="btn btn-theme" type="submit"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+    }
+    <div class="col-md-12">
+        <div class="content-panel">
+            <table class="table table-striped table-advance table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th><i class="fa fa-bullhorn"></i> Mã Phiếu nhập</th>
+                        <th><i class="fa fa-bullhorn"></i> Mã đơn nhập hàng</th>
+                        <th><i class="fa fa-bookmark"></i> Ngày tạo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.ID">
+                            <td></td>
+                            <td>@item.ID</td>
+                            <td>@item.GoodID</td>
+                            <td>@item.CreateDate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = ViewBag.SearchString }))
+        </div>
+        <!-- /content-panel -->
+    </div>
+    <!-- /col-md-12 -->
+</div>
+<div id='Modal' class='modal' data-url='@Url.Action("Create", "Good")'>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Thêm đơn nhập hàng</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div id='Container'>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Chỉnh sửa tài khoản</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+
+    </div>
+</div>

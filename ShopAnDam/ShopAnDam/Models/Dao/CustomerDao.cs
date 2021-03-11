@@ -109,9 +109,26 @@ namespace ShopAnDam.Models.Dao
                 }
 
             }
-        
 
 
+        public int ChangePassword(string username, string oldpass, string newpass)
+        {
+
+            var result = db.Customers.SingleOrDefault(x => x.UserName == username);
+
+            if (result.PassWord == oldpass)
+            {
+                var user = new Customer();
+                result.PassWord = newpass;
+                db.SaveChanges();
+                return 1;//đổi mk thành công
+            }
+            else
+            {
+                return 0; //k ko đúng
+            }
+
+        }
         public bool ChangeStatus(long id)
         {
             try
@@ -134,5 +151,10 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Customers.Count(x => x.Email == email) > 0;
         }
+        public bool CheckPhone(string phone)
+        {
+            return db.Customers.Count(x => x.Phone == phone) > 0;
+        }
+   
     }
 }

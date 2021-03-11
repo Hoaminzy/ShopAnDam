@@ -165,6 +165,7 @@
     <Content Include="Assets\admin\js\controller\Article.js" />
     <Content Include="Assets\admin\js\controller\Brands.js" />
     <Content Include="Assets\admin\js\controller\Category.js" />
+    <Content Include="Assets\admin\js\controller\Good.js" />
     <Content Include="Assets\admin\js\controller\Product.js" />
     <Content Include="Assets\admin\js\controller\Slide.js" />
     <Content Include="Assets\admin\js\controller\Supply.js" />
@@ -1240,6 +1241,7 @@
     <Content Include="Assets\client\css\jquery-ui.min.css" />
     <Content Include="Assets\client\css\nice-select.css" />
     <Content Include="Assets\client\css\owl.carousel.min.css" />
+    <Content Include="Assets\client\css\PaymentStyle.css" />
     <Content Include="Assets\client\css\slicknav.min.css" />
     <Content Include="Assets\client\css\style.css" />
     <Content Include="Assets\client\css\themify-icons.css" />
@@ -1247,6 +1249,7 @@
     <Content Include="Assets\client\fonts\ElegantIcons.svg" />
     <Content Include="Assets\client\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\client\fonts\themify.svg" />
+    <Content Include="Assets\client\img\andam68.jpg" />
     <Content Include="Assets\client\img\andam88.jpg" />
     <Content Include="Assets\client\img\banner-1.jpg" />
     <Content Include="Assets\client\img\banner-2.jpg" />
@@ -1487,6 +1490,10 @@
     <Content Include="Areas\Admin\Views\Report\CanceledOrder.cshtml" />
     <Content Include="Areas\Admin\Views\Report\Sales.cshtml" />
     <Content Include="Areas\Admin\Views\Report\ReportOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Good\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Good\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Good\Create.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -1593,6 +1600,7 @@
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GoodController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
@@ -1608,6 +1616,7 @@
     <Compile Include="Common\CustomerLogin.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\UserLogin.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -1627,6 +1636,7 @@
     <Compile Include="Models\Dao\CategoryDao.cs" />
     <Compile Include="Models\Dao\ContactDao.cs" />
     <Compile Include="Models\Dao\CustomerDao.cs" />
+    <Compile Include="Models\Dao\GoodDao.cs" />
     <Compile Include="Models\Dao\ImageDao.cs" />
     <Compile Include="Models\Dao\MenuDao.cs" />
     <Compile Include="Models\Dao\OrderDao.cs" />
@@ -1667,7 +1677,9 @@
     <Compile Include="Models\Framework\UserGroup.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\ViewModel\ArticleViewModel.cs" />
+    <Compile Include="Models\ViewModel\ChangePassViewModel.cs" />
     <Compile Include="Models\ViewModel\DistrictViewModel.cs" />
+    <Compile Include="Models\ViewModel\GoodViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\OrderViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductViewmodel.cs" />
@@ -1703,6 +1715,11 @@
     <Content Include="Views\Article\Details.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Account.cshtml" />
+    <Content Include="Views\Account\EditAccount.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\OrderDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

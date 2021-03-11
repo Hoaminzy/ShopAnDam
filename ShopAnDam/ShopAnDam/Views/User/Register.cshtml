@@ -89,6 +89,7 @@
                             <div class="col-sm-12">
                                 @Html.DropDownList("ProvintID", new SelectList(new string[] { }), htmlAttributes: new { @class = "form-control", @id = "ddlProvint" })
                                 @Html.ValidationMessageFor(model => model.ProvintID, "", new { @class = "text-danger" })
+                                <input type="hidden" id="hdnTenTinhThanh" name="hdnTenTinhThanh" />
                             </div>
                         </div>
                         <div class="group-input">
@@ -96,6 +97,7 @@
                             <div class="col-sm-12">
                                 @Html.DropDownList("DistrictID", new SelectList(new string[] { }), htmlAttributes: new { @class = "form-control", @id = "ddlDistrict" })
                                 @Html.ValidationMessageFor(model => model.DistrictID, "", new { @class = "text-danger" })
+                                <input type="hidden" id="hdnTenQuanHuyen" name="hdnTenQuanHuyen" />
                             </div>
                         </div>
                         <div class="group-input">

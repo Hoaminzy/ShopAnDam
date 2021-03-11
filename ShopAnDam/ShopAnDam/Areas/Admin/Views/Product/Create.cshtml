@@ -43,6 +43,18 @@
                 .replace(/[^\w\-]+/g, '')
                 .replace(/\-\-+/g, '-');
         }
+        $(document).ready(function () {
+            $("#show").click(function (e) {
+                e.preventDefault();
+                var url = $("#Modal").data("url");
+
+                $.get(url, function (data) {
+                    $("#Container").html(data);
+                    $("#Modal").modal("show");
+                });
+
+            });
+        });
     </script>
 
 }
@@ -53,19 +65,36 @@
             @using (Html.BeginForm("Create", "Product", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-                <div class="form-row">
-                    <div class="form-group col-lg-6">
-                        @Html.LabelFor(model => model.BrandID, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
+            <div class="form-row">
+                <div class="form-group col-lg-6">
+                    <div class="col-sm-10">
+                        @Html.LabelFor(model => model.BrandID, htmlAttributes: new { @class = "col-sm-4  control-label" })
+
+                    </div>
+                    <div class="col-sm-8">
                         @Html.DropDownListFor(model => model.BrandID, null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.CategoryID, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
-                        @Html.DropDownListFor(model => model.CategoryID, null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-theme " data-toggle="tooltip" id="show" data-placement="bottom" title="Thêm thương hiệu"><i class="fa fa-plus"></i></button>
                     </div>
+                    @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
                 </div>
+
+                <div class="form-group col-lg-6">
+                    <div class="col-sm-10">
+                        @Html.LabelFor(model => model.CategoryID, htmlAttributes: new { @class = "col-sm-6  control-label" })
+
+                    </div>
+                    <div class="col-sm-6 ">
+                        @Html.DropDownListFor(model => model.CategoryID, null, new { @class = "form-control" })
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                </div>
+               
+            </div>
                 <div class="form-horizontal ">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
@@ -97,7 +126,7 @@
                                 @Html.TextBoxFor(model => model.image, htmlAttributes: new { @class = "form-control", @id = "txtImage" })
                                 @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
                                 <span class="input-group-btn">
-                                    <a class="btn btn-theme03" id="btnSelectImage" href="#"><i class="fa fa-cloud-upload"></i></a>
+                                    <a class="btn btn-theme03" id="btnSelectImage" href="#" data-toggle="tooltip"  data-placement="right" title="Chọn ảnh"><i class="fa fa-cloud-upload"></i></a>
                                 </span>
                             </div>
                         </div>
@@ -113,7 +142,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "col-sm-2 col-sm-2 control-label" })
                         <div class="col-sm-8">
-                            @Html.TextBoxFor(model => model.Price, htmlAttributes: new { @class = "form-control", type = "number" })
+                            @Html.TextBoxFor(model => model.Price, htmlAttributes: new { @class = "form-control", type = "number"})
                             @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -184,4 +213,25 @@
         </div>
     </div>
     <!-- col-lg-12-->
+</div>
+<div id='Modal' class='modal' data-url='@Url.Action("Create","Brand")'>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Thêm nhà thương hiệu</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div id='Container'>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+
 </div>

@@ -206,8 +206,15 @@
                                 <p>
                                     @Model.Title
                                 </p>
+                                @if (Model.MotionPrice != 0 )
+                                {
+                                    <h4>@Model.MotionPrice <span>@Model.Price</span></h4>
+                                }
+                                else
+                                {
+                                    <h4><span>@Model.Price</span> </h4>
+                                }
 
-                                <h4>@Model.Price <span>@Model.MotionPrice</span></h4>
 
 
                             </div>
@@ -304,7 +311,7 @@
                                         <div class="col-lg-7">
                                             <h5>MÔ TẢ</h5>
                                             <p>
-                                               @Model.Description
+                                                @Html.Raw(Model.Description)
                                             </p>
                                         </div>
                                         <div class="col-lg-5">
@@ -334,52 +341,53 @@
                                             <td>
                                                 <div class="p-price">
 
-                                                    @if(@Model.Price != null)
+                                                    @if (@Model.MotionPrice != null)
                                                     {
-                                                        @Model.Price
+                                                        @Model.MotionPrice
                                                     }
                                                     else
                                                     {
-                                                        @Model.MotionPrice
+
+                                                        @Model.Price
 
                                                     }
                                                 </div>
                                             </td>
                                         </tr>
+                                        @if (Model.Quantity > 0)
+                                        {
+                                            <tr>
+                                                <td class="p-catagory">Thêm giỏ hàng</td>
+                                                <td>
+                                                    <div class="cart-add"> <a href="/them-gio-hang?ProductID=@Model.ID&Quantity=1" class="primary-btn pd-cart" id="btnUpdate">Thêm giỏ hàng</a></div>
+                                                </td>
+                                            </tr>
+                                        }
                                         <tr>
-                                            <td class="p-catagory">Add To Cart</td>
+                                            <td class="p-catagory">Tình trạng</td>
                                             <td>
-                                                <div class="cart-add">+ add to cart</div>
+                                                <div class="cart-add"> @(Model.Quantity > 0 ? "Còn hàng" : "Hết hàng")</div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="p-catagory">Availability</td>
+                                            <td class="p-catagory">Kho</td>
                                             <td>
-                                                <div class="p-stock">22 in stock</div>
+                                                <div class="p-stock">@Model.Quantity</div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="p-catagory">Weight</td>
+                                            <td class="p-catagory">Thương Hiệu</td>
                                             <td>
-                                                <div class="p-weight">1,3kg</div>
+                                                <div class="p-weight">@Model.Brand.Name</div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="p-catagory">Size</td>
+                                            <td class="p-catagory">Mã Sản Phẩm</td>
                                             <td>
-                                                <div class="p-size">Xxl</div>
+                                                <div class="p-size">@Model.Code</div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="p-catagory">Color</td>
-                                            <td><span class="cs-color"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="p-catagory">Sku</td>
-                                            <td>
-                                                <div class="p-code">00012</div>
-                                            </td>
-                                        </tr>
+
                                     </table>
                                 </div>
                             </div>

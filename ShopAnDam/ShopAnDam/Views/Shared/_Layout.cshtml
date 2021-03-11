@@ -39,7 +39,7 @@
                 <div class="ht-left">
                     <div class="mail-service">
                         <i class=" fa fa-envelope"></i>
-                        andam88@gmail.com
+                        andam68@gmail.com
                     </div>
                     <div class="phone-service">
                         <i class=" fa fa-phone"></i>
@@ -54,11 +54,11 @@
                     }
                     @if (session == null)
                     {
-                        <a href="/dang-nhap" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
+                        <a href="/dang-nhap" class="login-panel"><i class="fa fa-sign-in"></i>Đăng nhập</a>
                     }
                     else
                     {
-                        <a href="/logout" class="login-panel"><i class="fa fa-eraser"></i>Đăng xuất</a>
+                        <a href="/dang-xuat" class="login-panel"><i class="fa fa-power-off"></i>Đăng xuất</a>
                         <a href="/tai-khoan" class="login-panel"><i class="fa fa-user" style="margin-right:5px"></i>Chào @session.UserName</a>
 
 
@@ -69,12 +69,12 @@
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="/Assets/client/img/flag-1.jpg" data-imagecss="flag yt"
-                                    data-title="English">
-                                English
+                                    data-title="VietNamese">
+                                Việt Nam
                             </option>
                             <option value='yu' data-image="/Assets/client/img/flag-2.jpg" data-imagecss="flag yu"
-                                    data-title="Bangladesh">
-                                German
+                                    data-title="English">
+                                English
                             </option>
                         </select>
                     </div>
@@ -93,7 +93,7 @@
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
                             <a href="/" rel="nofollow">
-                                <img src="~/Assets/client/img/logo.jpg" alt="">
+                                <img src="~/Assets/client/img/andam68.jpg" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                         <div class="advanced-search">
                             <button type="button" class="category-btn">Tất cả Sản Phẩm</button>
                             <form action="#" class="input-group">
-                                <input type="text" placeholder="What do you need?">
+                                <input type="text" placeholder="Bé yêu của bạn đang cần gì?">
                                 <button type="button"><i class="ti-search"></i></button>
                             </form>
                         </div>
@@ -138,7 +138,7 @@
                             <a href="#"><img src="img/footer-logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: Số 88 Lâm Nhi, xã Thanh Lâm, huyện Mê Linh, Hà Nội</li>
+                            <li>Address: Lâm Nhi, xã Thanh Lâm, huyện Mê Linh, Hà Nội (Cạnh mầm non Thanh Lâm B)</li>
                             <li>Phone: (+84) 974 271 692</li>
                             <li>Email: hoangyen92@gmail.com</li>
                         </ul>
@@ -154,10 +154,10 @@
                     <div class="footer-widget">
                         <h5>Information</h5>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Checkout</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Serivius</a></li>
+                            <li><a href="/">About Us</a></li>
+                            <li><a href="/thanh-toán">Thanh Toán</a></li>
+                            <li><a href="/lien-he">Liên Hệ</a></li>
+                            <li><a href="#">Dịch Vụ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -165,10 +165,10 @@
                     <div class="footer-widget">
                         <h5>My Account</h5>
                         <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Shopping Cart</a></li>
-                            <li><a href="#">Shop</a></li>
+                            <li><a href="/tai-khoan">Tài Khoản Của Bạn</a></li>
+                            <li><a href="/lien-he">Liên Hệ</a></li>
+                            <li><a href="/gio-hang">Shopping Cart</a></li>
+                            <li><a href="/san-pham">Shop</a></li>
                         </ul>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                         <div class="copyright-text">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             @*<script>document.write(new Date().getFullYear());</script>*@
-                            Follow me <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://andam88.com" target="_blank">AnDam88</a>
+                            Follow me <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://andam68.com" target="_blank">AnDam68</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </div>
                         <div class="payment-pic">
@@ -214,6 +214,7 @@
     <script src="~/Assets/client/js/jquery.slicknav.js"></script>
     <script src="~/Assets/client/js/owl.carousel.min.js"></script>
     <script src="~/Assets/client/js/main.js"></script>
+
 
 
     <!-- Details form -->

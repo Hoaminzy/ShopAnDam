@@ -1,4 +1,5 @@
-﻿using ShopAnDam.Models.Dao;
+﻿using ShopAnDam.Common;
+using ShopAnDam.Models.Dao;
 using ShopAnDam.Models.Framework;
 using System;
 using System.Collections.Generic;
@@ -55,19 +56,46 @@ namespace ShopAnDam.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new ProductDao();
-                pro.CreateDate = DateTime.Now;
-                long id = dao.Insert(pro);
-                if (id > 0)
+                var session = (UserLogin)Session[CommonConStants.USER_SESSION];
+                if (dao.CheckCode(pro.Code))
                 {
-                    SetAlert("Thêm thành công!", "success");
-                    return RedirectToAction("Index", "Product");
+
+                    ModelState.AddModelError("", "Mã sản phẩm đã tồn tại!");
 
                 }
-                else
-                {
-                    SetAlert("Thêm thất bại!", "error");
-                    ModelState.AddModelError("", "Thêm thất bại");
+                else {
+                    var product = new Product();
+                    product.ID = pro.ID;
+                    product.Code = pro.Code;
+                    product.Name = pro.Name;
+                    product.Title = pro.Title;
+                    product.Images = pro.Images;
+                    product.MetaTitle = pro.MetaTitle;
+                    product.BrandID = pro.BrandID;
+                    product.CategoryID = pro.CategoryID;
+                    product.Price = pro.Price;
+                    product.MotionPrice = pro.MotionPrice;
+
+                    product.Quantity = pro.Quantity;
+                    product.Description = pro.Description;
+                    product.IncludeVAT = pro.IncludeVAT;
+                    product.Status = pro.Status;
+                    product.CreateBy = session.UserName;
+                    product.CreateDate = DateTime.Now;
+                    long id = dao.Insert(pro);
+                    if (id > 0)
+                    {
+                        SetAlert("Thêm thành công!", "success");
+                        return RedirectToAction("Index", "Product");
+
+                    }
+                    else
+                    {
+                        SetAlert("Thêm thất bại!", "error");
+                        ModelState.AddModelError("", "Thêm thất bại");
+                    }
                 }
+               
             }
             return PartialView("Index");
         }
@@ -79,6 +107,8 @@ namespace ShopAnDam.Areas.Admin.Controllers
             {
                 var dao = new ProductDao();
                 Product.CreateDate = DateTime.Now;
+                var session = (UserLogin)Session[CommonConStants.USER_SESSION];
+                Product.CreateBy = session.UserName;
                 var res = dao.Update(Product);
                 if (res)
                 {

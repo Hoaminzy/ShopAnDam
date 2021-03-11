@@ -53,7 +53,7 @@
     {
     <div class="form-group col-lg-12">
         <div class="col-md-8">
-            <a class="btn btn-theme" href="/Admin/Article/Create" id="show"><i class="fa fa-plus"></i>Thêm mới</a>
+            <a class="btn btn-theme"  id="show"><i class="fa fa-plus"></i>Thêm mới</a>
         </div>
         <div class="input-append col-md-3">
             <input type="text" class="form-control " value="@ViewBag.SearchString" name="searchString" placeholder="Nhập từ khóa cần tìm">
@@ -71,10 +71,10 @@
                         <th><i class="fa fa-bullhorn"></i> Tên bài viết</th>
                         <th><i class="fa fa-bullhorn"></i>Chủ đề</th>
                         <th><i class="fa fa-bookmark"></i> Tiêu đề</th>
-                        <th><i class="fa fa-bookmark"></i> Meta Title</th>
                         <th><i class="fa fa-bookmark"></i> Hình ảnh</th>
                         <th><i class=" fa fa-edit"></i>Trạng thái</th>
                         <th><i class=" fa fa-edit"></i> Ngày tạo</th>
+                        <th><i class=" fa fa-edit"></i> Người tạo</th>
                         <th><i class=" fa fa-edit"></i> Hành động</th>
                     </tr>
                 </thead>
@@ -85,14 +85,14 @@
                     <tr id="row_@item.ID">
                         <td>@item.Name</td>
                         <td>@item.Topic.Name</td>
-                        <td>@item.Title</td>
-                        <td>@item.MetaTitle</td>
+                        <td style="width:150px">@item.Title</td>
                         <td><img src="@item.Images" style="width:70px" /></td>
                         <td><a href="#" class="label label-success label-mini btn-active" data-id="@item.ID">@(item.Status ?"Kích hoạt": "Khóa")</a></td>
-                        <td>@item.CreateDate</td>
+                        <td>@item.CreateDate.Value.ToString("dd/MM/yyyy")</td>
+                        <td>@item.CreateBy</td>
                         <td>
                             <a class="btn btn-success btn-xs " onclick="View(@item.ID)" data-id="@item.ID" id="show"><i class="fa fa-check"></i></a>
-                            <a href="/Admin/Article/Edit/@item.ID" data-id="@item.ID"class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                            <a href="/Admin/Article/Edit/@item.ID" data-id="@item.ID"  class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                             @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
                        {
                            Confirm = "Bạn có muốn xóa bản ghi này?",
@@ -110,7 +110,7 @@
     </div>
     <!-- /col-md-12 -->
 </div>
-<div id='Modal' class='modal' data-url='@Url.Action("Create")'>
+<div id='Modal' class='modal' data-url='@Url.Action("Create", "Article")'>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -139,7 +139,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel">Chỉnh sửa bài viết</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+               
             </div>
             <div class="modal-body">
             </div>
