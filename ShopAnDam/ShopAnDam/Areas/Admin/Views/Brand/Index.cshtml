@@ -37,8 +37,8 @@
     </script>
 }
 <div class="row mt">
-    @Html.BeginForm("Index", "Brand", FormMethod.Get)
-    {
+    @using (Html.BeginForm("Index", "Brand", FormMethod.Get))
+     {
     <div class="form-group col-lg-12">
         <div class="col-md-8">
             <button type="button" class="btn btn-theme" id="show"><i class="fa fa-plus"></i>Thêm mới</button>
@@ -67,7 +67,7 @@
                 <tbody class="tbody">
 
                     @foreach (var item in Model)
-                    {
+    {
                         <tr id="row_@item.ID" class="search">
                             <td></td>
                             <td>@item.ID</td>

@@ -5,10 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var session = (CustomerLogin)Session[CommonConStants.USER_SESSION];
 }
-    <script>
-        <link href="~/Assets/client/css/PaymentStyle.css" rel="stylesheet" />
-    </script>
-   
+
+@section jsFooter{
+    <script src="~/Assets/client/js/controller/Payment.js"></script>
+    }
+
 <!-- Breadcrumb Section Begin -->
 <div class="breacrumb-section">
     <div class="container">
@@ -49,12 +50,12 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <label for="ProvinID">Tỉnh<span>*</span></label>
-                                        @Html.DropDownList("ProvinID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlTinhThanh" })
+                                        @Html.DropDownList("ProvintID", new SelectList(new string[] { }), htmlAttributes: new { @class = "form-control", @id = "ddlProvint" })
                                         <input type="hidden" id="hdnTenTinhThanh" name="hdnTenTinhThanh" />
                                     </div>
                                     <div class="col-lg-12">
                                         <label for="DistricID">Huyện<span>*</span></label>
-                                        @Html.DropDownList("DistricID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlQuanHuyen" })
+                                        @Html.DropDownList("DistrictID", new SelectList(new string[] { }), htmlAttributes: new { @class = "form-control", @id = "ddlDistrict" })
                                         <input type="hidden" id="hdnTenQuanHuyen" name="hdnTenQuanHuyen" />
                                     </div>
                                     <div class="col-lg-12">
@@ -79,7 +80,7 @@
                     {
                         <div class="col-lg-6">
                             <div class="checkout-content">
-                                <a href="/dang-nhap" class="content-btn">ĐĂNG NHẬP TÀI KHOẢN shdfsdg</a>
+                                <a href="/dang-nhap" class="content-btn">ĐĂNG NHẬP TÀI KHOẢN</a>
                             </div>
                             <h4>HÓA ĐƠN CHI TIẾT</h4>
                             <div class="row">
@@ -92,12 +93,12 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <label for="ProvinID">Tỉnh<span>*</span></label>
-                                        @Html.DropDownList("ProvinID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlTinhThanh" })
+                                        @Html.DropDownList("ProvintID", new SelectList(new string[] { }), htmlAttributes: new { @class = "form-control", @id = "ddlProvint" })
                                         <input type="hidden" id="hdnTenTinhThanh" name="hdnTenTinhThanh" />
                                     </div>
                                     <div class="col-lg-12">
                                         <label for="DistricID">Huyện<span>*</span></label>
-                                        @Html.DropDownList("DistricID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlQuanHuyen" })
+                                        @Html.DropDownList("DistrictID", new SelectList(new string[] { }), htmlAttributes: new { @class = "form-control", @id = "ddlDistrict" })
                                         <input type="hidden" id="hdnTenQuanHuyen" name="hdnTenQuanHuyen" />
                                     </div>
                                     <div class="col-lg-12">
@@ -137,12 +138,12 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <label for="ProvinID">Tỉnh<span>*</span></label>
-                                    @Html.DropDownList("ProvinID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlTinhThanh" })
+                                    @Html.DropDownList("ProvintID", new SelectList(new string[] { }), htmlAttributes: new { @class = "form-control", @id = "ddlProvint" })
                                     <input type="hidden" id="hdnTenTinhThanh" name="hdnTenTinhThanh" />
                                 </div>
                                 <div class="col-lg-12">
                                     <label for="DistricID">Huyện<span>*</span></label>
-                                    @Html.DropDownList("DistricID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlQuanHuyen" })
+                                    @Html.DropDownList("DistrictID", new SelectList(new string[] { }), htmlAttributes: new { @class = "form-control", @id = "ddlDistrict" })
                                     <input type="hidden" id="hdnTenQuanHuyen" name="hdnTenQuanHuyen" />
                                 </div>
                                 <div class="col-lg-12">
@@ -174,25 +175,25 @@
                         <div class="order-total">
                             <ul class="order-table">
                                 @if (Model.Count > 0)
-                                        {
-                                            decimal? tong_tien = 0;
-                                            decimal? thanh_tien = 0;
-                                            <li>Sản phẩm <span>Thành tiền</span></li>
-                                            foreach (var item in Model)
-                                            {
-                                                var url = "/chi-tiet/" + item.Product.MetaTitle + "/" + item.Product.ID;
+                                {
+                                    decimal? tong_tien = 0;
+                                    decimal? thanh_tien = 0;
+                                    <li>Sản phẩm <span>Thành tiền</span></li>
+                                    foreach (var item in Model)
+                                    {
+                                        var url = "/chi-tiet/" + item.Product.MetaTitle + "/" + item.Product.ID;
 
 
-                                                if (item.Product.MotionPrice != null)
+                                        if (item.Product.MotionPrice != null)
                                         {
-                                                   thanh_tien = item.Quantity * (item.Product.MotionPrice.HasValue && (item.Product.MotionPrice.ToString() != "0") ? item.Product.MotionPrice : item.Product.Price);
-                                                    tong_tien += thanh_tien;
-                                                }
+                                            thanh_tien = item.Quantity * (item.Product.MotionPrice.HasValue && (item.Product.MotionPrice.ToString() != "0") ? item.Product.MotionPrice : item.Product.Price);
+                                            tong_tien += thanh_tien;
+                                        }
                                         else
-                                                {
-                                                    thanh_tien = item.Quantity * (item.Product.MotionPrice.HasValue && (item.Product.MotionPrice.ToString() != "0") ? item.Product.Price:0);
-                                                    tong_tien += thanh_tien;
-                                                }
+                                        {
+                                            thanh_tien = item.Quantity * (item.Product.MotionPrice.HasValue && (item.Product.MotionPrice.ToString() != "0") ? item.Product.Price : 0);
+                                            tong_tien += thanh_tien;
+                                        }
 
 
                                         <li class="fw-normal"><a href="@url">@item.Product.Name</a> x @item.Quantity <span>@thanh_tien.Value.ToString("N0") </span></li>
@@ -213,10 +214,10 @@
                             <div class="payment-check">
                                 <div class="pc-item">
                                     @*<label for="pc-check">
-                ShipCOD
-                <input type="checkbox" id="pc-check">
-                <span class="checkmark"></span>
-            </label>*@
+                                            ShipCOD
+                                            <input type="checkbox" id="pc-check">
+                                            <span class="checkmark"></span>
+                                        </label>*@
                                     <label for="pc-paypal">
                                         Thanh toán khi nhận hàng (COD)
                                         <input type="radio" checked="checked" id="rdo_COD" name="option_payment" value="COD" />
@@ -225,19 +226,19 @@
                                 </div>
                                 <div class="pc-item">
                                     @*<label for="pc-paypal">
-                Thanh toán trực tuyến
-                <input type="checkbox" id="pc-paypal">
-                <span class="checkmark"></span>
-            </label>*@
+                                            Thanh toán trực tuyến
+                                            <input type="checkbox" id="pc-paypal">
+                                            <span class="checkmark"></span>
+                                        </label>*@
                                     <label for="pc-paypal"><input type="radio" id="rdo_nganluong" name="option_payment" value="NL" /> Thanh toán bằng Ví điện tử NgânLượng</label>
 
                                 </div>
                                 <div class="pc-item">
                                     @*<label for="pc-paypal">
-            Thanh toán trực tuyến
-            <input type="checkbox" id="pc-paypal">
-            <span class="checkmark"></span>
-        </label>*@
+                                            Thanh toán trực tuyến
+                                            <input type="checkbox" id="pc-paypal">
+                                            <span class="checkmark"></span>
+                                        </label>*@
                                     <label for="pc-paypal"><input type="radio" id="rdo_bank" name="option_payment" value="ATM_ONLINE" /> Thanh toán online bằng thẻ ngân hàng nội địa</label>
 
 

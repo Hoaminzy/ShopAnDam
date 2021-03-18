@@ -13,6 +13,24 @@ namespace ShopAnDam.Models.Dao
         {
             db = new AnDamDBContext();
         }
+        public List<Review> ListAllRVProduct(long ProductID, int top)
+        {
+            return db.Reviews.Where(x => x.Status == true && x.ProductID == ProductID).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+        }
+        public List<Review> ListAllRVArticle(long ArticleID, int top)
+        {
+            return db.Reviews.Where(x => x.Status == true && x.ArticleID == ArticleID).OrderBy(x => x.CreateDate).Take(top).ToList();
+        }
+        public Review getPersonByID(long id)
+        {
+            return db.Reviews.Find(id);
+        }
+        public long InsertRV(Review cmt)
+        {
+            db.Reviews.Add(cmt);
+            db.SaveChanges();
+            return cmt.ID;
+        }
 
     }
 }

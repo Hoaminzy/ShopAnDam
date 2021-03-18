@@ -10,7 +10,7 @@
 }
 <div class="row mt">
 
-    @Html.BeginForm("Index", "Report", FormMethod.Get)
+    @using (Html.BeginForm("Index", "Report", FormMethod.Get))
     {
     <div class="form-group col-lg-12">
         <div class="input-append col-md-3">

@@ -1,4 +1,6 @@
-﻿using ShopAnDam.Models.Dao;
+﻿using ShopAnDam.Common;
+using ShopAnDam.Models.Dao;
+using ShopAnDam.Models.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +36,43 @@ namespace ShopAnDam.Controllers
         public ActionResult Details(int id)
         {
             var model = new ArticleDao().ViewDetail(id);
+            ViewBag.ArComment = new ReviewDao().ListAllRVArticle(model.ID, 5);
             return View(model);
+        }
+
+        [HttpPost]
+        public JsonResult AddComment(string comment, string ArticleID/*, string name, string email*/)
+        {
+            var review = new Review();
+            var userSession = (CustomerLogin)Session[CommonConStants.USER_SESSION];
+            int idar = int.Parse(ArticleID);
+            /* review.Customer.Name = name;
+             review.Customer.Email = email;*/
+            review.comment = comment;
+            review.ArticleID = idar;
+            review.CreateDate = DateTime.Now;
+            review.CreateBy = userSession.Name;
+            review.Status = true;
+
+
+
+            var id = new ReviewDao().InsertRV(review);
+            if (id > 0)
+            {
+                return Json(new
+                {
+                    status = true
+                });
+                //send mail
+
+            }
+
+            else
+                return Json(new
+                {
+                    status = false
+                });
+
         }
     }
 }

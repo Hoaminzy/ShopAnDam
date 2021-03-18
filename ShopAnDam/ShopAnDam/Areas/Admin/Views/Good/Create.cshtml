@@ -1,7 +1,7 @@
 ﻿@model List<ShopAnDam.Models.ViewModel.GoodViewModel>
 @{
     ViewBag.Title = "Tạo phiếu";
-    Layout =null;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <script src="~/Assets/admin/js/controller/Good.js"></script>
@@ -62,9 +62,6 @@
 
     </div>
 }
-<div>
-    @Html.ActionLink("Trở về", "Index")
-</div>
 @*<div class="row mt">
         <div class="col-lg-12">
             <div>

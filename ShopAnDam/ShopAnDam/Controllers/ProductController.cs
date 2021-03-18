@@ -1,5 +1,7 @@
-﻿using ShopAnDam.Models;
+﻿using ShopAnDam.Common;
+using ShopAnDam.Models;
 using ShopAnDam.Models.Dao;
+using ShopAnDam.Models.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +20,7 @@ namespace ShopAnDam.Controllers
             return View(product);
 
         }
-        //public ActionResult Details()
-        //{
-        //    return View();
-        //}
+   
         [ChildActionOnly]
         public PartialViewResult Category()
         {
@@ -41,7 +40,43 @@ namespace ShopAnDam.Controllers
             var product = new ProductDao().ViewDetail(id);
             ViewBag.image = new ImageDao().ViewImageByIDProduct(product.ID);
             ViewBag.category = new CategoryDao().ViewDetail(product.ID);
+            ViewBag.SPComment = new ReviewDao().ListAllRVProduct(product.ID, 5);
             return View(product);
+        }
+
+         [HttpPost]
+        public JsonResult AddComment(string comment,string ProductID/*, string name, string email*/)
+        {
+            var review = new Review();
+            var userSession = (CustomerLogin)Session[CommonConStants.USER_SESSION];
+            int idsp = int.Parse(ProductID);
+           /* review.Customer.Name = name;
+            review.Customer.Email = email;*/
+            review.comment = comment;
+            review.ProductID = idsp;
+            review.CreateDate = DateTime.Now;
+            review.CreateBy = userSession.Name;
+            review.Status = true;
+
+
+
+            var id = new ReviewDao().InsertRV(review);
+            if (id > 0)
+            {
+                return Json(new
+                {
+                    status = true
+                });
+                //send mail
+
+            }
+
+            else
+                return Json(new
+                {
+                    status = false
+                });
+
         }
         public JsonResult Update(string cartModel)
         {

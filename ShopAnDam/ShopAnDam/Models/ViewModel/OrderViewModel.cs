@@ -36,6 +36,8 @@ namespace ShopAnDam.Models.ViewModel
         public decimal? Price { get; set; }
         [Display(Name = "Giá Nhập")]
         public decimal? Prices { get; set; }
+        [Display(Name = "Giá Khuyến Mại")]
+        public decimal? MotionPrice { get; set; }
         [Display(Name = "Số lượng")]
         public int? Quantity { get; set; }
         [Display(Name = "Trạng thái")]

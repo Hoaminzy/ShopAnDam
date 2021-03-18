@@ -11,7 +11,7 @@
             <p>Đơn hàng số: HD @Model.FirstOrDefault().ID<br /></p>
             <p>Khách hàng: @Model.FirstOrDefault().NameShip<br /></p>
             <p>Số điện thoại: @Model.FirstOrDefault().PhoneShip<br /></p>
-            <p>Địa chỉ:@Model.FirstOrDefault().ProvintID, @Model.FirstOrDefault().DistrictID, @Model.FirstOrDefault().AdressShip<br /></p>
+            <p>Địa chỉ: @Model.FirstOrDefault().AdressShip<br /></p>
             <p>Email: @Model.FirstOrDefault().MailShip<br /></p>
             <p>Ngày tạo: @Model.FirstOrDefault().CreateDate.Value.ToString("dd/MM/yyyy")<br /></p>
             <p>Trạng thái: @Model.FirstOrDefault().Status<br /></p>
@@ -35,7 +35,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                decimal? thanh_tien = item.Price * item.Quantity;
+                                decimal? thanh_tien = (item.MotionPrice.HasValue && (item.MotionPrice.ToString() != "0") ? (item.MotionPrice * item.Quantity) : (item.Price * item.Quantity));
                                 total += thanh_tien;
                                 using (Html.BeginForm())
                                 {
@@ -44,7 +44,7 @@
                                     <tr id="row_@item.ID">
                                         <th></th>
                                         <td>@item.ProductName</td>
-                                        <td>@item.Price.Value.ToString("N0")</td>
+                                        <td>@(item.MotionPrice.HasValue && (item.MotionPrice.ToString() != "0") ? (item.MotionPrice.Value.ToString("N0")) : (item.Price.Value.ToString("N0") ))</td>
                                         <td>@item.Quantity</td>
                                         <td>@thanh_tien.Value.ToString("N0")</td>
                                     </tr>

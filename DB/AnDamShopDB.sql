@@ -148,27 +148,25 @@ create table Supplies(
   ,CreateDate datetime default getdate()
   ,CreateBy varchar(50)
 )
- create table Goods_Detail(
-   GoodID int 
-  ,ProductID int 
-  ,Name nvarchar(100)
-  ,Quantity int default(0)
-  ,Price decimal (18,0)
+   
+ create table Goods_Detail( -- phiếu nhập hàng(Đơn nhập)
+   ID int not null primary key identity
+   ,GoodID int
+  
   ,CreateDate datetime default getdate()
   ,CreateBy varchar(50)
-  ,constraint FK_Cate_Product foreign key (ProductID) references Products(ID)
-  ,constraint FK_Goods foreign key (GoodID) references Goods(ID)
 )
- --tạo bảng Product_Catagory
-  create table Goods (
+  create table Goods (  --Phiếu yêu cầu nhập hàng
    ID int not null primary key identity
    , SupplyID int 
+   ,ProductID int 
+  ,Quantity int default(0)
+  ,Price decimal (18,0)
    ,Tongtien decimal(18,0) default(0)
    ,CreateDate datetime default getdate() --ngày lập
    ,CreateBy varchar(50) 
-	,constraint FK_Cate_Goods foreign key (SupplyID) references Supplies(ID)
+	
 )
-
 --tạo bảng Hóa đơn
  create table Orders(
    ID bigint primary key not null identity

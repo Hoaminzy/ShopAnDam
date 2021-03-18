@@ -127,25 +127,22 @@
                             <ul>
                                 @if (Model.Count > 0)
                                 {
+                                    decimal? tong_tien = 0;
+                                    decimal? thanh_tien = 0;
                                     foreach (var item in Model)
                                     {
-                                        decimal? tong_tien = 0;
-                                        decimal? thanh_tien = 0;
-                                        if (item.Product.MotionPrice > 0)
-                                        {
-                                            thanh_tien = item.Quantity * item.Product.MotionPrice;
-                                            tong_tien += thanh_tien;
-                                            <li class="cart-total">Tổng tiền:  <span>@thanh_tien.Value.ToString("N0") VNĐ</span></li>
-                                        }
-                                        else
-                                        {
-                                            thanh_tien = item.Quantity * item.Product.Price;
-                                            tong_tien += thanh_tien;
-                                            <li class="cart-total">Tổng tiền:  <span>@thanh_tien.Value.ToString("N0") VNĐ</span></li>
-                                        }
 
-                                       
+
+
+                                        thanh_tien = (item.Product.MotionPrice.HasValue && (item.Product.MotionPrice.ToString() != "0") ? (item.Product.MotionPrice * item.Quantity) : (item.Product.Price * item.Quantity));
+                                        tong_tien += thanh_tien;
+
+
+
+
+
                                     }
+                                    <li class="cart-total">Tổng tiền:  <span>@tong_tien.Value.ToString("N0") VNĐ</span></li>
                                 }
                                 else
                                 {

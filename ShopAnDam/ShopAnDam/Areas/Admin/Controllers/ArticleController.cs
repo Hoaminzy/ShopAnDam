@@ -56,6 +56,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
                 var session = (UserLogin)Session[CommonConStants.USER_SESSION];
                 var dao = new ArticleDao();
                 article.CreateDate = DateTime.Now;
+                article.CreateBy = session.UserName;
                 var ar = new Article();
                 if(session != null)
                 {
@@ -82,8 +83,13 @@ namespace ShopAnDam.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var session = (UserLogin)Session[CommonConStants.USER_SESSION];
                 var dao = new ArticleDao();
                 article.CreateDate = DateTime.Now;
+                if(session!= null)
+                {
+                    article.CreateBy = session.UserName;
+                }
                 var res = dao.Update(article);
                 if (res)
                 {

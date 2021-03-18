@@ -44,6 +44,11 @@ namespace ShopAnDam.Models.Dao
                 return false;
             }
         }
+
+        public List<Topic> getList()
+        {
+            return db.Topics.Where(x => x.Status == true).ToList();
+        }
         public IEnumerable<Topic> ListAllPageList(string searchString, int page, int pageSize)
         {
 

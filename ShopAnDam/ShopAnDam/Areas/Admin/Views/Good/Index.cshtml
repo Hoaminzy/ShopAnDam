@@ -9,7 +9,8 @@
 }
 @section jsFooter{
 
-    <script src="~/Assets/admin/js/controller/.js"></script>
+
+    <script src="~/Assets/admin/js/controller/Good.js"></script>
     <script>
         $(document).ready(function () {
             $("#show").click(function () {
@@ -27,19 +28,19 @@
 }
 <div class="row mt">
 
-    @Html.BeginForm("Index", "Good", FormMethod.Get)
+    @using (Html.BeginForm("Index", "Good", FormMethod.Get))
     {
-    <div class="form-group col-lg-12">
-        <div class="col-md-8">
-            <a class="btn btn-theme"  href="#" id="show"><i class="fa fa-plus"></i>Thêm mới</a>
+        <div class="form-group col-lg-12">
+            <div class="col-md-8">
+                <a class="btn btn-theme" href="#" id="show"><i class="fa fa-plus"></i>Thêm mới</a>
+            </div>
+            <div class="input-append col-md-3">
+                <input type="text" class="form-control " value="@ViewBag.SearchSanPham" name="searchString" placeholder="Nhập từ khóa cần tìm">
+                <span class="input-group-btn add-on">
+                    <button class="btn btn-theme" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
         </div>
-        <div class="input-append col-md-3">
-            <input type="text" class="form-control " value="@ViewBag.SearchSanPham" name="searchString" placeholder="Nhập từ khóa cần tìm">
-            <span class="input-group-btn add-on">
-                <button class="btn btn-theme" type="submit"><i class="fa fa-search"></i></button>
-            </span>
-        </div>
-    </div>
     }
     <div class="col-md-12">
         <div class="content-panel">

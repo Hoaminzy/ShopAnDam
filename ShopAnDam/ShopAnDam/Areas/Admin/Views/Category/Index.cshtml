@@ -39,8 +39,8 @@
 }
 <div class="row mt">
 
-    @Html.BeginForm("Index", "Category", FormMethod.Get)
-    {
+    @using (Html.BeginForm("Index", "Category", FormMethod.Get))
+            {
     <div class="form-group col-lg-12">
         <div class="col-md-8">
             <a class="btn btn-theme" id="show1"><i class="fa fa-plus"></i>Thêm mới</a>
@@ -72,7 +72,7 @@
                 <tbody>
 
                     @foreach (var item in Model)
-                    {
+    {
                     <tr id="row_@item.ID">
                         <td></td>
                         <td>@item.ID</td>

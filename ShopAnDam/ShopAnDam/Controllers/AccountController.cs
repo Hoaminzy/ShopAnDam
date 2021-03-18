@@ -137,6 +137,116 @@ namespace ShopAnDam.Controllers
 
             return View(model);
         }
+        [ChildActionOnly]
+        public ActionResult MyArticle(/*int page = 1, int pagesize = 10*/)
+        {
+            if (Session[CommonConStants.USER_SESSION] == null)
+            {
+                return Redirect("/dang-nhap");
+            }
+            else
+            {
+                var dao = new ArticleDao();
+                var session = (CustomerLogin)Session[CommonConStants.USER_SESSION];
+                var model = dao.ListAllByUser(session.UserName, (int)session.CustomerID/*, page, pagesize*/);
+             /*   int totalRecord = 0;
+
+                ViewBag.Total = totalRecord;
+                ViewBag.Page = page;
+                //ViewBag.Tagid = new BaiVietDAO().getTag(tagid);
+                int maxPage = 10;
+                int totalPage = 0;
+
+                totalPage = (int)Math.Ceiling((double)(totalRecord / pagesize));
+                ViewBag.TotalPage = totalPage;
+                ViewBag.MaxPage = maxPage;
+                ViewBag.First = 1;
+                ViewBag.Last = totalPage;
+                ViewBag.Next = page + 1;
+                ViewBag.Prev = page - 1;*/
+                return PartialView(model);
+            }
+        }
+
+        public void setViewBag(long? selectedID = null)
+        {
+            var dao = new TopicDao();
+            ViewBag.TopicID = new SelectList(dao.getList(), "ID", "Name", selectedID);
+        }
+
+        [HttpGet]
+        public ActionResult CreateArticle()
+        {
+            setViewBag();
+            return View();
+        }
+        [HttpPost, ValidateInput(false)]
+        public ActionResult CreateArticle(Article model)
+        {
+            if (ModelState.IsValid)
+            {
+                var session = (CustomerLogin)Session[CommonConStants.USER_SESSION];
+                model.CreateBy = session.UserName;
+                model.CreateDate = DateTime.Now;
+                new ArticleDao().Insert(model);
+                SetAlert("Thêm bài viết thành công, chờ kiểm duyệt", "success");
+                return RedirectToAction("Index");
+            }
+            setViewBag();
+            return View();
+        }
+
+
+        public ActionResult EditArticle(int id)
+        {
+            var dao = new ArticleDao();
+            var article = dao.ViewDetail(id);
+
+            setViewBag(article.TopicID);
+            return View(article);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditArticle(Article model, FormCollection formcollection)
+        {
+            if (ModelState.IsValid)
+            {
+                //var dao = new BaiVietDAO();
+                int TopicID = int.Parse(formcollection["hdnIDbaiviet"]);
+
+                var session = (CustomerLogin)Session[CommonConStants.USER_SESSION];
+                model.CreateBy = session.UserName;
+                //var result = dao.Edit(model);
+                model.CreateDate = DateTime.Now;
+                model.TopicID = TopicID;
+
+                new ArticleDao().Update(model);
+                SetAlert("Sửa bài viết thành công", "success");
+
+                return RedirectToAction("Index");
+            }
+
+            setViewBag(model.TopicID);
+
+            return View();
+        }
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            new ArticleDao().Delete(id);
+            SetAlert("Xóa thành công!", "success");
+            return RedirectToAction("Index");
+        }
+        //hủy hóa đơn
+        public JsonResult CancelOrder(int id)
+        {
+            var result = new OrderDao().CancelOrder(id);
+            return Json(new
+            {
+                status = result
+            });
+        }
         protected void SetAlert(string message, string type)
         {
             TempData["AlertMessage"] = message;

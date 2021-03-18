@@ -52,7 +52,7 @@
 }
 <div class="">
 
-    @Html.BeginForm("Index", "Order", FormMethod.Get)
+    @using (Html.BeginForm("Index", "Order", FormMethod.Get))
     {
     <div class="form-group col-lg-12">
       

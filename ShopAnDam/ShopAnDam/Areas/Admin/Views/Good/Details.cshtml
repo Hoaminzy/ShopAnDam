@@ -9,7 +9,7 @@
 }
 @section jsFooter{
 
-    <script src="~/Assets/admin/js/controller/.js"></script>
+    <script src="~/Assets/admin/js/controller/Good.js"></script>
     <script>
         $(document).ready(function () {
             $("#show").click(function () {
@@ -27,13 +27,13 @@
 }
 <div class="row mt">
 
-    @Html.BeginForm("Details", "Good", FormMethod.Get)
+    @using (Html.BeginForm("Details", "Good", FormMethod.Get))
     {
-    <div class="form-group col-lg-12">
-        <div class="col-md-8">
-            <a class="btn btn-theme" href="#" id="show"><i class="fa fa-plus"></i>Thêm mới</a>
+        <div class="form-group col-lg-12">
+            <div class="col-md-8">
+                <a class="btn btn-theme" href="/Admin/Good/Create" ><i class="fa fa-plus"></i>Thêm mới</a>
+            </div>
         </div>
-    </div>
     }
     <div class="col-md-12">
         <div class="content-panel">
@@ -51,13 +51,13 @@
 
                     @foreach (var item in Model)
                     {
-                    <tr id="row_@item.GoodID">
-                        <td></td>
-                        <td>@item.GoodID</td>
-                        <td>@item.NameSupply</td>
-                        <td>@item.NameProduct</td>
-                        <td>@item.QuantityYC</td>
-                    </tr>
+                        <tr id="row_@item.GoodID">
+                            <td></td>
+                            <td>@item.GoodID</td>
+                            <td>@item.NameSupply</td>
+                            <td>@item.NameProduct</td>
+                            <td>@item.QuantityYC</td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -94,7 +94,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Thêm đơn nhập hàng</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Sửa đơn nhập hàng</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
             </div>

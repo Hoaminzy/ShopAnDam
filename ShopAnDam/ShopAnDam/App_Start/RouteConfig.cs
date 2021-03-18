@@ -102,6 +102,16 @@ namespace ShopAnDam
             defaults: new { controller = "Article", action = "Details", id = UrlParameter.Optional },
            new[] { "ShopAnDam.Controllers" }
            );
+
+    
+
+            routes.MapRoute(
+          name: "Create Article",
+         url: "tao-bai-viet",
+          defaults: new { controller = "Account", action = "CreateArticle", id = UrlParameter.Optional },
+         new[] { "ShopAnDam.Controllers" }
+         );
+
             routes.MapRoute(
         name: "Cart",
         url: "gio-hang",

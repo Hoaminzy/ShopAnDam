@@ -104,6 +104,40 @@ namespace ShopAnDam.Models.Dao
             return db.Topics.Where(x => x.Status == true).ToList();
         }
 
+        public IEnumerable<Article> ListAllByUser(string username, long ID/*, int page, int pageSize*/)
+        {
+            /* var model = (from a in db.Articles
+                          join b in db.Customers
+                          on a.CreateBy equals b.UserName
+                          where b.UserName == username  
+                          select new
+                          {
+                              Title = a.Title,
+                              Topic = a.TopicID,
+                              MetaTitle = a.MetaTitle,
+                              Image = a.Images,
+                              Description = a.Description,
+                              Content = a.Content,
+                              CreateBy = a.CreateBy,
+                              CreateDate = a.CreateDate,
+                              ID = a.ID
+
+                          }).AsEnumerable().Select(x => new Article()
+                          {
+                              Title = x.Title,
+                              TopicID = x.Topic,
+                              MetaTitle = x.MetaTitle,
+                              Images = x.Image,
+                              Description = x.Description,
+                              Content = x.Content,
+                              CreateBy = x.CreateBy,
+                              CreateDate = x.CreateDate,
+                              ID = x.ID
+                          });*/
+            IEnumerable<Article> model = db.Articles;
+            return model.Where(x => x.CustomerID == ID).OrderByDescending(x => x.CreateDate).ToList(/*page, pageSize*/);
+        }
+
         public Article GetByID(string Name)
         {
             return db.Articles.SingleOrDefault(x => x.Name == Name);

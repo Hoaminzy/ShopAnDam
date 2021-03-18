@@ -64,7 +64,6 @@ namespace ShopAnDam.Areas.Admin.Controllers
                 }
                 else
                 {
-                    //tạo mới đối tượng cart item
                     var productItem = new GoodViewModel();
                     productItem.product = product;
                     productItem.QuantityYC = soluong;
@@ -85,7 +84,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
                 Session[SESSION_GOOD] = productlist;
             }
             //setViewBagNCC();
-            return Redirect("/Admin/GOOD/Create");
+            return Redirect("/Admin/Good/Index");
         }
         public void setViewBagSupply(long? selectedID = null)
         {
@@ -116,9 +115,9 @@ namespace ShopAnDam.Areas.Admin.Controllers
         {
             var good = new Good();
 
-            int sp =int.Parse( formcollection["hdnNCC"]);
+            long sp =long.Parse(formcollection["hdnNCC"]);
 
-           good.SupplyID = sp ;
+            good.SupplyID = (int?)sp;
             try
             {
                 var id = new GoodDao().Insert(good);

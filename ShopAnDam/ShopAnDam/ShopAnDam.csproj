@@ -1335,6 +1335,8 @@
     <Content Include="Assets\client\js\controller\Cart.js" />
     <Content Include="Assets\client\js\controller\Contact.js" />
     <Content Include="Assets\client\js\controller\Details.js" />
+    <Content Include="Assets\client\js\controller\Payment.js" />
+    <Content Include="Assets\client\js\controller\review.js" />
     <Content Include="Assets\client\js\controller\userController.js" />
     <Content Include="Assets\client\js\imagesloaded.pkgd.min.js" />
     <Content Include="Assets\client\js\jquery-3.3.1.min.js" />
@@ -1720,6 +1722,10 @@
     <Content Include="Views\Account\EditAccount.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\OrderDetails.cshtml" />
+    <Content Include="Views\Account\MyArticle.cshtml" />
+    <Content Include="Views\Account\CreateArticle.cshtml" />
+    <Content Include="Views\Account\EditArticle.cshtml" />
+    <Content Include="Views\Account\ViewArticle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

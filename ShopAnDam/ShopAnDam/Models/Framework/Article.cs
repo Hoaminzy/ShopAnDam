@@ -21,16 +21,16 @@
         [Required(ErrorMessage = "Vui lòng chọn chủ đề bài viết")]
         public int? TopicID { get; set; }
 
-        [StringLength(250)]
+        [StringLength(500)]
         [Display(Name = "Tên bài viết")]
         [Required(ErrorMessage = "Nhập tên bài viết")]
         public string Name { get; set; }
 
-        [StringLength(250)]
+        [StringLength(500)]
         [Display(Name = "Thẻ meta")]
         public string MetaTitle { get; set; }
 
-        [StringLength(250)]
+        [StringLength(500)]
         [Display(Name = "Tiêu đề ngắn")]
         [Required(ErrorMessage = "Hãy nhập tiêu đề ngắn")]
         public string Title { get; set; }
@@ -40,7 +40,7 @@
         [Required(ErrorMessage = "Bạn chưa chọn hình ảnh")]
         public string Images { get; set; }
 
-        [StringLength(250)]
+        [StringLength(500)]
         [Display(Name = "Mô tả")]
         public string Description { get; set; }
 
