@@ -41,7 +41,7 @@ namespace ShopAnDam.Models.ViewModel
         [Display(Name = "Số lượng")]
         public int? Quantity { get; set; }
         [Display(Name = "Trạng thái")]
-        public string Status { get; set; }
+        public int? Status { get; set; }
         [Display(Name = "Trạng thái thanh toán")]
         public int? PaymentMethod  { get; set; }
 

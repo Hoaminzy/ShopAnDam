@@ -240,6 +240,7 @@ namespace ShopAnDam.Models.Dao
                 return false;
             }
         }
+        
         public bool AddQuantity(int id, int? quantity)
         {
             try

@@ -8,13 +8,19 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using ShopAnDam.Models.ViewModel;
 using System.Xml.Linq;
-
+using ShopAnDam.Models.Framework;
+using ShopAnDam.Common;
+using System.Configuration;
+using ShopAnDam.NganLuong;
 namespace ShopAnDam.Controllers
 {
    
     public class CartController : Controller
     {
-     
+        private string MerchantID = ConfigurationManager.AppSettings["MerchantID"].ToString();
+        private string MerchantPassword = ConfigurationManager.AppSettings["MerchantPassword"].ToString();
+        private string MerchantEmail = ConfigurationManager.AppSettings["MerchantEmail"].ToString();
+        private string currentLink = ConfigurationManager.AppSettings["currentLink"].ToString();
         // GET: Cart
         public ActionResult Index()
         {
@@ -118,7 +124,150 @@ namespace ShopAnDam.Controllers
 
             return View(list);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Payment(string NameShip, string email, string SDT, string address, string sBankCode, string FormOfPayment, FormCollection formCollection )
+        {
+            var order = new Order();
+            var sessionCustom = (CustomerLogin)Session[CommonConStants.USER_SESSION];
+            var TenTinhThanh = formCollection["hdnTenTinhThanh"];
+            var TenQuanHuyen = formCollection["hdnTenQuanHuyen"];
+            string diachi = TenQuanHuyen + ", " + TenTinhThanh;
 
+            if (sessionCustom != null)
+            {
+
+                order.ID = sessionCustom.CustomerID;
+            }
+            order.CreateDate = DateTime.Now;
+            order.NameShip = NameShip;
+            order.MailShip = email;
+            order.PhoneShip = SDT;
+            order.AdressShip = address + ", " + TenQuanHuyen + ", " + TenTinhThanh;
+            order.FormOfPayment = FormOfPayment;
+            order.Status = 1;
+
+            try
+            {
+                var id = new OrderDao().Insert(order);
+                var cart = (List<CartItem>)Session[CommonConStants.CartSession];
+                var detailDao = new OrderDetailDao();
+                decimal total = 0;
+                foreach (var item in cart)
+                {
+                    var dao = new ProductDao();
+                    var orderDetail = new Order_Detail();
+                    orderDetail.ProductID = item.Product.ID;
+                    orderDetail.OrderID = id;
+                    orderDetail.Quantity = item.Quantity;
+                    if (item.Product.MotionPrice != null && item.Product.MotionPrice != 0)
+                    {
+                        orderDetail.Price = item.Product.MotionPrice;
+                    }
+                    else
+                    {
+                        orderDetail.Price = item.Product.Price;
+                    }
+                    detailDao.Insert(orderDetail);
+                    if (item.Product.MotionPrice != null && item.Product.MotionPrice != 0)
+                    {
+                        total += (item.Product.MotionPrice.GetValueOrDefault(0) * item.Quantity);
+                    }
+                    else
+                    {
+                        total += (item.Product.Price.GetValueOrDefault(0) * item.Quantity);
+                    }
+                    dao.AddQuantity(item.Product.ID, item.Quantity);
+
+                }
+                if (!FormOfPayment.Equals("COD"))
+                {
+                    RequestInfo info = new RequestInfo();
+                    info.Merchant_id = MerchantID;
+                    info.Merchant_password = MerchantPassword;
+                    info.Receiver_email = MerchantEmail;
+
+                    info.cur_code = "vnd";
+                    info.bank_code = sBankCode;
+
+                    info.Order_code = id.ToString();
+                    info.Total_amount = total.ToString();
+                    info.fee_shipping = "0";
+                    info.Discount_amount = "0";
+                    info.order_description = "Thanh toán đơn hàng ANDAM88";
+                    info.return_url = currentLink + "/hoan-thanh";
+                    info.cancel_url = currentLink + "/loi-thanh-toan";
+
+                    info.Buyer_fullname = NameShip;
+                    info.Buyer_email = email;
+                    info.Buyer_mobile = SDT;
+
+                    APICheckoutV3 objNLChecout = new APICheckoutV3();
+                    ResponseInfo result = objNLChecout.GetUrlCheckout(info, FormOfPayment);
+
+                    if (result.Error_code == "00")
+                    {
+                        Response.Redirect(result.Checkout_url);
+                        //return Redirect("/hoan-thanh");
+                    }
+                    else
+                    {
+                        return Redirect("/loi-thanh-toan");
+                    }
+
+                }
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/Client/Templates/MailForm.html"));
+
+                content = content.Replace("{{NameShip}}", NameShip);
+                content = content.Replace("{{PhoneShip}}", SDT);
+                content = content.Replace("{{MailShip}}", email);
+                content = content.Replace("{{AddressShip}}", address + diachi);
+                content = content.Replace("{{Total}}", total.ToString("N0"));
+                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+
+                new Mail().SendMail(email, "Đơn hàng mới từ ANDAM88", content);
+                new Mail().SendMail(toEmail, "Đơn hàng mới từ ANDAM88", content);
+            }
+            catch (Exception ex)
+            {
+                string script = "<script>alert('" + ex.Message + "');</script>";
+
+                return Redirect("/loi-thanh-toan");
+            }
+            Session[CommonConStants.CartSession] = null;
+            return Redirect("/hoan-thanh");
+        }
+
+        public ActionResult PaymentSuccess()
+        {
+            var order = new Order();
+            String Token = Request["token"];
+            if (Token != null)
+            {
+                long orderID = long.Parse(Request["Order_code"]);
+                RequestCheckOrder info = new RequestCheckOrder();
+                info.Merchant_id = MerchantID;
+                info.Merchant_password = MerchantPassword;
+                info.Token = Token;
+                APICheckoutV3 objNLChecout = new APICheckoutV3();
+                ResponseCheckOrder result = objNLChecout.GetTransactionDetail(info);
+                ViewBag.Message = result.errorCode + result.payerName;
+                order.ID = orderID;
+                order.Status = 1;
+                order.Payment_Method = 1;
+                new OrderDao().Update(order);
+
+            }
+
+            return View();
+        }
+        public ActionResult PaymentFail()
+        {
+            //long orderID = long.Parse(Request["Order_code"]);
+
+            //new HoaDonDAO().CancelOrder(orderID);
+            return View();
+        }
         public JsonResult LoadProvince()
         {
             var xmlDoc = XDocument.Load(Server.MapPath(@"~/Assets/client/Data/Provinces_Data.xml"));

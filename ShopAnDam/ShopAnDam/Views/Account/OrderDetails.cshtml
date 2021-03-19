@@ -4,7 +4,7 @@
     ViewBag.Title = "OrderDetails";
     Layout = null;
 }
-
+<script src="~/Assets/client/js/controller/CancelOrder.js"></script>
 <div class="row">
     <div class="col-lg-12">
         <div class="col-md-6 col-md-offset-3" style="background: #ffe4b4">
@@ -13,8 +13,23 @@
             <p>Số điện thoại: @Model.FirstOrDefault().PhoneShip<br /></p>
             <p>Địa chỉ: @Model.FirstOrDefault().AdressShip<br /></p>
             <p>Email: @Model.FirstOrDefault().MailShip<br /></p>
-            <p>Ngày tạo: @Model.FirstOrDefault().CreateDate.Value.ToString("dd/MM/yyyy")<br /></p>
-            <p>Trạng thái: @Model.FirstOrDefault().Status<br /></p>
+            <p>Ngày đặt hàng: @Model.FirstOrDefault().CreateDate.Value.ToString("dd/MM/yyyy")<br /></p>
+          
+           @if (Model.FirstOrDefault().Status == 1) { 
+             <p>Trạng thái: Chờ xử lý </p><br />
+           }else if(Model.FirstOrDefault().Status == 2)
+           {
+               <p>Trạng thái: Đang vận chuyển</p><br />
+           }else if(Model.FirstOrDefault().Status == 3)
+           {
+               <p>Trạng thái: Đã giao</p><br />
+           }else if(Model.FirstOrDefault().Status == 4)
+           {
+               <p>Trạng thái: Đã hủy</p><br />
+           }else if(Model.FirstOrDefault().Status == 5)
+           {
+               <p>Trạng thái: Đã trả hàng</p><br />
+           }
             <p>Hình thức thanh toán: @Model.FirstOrDefault().FormOfPayment<br /></p>
         </div>
         @if (Model.Count > 0)
@@ -53,8 +68,15 @@
                             <tr>
                                 <td colspan="3" class="text-left"><strong>Tổng tiền:</strong> </td>
                                 <td colspan="2" class="text-right"><span style="color:red"> @(total.Value.ToString("N0")) VNĐ</span></td>
-
                             </tr>
+
+     
+                            @if (Model.FirstOrDefault().Status == 1)
+                            {
+                            <tr>
+                                <td colspan="5"><a href="#" class="btnActive btn btn-block" data-id="@Model.FirstOrDefault().ID">@(Model.FirstOrDefault().Status==1?"Hủy đơn":"Đơn đã được hủy bỏ!")</a></td>
+                            </tr>
+                            }
                         </tbody>
                     </table>
 

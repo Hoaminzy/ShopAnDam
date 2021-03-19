@@ -8,7 +8,7 @@ using System.Text;
 using System.Web;
 using System.Xml;
 
-namespace MyHandsDoAnTotNghiep.NganLuong
+namespace ShopAnDam.NganLuong
 {
     public class APICheckoutV3
     {

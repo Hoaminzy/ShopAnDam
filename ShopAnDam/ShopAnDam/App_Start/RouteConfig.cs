@@ -72,18 +72,30 @@ namespace ShopAnDam
          defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional },
          new[] { "ShopAnDam.Controllers" }
          );
-   //         routes.MapRoute(
-   //            name: "Doi Mat Khau",
-   //            url: "doi-mat-khau",
-   //            defaults: new { controller = "Account", action = "ChangePassword", id = UrlParameter.Optional },
-   //            new[] { "ShopAnDam.Controllers" }
-   //            );
-   //         routes.MapRoute(
-   //name: "Thay Doi Thong Tin",
-   //url: "thay-doi-thong-tin",
-   //defaults: new { controller = "Account", action = "EditAccount", id = UrlParameter.Optional },
-   //new[] { "ShopAnDam.Controllers" }
-   //);
+            routes.MapRoute(
+     name: "Payment Success",
+     url: "hoan-thanh",
+     defaults: new { controller = "Account", action = "PaymentSuccess", id = UrlParameter.Optional },
+     new[] { "ShopAnDam.Controllers" }
+     );
+            routes.MapRoute(
+name: "Payment Fail",
+url: "loi-thanh-toan",
+defaults: new { controller = "Account", action = "PaymentFail", id = UrlParameter.Optional },
+new[] { "ShopAnDam.Controllers" }
+);
+            //         routes.MapRoute(
+            //            name: "Doi Mat Khau",
+            //            url: "doi-mat-khau",
+            //            defaults: new { controller = "Account", action = "ChangePassword", id = UrlParameter.Optional },
+            //            new[] { "ShopAnDam.Controllers" }
+            //            );
+            //         routes.MapRoute(
+            //name: "Thay Doi Thong Tin",
+            //url: "thay-doi-thong-tin",
+            //defaults: new { controller = "Account", action = "EditAccount", id = UrlParameter.Optional },
+            //new[] { "ShopAnDam.Controllers" }
+            //);
             routes.MapRoute(
              name: "Product Details",
             url: "chi-tiet/{metaTitle}/{id}",

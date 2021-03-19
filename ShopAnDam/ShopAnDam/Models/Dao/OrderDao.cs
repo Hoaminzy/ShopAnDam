@@ -16,7 +16,14 @@ namespace ShopAnDam.Models.Dao
         {
             db = new AnDamDBContext();
         }
+        public long Insert(Order order)
+        {
 
+            db.Orders.Add(order);
+            db.SaveChanges();
+            return order.ID;
+
+        }
         public IEnumerable<Order> ListAllPaging(string SearchHoaDon, string dateOfOrder, int page, int pageSize)
         {
             IQueryable<Order> model = db.Orders;
@@ -67,7 +74,7 @@ namespace ShopAnDam.Models.Dao
                              Price = a.Price,
                              MotionPrice = d.MotionPrice,
                              ProductName = d.Name,
-                             Status = c.Name,
+                             Status = c.ID,
                              FormOfPayment = b.FormOfPayment,
                              ProvintID = b.ProvinID,
                              DistrictID = b.DistricID,

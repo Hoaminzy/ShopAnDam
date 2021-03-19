@@ -1332,6 +1332,7 @@
     <Content Include="Assets\client\img\select-product-2.jpg" />
     <Content Include="Assets\client\img\time-bg.jpg" />
     <Content Include="Assets\client\js\bootstrap.min.js" />
+    <Content Include="Assets\client\js\controller\CancelOrder.js" />
     <Content Include="Assets\client\js\controller\Cart.js" />
     <Content Include="Assets\client\js\controller\Contact.js" />
     <Content Include="Assets\client\js\controller\Details.js" />
@@ -1617,6 +1618,8 @@
     <Compile Include="Common\CommonConStants.cs" />
     <Compile Include="Common\CustomerLogin.cs" />
     <Compile Include="Common\Encryptor.cs" />
+    <Compile Include="Common\Mail.cs" />
+    <Compile Include="Common\StringHelper.cs" />
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
@@ -1642,6 +1645,7 @@
     <Compile Include="Models\Dao\ImageDao.cs" />
     <Compile Include="Models\Dao\MenuDao.cs" />
     <Compile Include="Models\Dao\OrderDao.cs" />
+    <Compile Include="Models\Dao\OrderDetailDao.cs" />
     <Compile Include="Models\Dao\PaymentStatusDao.cs" />
     <Compile Include="Models\Dao\ProductDao.cs" />
     <Compile Include="Models\Dao\ReviewDao.cs" />
@@ -1726,6 +1730,8 @@
     <Content Include="Views\Account\CreateArticle.cshtml" />
     <Content Include="Views\Account\EditArticle.cshtml" />
     <Content Include="Views\Account\ViewArticle.cshtml" />
+    <Content Include="Views\Cart\PaymentSuccess.cshtml" />
+    <Content Include="Views\Cart\PaymentFail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
