@@ -73,29 +73,41 @@ namespace ShopAnDam
          new[] { "ShopAnDam.Controllers" }
          );
             routes.MapRoute(
+      name: "Tim Kiem",
+      url: "tim-kiem",
+      defaults: new { controller = "Product", action = "Search", id = UrlParameter.Optional },
+      new[] { "ShopAnDam.Controllers" }
+      );
+            routes.MapRoute(
      name: "Payment Success",
      url: "hoan-thanh",
-     defaults: new { controller = "Account", action = "PaymentSuccess", id = UrlParameter.Optional },
+     defaults: new { controller = "Cart", action = "PaymentSuccess", id = UrlParameter.Optional },
      new[] { "ShopAnDam.Controllers" }
      );
             routes.MapRoute(
 name: "Payment Fail",
 url: "loi-thanh-toan",
-defaults: new { controller = "Account", action = "PaymentFail", id = UrlParameter.Optional },
+defaults: new { controller = "Cart", action = "PaymentFail", id = UrlParameter.Optional },
 new[] { "ShopAnDam.Controllers" }
 );
-            //         routes.MapRoute(
-            //            name: "Doi Mat Khau",
-            //            url: "doi-mat-khau",
-            //            defaults: new { controller = "Account", action = "ChangePassword", id = UrlParameter.Optional },
-            //            new[] { "ShopAnDam.Controllers" }
-            //            );
-            //         routes.MapRoute(
-            //name: "Thay Doi Thong Tin",
-            //url: "thay-doi-thong-tin",
-            //defaults: new { controller = "Account", action = "EditAccount", id = UrlParameter.Optional },
-            //new[] { "ShopAnDam.Controllers" }
-            //);
+                    routes.MapRoute(
+                       name: "Don Hang Cua Ban",
+                       url: "danh-sach-don-hang",
+                        defaults: new { controller = "Account", action = "MyOrder", id = UrlParameter.Optional },
+                      new[] { "ShopAnDam.Controllers" }
+                      );
+                     routes.MapRoute(
+            name: "My Article",
+            url: "bai_viet_cua_ban",
+            defaults: new { controller = "Account", action = "MyArticle", id = UrlParameter.Optional },
+            new[] { "ShopAnDam.Controllers" }
+            );
+            routes.MapRoute(
+          name: "DS Bai Viet",
+            url: "danh-sach-bai-viet",
+            defaults: new { controller = "Account", action = "BaiViet", id = UrlParameter.Optional },
+            new[] { "ShopAnDam.Controllers" }
+            );
             routes.MapRoute(
              name: "Product Details",
             url: "chi-tiet/{metaTitle}/{id}",
@@ -139,7 +151,7 @@ new[] { "ShopAnDam.Controllers" }
             routes.MapRoute(
  name: "Payment",
 url: "thanh-toan",
- defaults: new { controller = "Cart", action = "Payment", id = UrlParameter.Optional },
+ defaults: new { controller = "Cart", action = "Payments", id = UrlParameter.Optional },
 new[] { "ShopAnDam.Controllers" }
 );
             routes.MapRoute(

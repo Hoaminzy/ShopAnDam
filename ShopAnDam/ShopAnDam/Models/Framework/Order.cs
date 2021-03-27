@@ -50,6 +50,7 @@ namespace ShopAnDam.Models.Framework
         public int? ProvinID { get; set; }
 
         public int? DistricID { get; set; }
+        public string sBankCode { get; set; }
 
         public virtual Customer Customer { get; set; }
 

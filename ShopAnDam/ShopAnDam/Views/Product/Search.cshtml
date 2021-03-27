@@ -1,0 +1,94 @@
+﻿
+@model List<ShopAnDam.Models.ViewModel.ProductViewmodel>
+@{
+    ViewBag.Title = "Tìm kiếm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var category = (ShopAnDam.Models.Framework.Category)ViewBag.Category;
+}
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text product-more">
+                    <a href="#"><i class="fa fa-home"></i> Trang chủ</a>
+                    <span>Tìm kiếm</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="blog-section spad">
+    <div class="container">
+        <div class="product-show-option">
+            <div class="row">
+                <div class="offset-xl-7 col-lg-5 col-md-5 text-right">
+                    <p>Hiện có @Model.Count sản phẩm</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-lg-12 order-1 order-lg-2">
+                <div class="row">
+                    @if (Model.Count > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            var url = "/chi-tiet/" + item.MetaTitle + "/" + item.ID;
+                            <div class="col-lg-4 col-sm-4">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <a href="@url"><img src="@item.Image" /></a>
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="/them-gio-hang?ProductID=@item.ID&Quantity=1"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="@url">Xem chi tiết</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">@item.CateName</div>
+                                        <a href="#">
+                                            <h5>@item.Name</h5>
+                                        </a>
+                                        @if (item.MotiPrice != null || item.MotiPrice > 0)
+                                        {
+                                            <div class="product-price">
+                                                @item.MotiPrice
+                                                <span>@item.Price</span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="product-price">
+                                                @item.Price
+                                            </div>
+                                        }
+
+
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        }
+
+                    }
+                    else
+                    {
+                <div class="col-lg-12 ">
+                   
+                        <h4>Không tìm thấy sản phẩm nào có từ khóa: <b>@ViewBag.keyword</b></h4>
+                  
+                </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

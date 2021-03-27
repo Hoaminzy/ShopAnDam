@@ -112,8 +112,8 @@ namespace ShopAnDam.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        public ActionResult Payment()
+        [HttpGet]
+        public ActionResult Payments()
         {
             var cart = Session[Common.CommonConStants.CartSession];
             var list = new List<CartItem>();
@@ -125,8 +125,8 @@ namespace ShopAnDam.Controllers
             return View(list);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Payment(string NameShip, string email, string SDT, string address, string sBankCode, string FormOfPayment, FormCollection formCollection )
+       [ValidateAntiForgeryToken]
+        public ActionResult Payments(string NameShip, string email, string SDT, string address, string sBankCode, string FormOfPayment, FormCollection formCollection )
         {
             var order = new Order();
             var sessionCustom = (CustomerLogin)Session[CommonConStants.USER_SESSION];
@@ -144,11 +144,10 @@ namespace ShopAnDam.Controllers
             order.MailShip = email;
             order.PhoneShip = SDT;
             order.AdressShip = address + ", " + TenQuanHuyen + ", " + TenTinhThanh;
-            order.FormOfPayment = FormOfPayment;
+           /* order.FormOfPayment = FormOfPayment;*/
             order.Status = 1;
-
-            try
-            {
+            try { 
+           
                 var id = new OrderDao().Insert(order);
                 var cart = (List<CartItem>)Session[CommonConStants.CartSession];
                 var detailDao = new OrderDetailDao();
@@ -240,7 +239,7 @@ namespace ShopAnDam.Controllers
 
         public ActionResult PaymentSuccess()
         {
-            var order = new Order();
+           var order = new Order();
             String Token = Request["token"];
             if (Token != null)
             {
@@ -265,7 +264,7 @@ namespace ShopAnDam.Controllers
         {
             //long orderID = long.Parse(Request["Order_code"]);
 
-            //new HoaDonDAO().CancelOrder(orderID);
+            //new OrderDAO().CancelOrder(orderID);
             return View();
         }
         public JsonResult LoadProvince()

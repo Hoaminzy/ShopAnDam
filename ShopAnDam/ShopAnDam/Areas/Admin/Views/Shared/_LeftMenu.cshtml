@@ -1,9 +1,14 @@
-﻿<aside>
+﻿@using ShopAnDam.Common
+@{ 
+    var userSession = (UserLogin)Session[ShopAnDam.Common.CommonConStants.USER_SESSION];
+}
+<aside>
     <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="profile.html"><img src="#" class="img-circle" width="80"></a></p>
-            <h5 class="centered">Admin</h5>
+            <p class="centered"><a href="profile.html"><img src="~/Assets/admin/img/hinh-anh-em-be-de-thuong-19.jpg" class="img-circle" width="80"></a></p>
+           
+            <h5 class="centered">@userSession.UserName</h5>
             <li class="mt">
                 <a class="active" href="#">
                     <i class="fa fa-dashboard"></i>
@@ -62,8 +67,7 @@
                 <ul class="sub">
                     <li><a href="/Admin/Article/Index">Quản lý bài viết</a></li>
                     <li><a href="/Admin/Topic/Index">Quản lý chủ đề</a></li>
-                    <li><a href="#">Quản lý đánh giá</a></li>
-                    <li><a href="#">Phản hồi</a></li>
+                    <li><a href="/Admin/Review/Index">Quản lý bình luận</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
@@ -96,27 +100,27 @@
                 </a>
             </li>
             @*<li class="sub-menu">
-            <a href="javascript:;">
-                <i class=" fa fa-bar-chart-o"></i>
-                <span>Charts</span>
-            </a>
-            <ul class="sub">
-                <li><a href="morris.html">Morris</a></li>
-                <li><a href="chartjs.html">Chartjs</a></li>
-                <li><a href="flot_chart.html">Flot Charts</a></li>
-                <li><a href="xchart.html">xChart</a></li>
-            </ul>
-        </li>
-        <li class="sub-menu">
-            <a href="javascript:;">
-                <i class="fa fa-comments-o"></i>
-                <span>Quản lý chat</span>
-            </a>
-            <ul class="sub">
-                <li><a href="lobby.html">Lobby</a></li>
-                <li><a href="chat_room.html"> Chat Room</a></li>
-            </ul>
-        </li>*@
+                    <a href="javascript:;">
+                        <i class=" fa fa-bar-chart-o"></i>
+                        <span>Charts</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="morris.html">Morris</a></li>
+                        <li><a href="chartjs.html">Chartjs</a></li>
+                        <li><a href="flot_chart.html">Flot Charts</a></li>
+                        <li><a href="xchart.html">xChart</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-comments-o"></i>
+                        <span>Quản lý chat</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="lobby.html">Lobby</a></li>
+                        <li><a href="chat_room.html"> Chat Room</a></li>
+                    </ul>
+                </li>*@
 
         </ul>
         <!-- sidebar menu end-->

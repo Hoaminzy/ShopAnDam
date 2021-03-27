@@ -1,7 +1,7 @@
 ﻿@model ShopAnDam.Models.Framework.Article
 @{
     ViewBag.Title = "Tạo bài viết";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 @section jsFooter{
@@ -42,11 +42,6 @@
         }
     </script>
 }
-
-
-
-
-
 <div class="breacrumb-section">
     <div class="container">
         <div class="row">
@@ -54,6 +49,7 @@
                 <div class="breadcrumb-text">
                     <a href="/" rel="nofollow"><i class="fa fa-home"></i> Trạng chủ</a>
                     <a href="/tai-khoan" rel="nofollow"><i class="fa fa-user-circle"></i> Tài khoản</a>
+                    <a href="/danh-sach-bai-viet" rel="nofollow"><i class="fa fa-user-circle"></i>Danh sách bài viết</a>
                     <span>Tạp bài viết</span>
                 </div>
             </div>

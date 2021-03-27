@@ -19,6 +19,33 @@
             $("#hdnTenQuanHuyen").val($(this).find("option:selected").text());
 
         });
+        $('input[name="option_payment"]').off('click').on('click', function () {
+            if ($(this).val() == 'COD') {
+                $('.boxContent').hide();
+                $('#hdnFormOFPayment').val($(this).val());
+            }
+            else if ($(this).val() == 'NL') {
+                $('.boxContent').hide();
+                $('#nganluongpayment').show();
+                $('#hdnFormOFPayment').val($(this).val());
+
+            }
+            else if ($(this).val() == 'ATM_ONLINE') {
+                $('.boxContent').hide();
+                $('#bankpayment').show();
+                $('#hdnFormOFPayment').val($(this).val());
+                $('input[name="bankcode"]').off('click').on('click', function () {
+                    $('#hdnBankCode').val($(this).prop('id'));
+                });
+            }
+            else {
+                $('.boxContent').hide();
+                $('#hdnFormOFPayment').val($(this).val());
+
+
+            }
+        });
+
     },
 
     loadProvince: function () {
@@ -56,7 +83,10 @@
                 }
             }
         })
-    }
+    },
+    
+
+
 
 }
 user.init();

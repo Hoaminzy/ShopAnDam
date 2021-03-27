@@ -9,12 +9,22 @@ using ShopAnDam.Models.Dao;
 
 namespace ShopAnDam.Controllers
 {
- 
+
     public class AccountController : Controller
     {
-        AnDamDBContext db = null;
-        // GET: Account
+        
         public ActionResult Index()
+        {
+            var sessionUser = (CustomerLogin)Session[CommonConStants.USER_SESSION];
+            if (Session[CommonConStants.USER_SESSION] == null)
+            {
+                return Redirect("/User/Login");
+            }
+            var dao = new OrderDao();
+            var model = dao.getOrderByIdUser(sessionUser.CustomerID);
+            return View(model);
+        }
+        public ActionResult MyOrder()
         {
             var sessionUser = (CustomerLogin)Session[CommonConStants.USER_SESSION];
             if (Session[CommonConStants.USER_SESSION] == null)
@@ -167,7 +177,35 @@ namespace ShopAnDam.Controllers
                 return PartialView(model);
             }
         }
+        public ActionResult BaiViet(/*int page = 1, int pagesize = 10*/)
+        {
+            if (Session[CommonConStants.USER_SESSION] == null)
+            {
+                return Redirect("/dang-nhap");
+            }
+            else
+            {
+                var dao = new ArticleDao();
+                var session = (CustomerLogin)Session[CommonConStants.USER_SESSION];
+                var model = dao.ListAllByUser(session.UserName, (int)session.CustomerID/*, page, pagesize*/);
+                /*   int totalRecord = 0;
 
+                   ViewBag.Total = totalRecord;
+                   ViewBag.Page = page;
+                   //ViewBag.Tagid = new BaiVietDAO().getTag(tagid);
+                   int maxPage = 10;
+                   int totalPage = 0;
+
+                   totalPage = (int)Math.Ceiling((double)(totalRecord / pagesize));
+                   ViewBag.TotalPage = totalPage;
+                   ViewBag.MaxPage = maxPage;
+                   ViewBag.First = 1;
+                   ViewBag.Last = totalPage;
+                   ViewBag.Next = page + 1;
+                   ViewBag.Prev = page - 1;*/
+                return PartialView(model);
+            }
+        }
         public void setViewBag(long? selectedID = null)
         {
             var dao = new TopicDao();
@@ -247,6 +285,15 @@ namespace ShopAnDam.Controllers
                 status = result
             });
         }
+        public JsonResult ExceptOrder(int id)
+        {
+            var result = new OrderDao().ExceptOrder(id);
+            return Json(new
+            {
+                status = result
+            });
+        }
+        
         protected void SetAlert(string message, string type)
         {
             TempData["AlertMessage"] = message;

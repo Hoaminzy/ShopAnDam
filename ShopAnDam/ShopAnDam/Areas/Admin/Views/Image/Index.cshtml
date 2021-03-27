@@ -65,6 +65,7 @@
                             <td></td>
                             <th><i class="fa fa-bullhorn"></i> Mã </th>
                             <th><i class="fa fa-bullhorn"></i> Mã sản phẩm </th>
+                            <th><i class="fa fa-bullhorn"></i> Tên sản phẩm </th>
                             <th><i class="fa fa-bookmark"></i> Hình ảnh</th>
                             <th><i class="fa fa-bookmark"></i> Ngày tạo</th>
                             <th><i class=" fa fa-edit"></i> Hành động</th>
@@ -76,25 +77,26 @@
 
                         @foreach (var item in Model)
                         {
-                            <tr id="row_@item.ID" class="search">
-                                <td></td>
-                                <td>@item.ID</td>
-                                <td>@item.Product.Code</td>
-                                <td><img src="@item.Image1" style="width:70px" /></td>
-                                <td>@(item.CreateDate.HasValue?item.CreateDate.Value.ToString("dd/MM/yyyy"):"") </td>
-                                <td>
-                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                    <a href="/Admin/Image/Edit/@item.ID" @*onclick="Details(@item.ID)"*@ class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                    @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
-                               {
-                                   Confirm = "Bạn có muốn xóa bản ghi này?",
-                                   OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                   HttpMethod = "Delete"
-                               }, new { @class = "btn btn-danger btn-xs fa fa-trash-o " }
-                                   )
-                                </td>
-                                <td></td>
-                            </tr>
+                        <tr id="row_@item.ID" class="search">
+                            <td></td>
+                            <td>@item.ID</td>
+                            <td>@item.Product.Code</td>
+                            <td>@item.Product.Name</td>
+                            <td><img src="@item.Image1" style="width:70px" /></td>
+                            <td>@(item.CreateDate.HasValue?item.CreateDate.Value.ToString("dd/MM/yyyy"):"") </td>
+                            <td>
+                                <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                <a href="/Admin/Image/Edit/@item.ID" @*onclick="Details(@item.ID)"*@ class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có muốn xóa bản ghi này?",
+                               OnComplete = "$('#row_" + @item.ID + "').remove()",
+                               HttpMethod = "Delete"
+                           }, new { @class = "btn btn-danger btn-xs fa fa-trash-o " }
+                               )
+                            </td>
+                            <td></td>
+                        </tr>
                         }
                     </tbody>
                 </table>

@@ -1219,7 +1219,7 @@ ol {
 .product-item .pi-pic .sale {
 	color: #ffffff;
 	font-size: 10px;
-	background: #76BC42;
+	background: #f44336;
 	position: absolute;
 	left: 0;
 	top: 20px;
@@ -1227,9 +1227,9 @@ ol {
 	text-transform: uppercase;
 }
 
-.product-item .pi-pic .sale.pp-sale {
-	background: #e7ab3c;
-}
+	.product-item .pi-pic .sale.pp-sale {
+		background: #e7ab3c;
+	}
 
 .product-item .pi-pic .icon {
 	font-size: 20px;

@@ -46,7 +46,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
         public void paymentStatus(int? selectedID = null)
         {
             var dao = new PaymentStatusDao();
-            ViewBag.Status = new SelectList(dao.ListAllPayment(), "ID", "Name", selectedID);
+            ViewBag.Status = new SelectList(dao.ListAllPayment(2), "ID", "Name", selectedID);
         }
         public ActionResult Edit(int id)
         {

@@ -24,13 +24,11 @@ namespace ShopAnDam.Models.Dao
         {
             var model = from v in db.Products
                         join ca in db.Categories on v.CategoryID equals ca.ID
-                        join i in db.Images on v.ID equals i.ProductID
                         join b in db.Brands on v.BrandID equals b.ID
                         select new ProductViewmodel()
                         {
                             ID = v.ID,
                             Name = v.Name,
-                            Image = i.Image1,
                             Price = v.Price,
                             Quantity = v.Quantity,
                             HinhAnh = v.image,
@@ -46,16 +44,14 @@ namespace ShopAnDam.Models.Dao
         }
         public List<ProductViewmodel> ListAllProduct(int top)
         {
-            //return db.Products.Where(x => x.CategoryID == CateID).ToList();
-            IQueryable<ProductViewmodel> model = from v in db.Products
+           //List return db.Products.Where(x => x.Status== true).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+          var model = from v in db.Products
                         join ca in db.Categories on v.CategoryID equals ca.ID
-                        join i in db.Images on v.ID equals i.ProductID
                         join b in db.Brands on v.BrandID equals b.ID
                         select new ProductViewmodel()
                         {
                             ID = v.ID,
                             Name = v.Name,
-                            Image = i.Image1,
                             Price = v.Price,
                             Quantity = v.Quantity,
                             HinhAnh = v.image,
@@ -68,18 +64,17 @@ namespace ShopAnDam.Models.Dao
                         };
 
             return model.Where(x => x.Status == true).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+     
         }
         public List<ProductViewmodel> ListAllProductTopHot(int top)
         {
             var model = from v in db.Products
                         join ca in db.Categories on v.CategoryID equals ca.ID
-                        join i in db.Images on v.ID equals i.ProductID
                         join b in db.Brands on v.BrandID equals b.ID
                         select new ProductViewmodel()
                         {
                             ID = v.ID,
                             Name = v.Name,
-                            Image = i.Image1,
                             Price = v.Price,
                             HinhAnh = v.image,
                             Quantity = v.Quantity,
@@ -92,7 +87,7 @@ namespace ShopAnDam.Models.Dao
                             CateTiTle = ca.MetaTilte
                         };
 
-            return model.Where( x => x.Status==true && x.TopHot!= null && x.TopHot>DateTime.Now &&x.MotiPrice !=null).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+            return model.Where( x => x.Status==true && x.TopHot!= null && x.TopHot>DateTime.Now &&(x.MotiPrice !=null ||x.MotiPrice !=0)).OrderByDescending(x => x.CreateDate).Take(top).ToList();
         }
 
         public List<ProductViewmodel> ListByCategoryByID( int CateID )
@@ -143,6 +138,7 @@ namespace ShopAnDam.Models.Dao
                 product.MetaTitle = entity.MetaTitle;
                 product.Description = entity.Description;
                 product.Price = entity.Price;
+                product.image = entity.image;
                 product.MotionPrice = entity.MotionPrice;
                 product.Quantity = entity.Quantity;
                 product.IncludeVAT = entity.IncludeVAT;
@@ -182,6 +178,55 @@ namespace ShopAnDam.Models.Dao
         public List<Image> ListAllImage()
         {
             return db.Images.ToList();
+        }
+
+
+        public List<string> ListName(string keyword)
+        {
+            return db.Products.Where(x => x.Name.Contains(keyword) && x.Status == true).Select(x => x.Name).ToList();
+        }
+        public List<ProductViewmodel> Search(string keyword, ref int totalRecord, int page = 1, int pageSize = 2)
+        {
+            totalRecord = db.Products.Where(x => x.Name.Contains(keyword) && x.Status == true).Count();
+            //var model = db.tbl_SanPham.Where(x => x.IDDanhMuc == categoryid).OrderByDescending(x => x.dNgayTao).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            //lay tong cac san pham trong danh muc. Skip-lay tu ban ghi 
+            //return model;
+
+            var model = (from a in db.Products
+                         join b in db.Categories
+                         on a.CategoryID equals b.ID
+                         where a.Name.Contains(keyword)
+                         select new
+                         {
+                             ID = a.ID,
+                             Name = a.Name,
+                             Price = a.Price,
+                             HinhAnh = a.image,
+                             Quantity = a.Quantity,
+                             MotiPrice = a.MotionPrice,
+                             MetaTitle = a.MetaTitle,
+                             TopHot = a.TopHot,
+                             Status = a.Status,
+                             CreateDate = a.CreateDate,
+                             CateName = b.Name,
+                             CateTiTle = b.MetaTilte
+                         })
+                         .AsEnumerable().Select(x => new ProductViewmodel()
+                         {
+                             Quantity = x.Quantity,
+
+                             CateName = x.CateName,
+                             CateTiTle = x.CateTiTle,
+                             CreateDate = x.CreateDate,
+                             ID = x.ID,
+                             Image = x.HinhAnh,
+                             Name = x.Name,
+                             MetaTitle = x.MetaTitle,
+                             Price = x.Price,
+                             MotiPrice = x.MotiPrice
+                         });
+            model.OrderByDescending(x => x.CreateDate).Skip((page - 1) * pageSize).Take(pageSize);
+            return model.ToList();
         }
 
         public Product GetByID(string Name)

@@ -1,0 +1,64 @@
+﻿@model PagedList.IPagedList<ShopAnDam.Models.Framework.Review>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Bình luận";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+
+@section header{
+    Danh sách bình luận
+}
+@section jsFooter{
+    <script src="~/Assets/admin/js/controller/review.js"></script>
+}
+<div class="row mt">
+
+    @using (Html.BeginForm("Index", "Review", FormMethod.Get))
+    {
+        <div class="form-group col-lg-12">
+            <div class="col-md-8">
+            </div>
+            <div class="input-append col-md-3">
+                <input type="text" class="form-control " value="@ViewBag.SearchString" name="searchString" placeholder="Nhập từ khóa cần tìm">
+                <span class="input-group-btn add-on">
+                    <button class="btn btn-theme" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    }
+    <div class="col-md-12">
+        <div class="content-panel">
+            <table class="table table-striped table-advance table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th><i class="fa fa-bullhorn"></i> Mã</th>
+                        <th><i class="fa fa-bullhorn"></i> Tên khách hàng</th>
+                        <th><i class="fa fa-bookmark"></i> Bình Luận</th>
+                        <th><i class="fa fa-bookmark"></i> Thời gian tạo</th>
+                        <th><i class=" fa fa-bookmark"></i> Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.ID">
+                            <td></td>
+                            <td>@item.ID</td>
+                            <td>@item.CreateBy</td>
+                            <td>@item.comment</td>
+                            <td>@item.CreateDate.Value.ToString("dd/MM/yyyy")</td>
+                            <td><a href="#" class="label label-success label-mini btn-active" data-id="@item.ID">@(item.Status ?"Hiện": "Ẩn")</a></td>
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = ViewBag.SearchString }))
+        </div>
+        <!-- /content-panel -->
+    </div>
+    <!-- /col-md-12 -->
+</div>

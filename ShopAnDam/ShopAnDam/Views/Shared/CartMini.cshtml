@@ -55,14 +55,17 @@
                 <div class="select-total">
                     @if (Model.Count > 0)
                     {
+                        decimal? tong_tien = 0;
+                        decimal? thanh_tien = 0;
                         foreach (var item in Model)
                         {
-                            decimal? tong_tien = 0;
-                            decimal? thanh_tien = item.Quantity * item.Product.Price;
+
+                             thanh_tien = item.Quantity * item.Product.Price;
                             tong_tien += thanh_tien;
-                            <span>Tổng Tiền: </span>
-                            <h5>@thanh_tien.Value.ToString("N0") VNĐ</h5>
+
                         }
+                        <span>Tổng Tiền: </span>
+                        <h5>@thanh_tien.Value.ToString("N0") VNĐ</h5>
                     }
 
                     else
@@ -79,7 +82,7 @@
                 </div>
             </div>
         </li>
-        @if (Model.Count > 0)
+    @*    @if (Model.Count > 0)
         {
             foreach (var item in Model)
             {
@@ -94,7 +97,7 @@
         {
     
             <li class="cart-price"><i class="fa fa-money"></i>0</li>
-        }
+        }*@
 
     </ul>
 </div>

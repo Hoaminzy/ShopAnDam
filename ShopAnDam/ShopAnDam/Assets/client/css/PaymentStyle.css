@@ -2,7 +2,7 @@
 ----------------------------------------------------------*/
 
 
-a:link, a:visited {
+/*a:link, a:visited {
     color: #034af3;
 }
 
@@ -18,13 +18,13 @@ a:active {
 p {
     margin-bottom: 10px;
     line-height: 1.6em;
-}
+}*/
 
 
 /* HEADINGS   
 ----------------------------------------------------------*/
 
-h1, h2, h3, h4, h5, h6 {
+/*h1, h2, h3, h4, h5, h6 {
     font-size: 1.5em;
     color: #666666;
     font-variant: small-caps;
@@ -54,13 +54,13 @@ h4 {
 
 h5, h6 {
     font-size: 1em;
-}
+}*/
 
 /* this rule styles <h1> and <h2> tags that are the 
 first child of the left and right table columns */
-.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2 {
+/*.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2 {
     margin-top: 0px;
-}
+}*/
 
 
 
@@ -105,7 +105,7 @@ i.VISA, i.MASTE, i.AMREX, i.JCB, i.VCB, i.TCB, i.MB, i.VIB, i.ICB, i.EXB, i.ACB,
     width: 80px;
     height: 30px;
     display: block;
-    background: url(https://www.nganluong.vn/webskins/skins/nganluong/checkout/version3/images/bank_logo.png) no-repeat;
+    background: url(/Assets/client/img/bank_logo.png) no-repeat;
 }
 
 i.MASTE {

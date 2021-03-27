@@ -18,24 +18,24 @@
         public int ID { get; set; }
 
         [StringLength(100)]
-      /*  [Display(Name = "Tên danh mục")]
-        [Required(ErrorMessage = "Hãy nhập tên danh mục")]*/
+        [Display(Name = "Tên danh mục")]
+        [Required(ErrorMessage = "Hãy nhập tên danh mục")]
         public string Name { get; set; }
 
         [StringLength(100)]
-       /* [Display(Name = "Thẻ meta")]*/
+        [Display(Name = "Thẻ meta")]
         public string MetaTilte { get; set; }
-     /*   [Display(Name = "Danh mục con")]*/
+        [Display(Name = "Danh mục con")]
         public int? ParentID { get; set; }
-      /*  [Display(Name = "Vị trí hiển thị")]
-        [Required(ErrorMessage = "Hãy nhập vị trí hiển thị")]*/
+        [Display(Name = "Vị trí hiển thị")]
+        [Required(ErrorMessage = "Hãy nhập vị trí hiển thị")]
         public int? DisplayOrder { get; set; }
 
         [StringLength(100)]
         public string SeoTitle { get; set; }
 
         public bool Status { get; set; }
-       /* [Display(Name = "Ngày Tạo")]*/
+        [Display(Name = "Ngày Tạo")]
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

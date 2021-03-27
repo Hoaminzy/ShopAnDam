@@ -70,12 +70,17 @@
                                 <td colspan="2" class="text-right"><span style="color:red"> @(total.Value.ToString("N0")) VNĐ</span></td>
                             </tr>
 
-     
+
                             @if (Model.FirstOrDefault().Status == 1)
                             {
-                            <tr>
-                                <td colspan="5"><a href="#" class="btnActive btn btn-block" data-id="@Model.FirstOrDefault().ID">@(Model.FirstOrDefault().Status==1?"Hủy đơn":"Đơn đã được hủy bỏ!")</a></td>
-                            </tr>
+                                <tr>
+                                    <td colspan="5"><a href="#" class="btnActive btn btn-block" data-id="@Model.FirstOrDefault().ID">@(Model.FirstOrDefault().Status==1?"Hủy đơn":"Đơn đã được hủy bỏ!")</a></td>
+                                </tr>
+                            }else if (Model.FirstOrDefault().Status == 2)
+                            {
+                                <tr>
+                                    <td colspan="5"><a href="#" class="btnexcept btn btn-block" data-id="@Model.FirstOrDefault().ID">@(Model.FirstOrDefault().Status==2?"Đã Nhận Được Hàng":"")</a></td>
+                                </tr>
                             }
                         </tbody>
                     </table>

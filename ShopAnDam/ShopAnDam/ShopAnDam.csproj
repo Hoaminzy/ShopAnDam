@@ -140,6 +140,7 @@
     <Content Include="Assets\admin\img\friends\fr-09.jpg" />
     <Content Include="Assets\admin\img\friends\fr-10.jpg" />
     <Content Include="Assets\admin\img\friends\fr-11.jpg" />
+    <Content Include="Assets\admin\img\hinh-anh-em-be-de-thuong-19.jpg" />
     <Content Include="Assets\admin\img\instagram.jpg" />
     <Content Include="Assets\admin\img\login-bg.jpg" />
     <Content Include="Assets\admin\img\lorde.jpg" />
@@ -1112,6 +1113,7 @@
     <Content Include="Assets\admin\js\plugins\ckfinder\_samples\sample.css" />
     <Content Include="Assets\admin\js\plugins\ckfinder\_samples\standalone.html" />
     <Content Include="Assets\admin\js\plugins\ckfinder\_samples\standalone_v1.html" />
+    <Content Include="Assets\admin\js\controller\review.js" />
     <Content Include="Assets\admin\js\scripts.js" />
     <Content Include="Assets\admin\lib\advanced-datatable\css\demo_page.css" />
     <Content Include="Assets\admin\lib\advanced-datatable\css\demo_table.css" />
@@ -1251,9 +1253,7 @@
     <Content Include="Assets\client\fonts\themify.svg" />
     <Content Include="Assets\client\img\andam68.jpg" />
     <Content Include="Assets\client\img\andam88.jpg" />
-    <Content Include="Assets\client\img\banner-1.jpg" />
-    <Content Include="Assets\client\img\banner-2.jpg" />
-    <Content Include="Assets\client\img\banner-3.jpg" />
+    <Content Include="Assets\client\img\bank_logo.png" />
     <Content Include="Assets\client\img\blog\blog-1.jpg" />
     <Content Include="Assets\client\img\blog\blog-2.jpg" />
     <Content Include="Assets\client\img\blog\blog-3.jpg" />
@@ -1271,34 +1271,23 @@
     <Content Include="Assets\client\img\blog\recent-2.jpg" />
     <Content Include="Assets\client\img\blog\recent-3.jpg" />
     <Content Include="Assets\client\img\blog\recent-4.jpg" />
+    <Content Include="Assets\client\img\cach-nau-do-an-dam-cho-be-3.jpg" />
     <Content Include="Assets\client\img\cart-page\product-1.jpg" />
     <Content Include="Assets\client\img\cart-page\product-2.jpg" />
     <Content Include="Assets\client\img\cart-page\product-3.jpg" />
+    <Content Include="Assets\client\img\embe.jpg" />
     <Content Include="Assets\client\img\flag-1.jpg" />
     <Content Include="Assets\client\img\flag-2.jpg" />
-    <Content Include="Assets\client\img\footer-logo.png" />
-    <Content Include="Assets\client\img\hero-1.jpg" />
-    <Content Include="Assets\client\img\hero-2.jpg" />
-    <Content Include="Assets\client\img\hero-3.jpg" />
+    <Content Include="Assets\client\img\hinh-anh-em-be-de-thuong-19.jpg" />
     <Content Include="Assets\client\img\icon-1.png" />
     <Content Include="Assets\client\img\icon-2.png" />
     <Content Include="Assets\client\img\icon-3.png" />
-    <Content Include="Assets\client\img\insta-1.jpg" />
-    <Content Include="Assets\client\img\insta-2.jpg" />
-    <Content Include="Assets\client\img\insta-3.jpg" />
-    <Content Include="Assets\client\img\insta-4.jpg" />
-    <Content Include="Assets\client\img\insta-5.jpg" />
-    <Content Include="Assets\client\img\insta-6.jpg" />
-    <Content Include="Assets\client\img\latest-1.jpg" />
-    <Content Include="Assets\client\img\latest-2.jpg" />
-    <Content Include="Assets\client\img\latest-3.jpg" />
     <Content Include="Assets\client\img\logo-carousel\logo-1.png" />
     <Content Include="Assets\client\img\logo-carousel\logo-2.png" />
     <Content Include="Assets\client\img\logo-carousel\logo-3.png" />
     <Content Include="Assets\client\img\logo-carousel\logo-4.png" />
     <Content Include="Assets\client\img\logo-carousel\logo-5.png" />
     <Content Include="Assets\client\img\logo.jpg" />
-    <Content Include="Assets\client\img\logo.png" />
     <Content Include="Assets\client\img\payment-method.png" />
     <Content Include="Assets\client\img\product-single\avatar-1.png" />
     <Content Include="Assets\client\img\product-single\avatar-2.png" />
@@ -1328,8 +1317,6 @@
     <Content Include="Assets\client\img\products\women-3.jpg" />
     <Content Include="Assets\client\img\products\women-4.jpg" />
     <Content Include="Assets\client\img\products\women-large.jpg" />
-    <Content Include="Assets\client\img\select-product-1.jpg" />
-    <Content Include="Assets\client\img\select-product-2.jpg" />
     <Content Include="Assets\client\img\time-bg.jpg" />
     <Content Include="Assets\client\js\bootstrap.min.js" />
     <Content Include="Assets\client\js\controller\CancelOrder.js" />
@@ -1338,9 +1325,13 @@
     <Content Include="Assets\client\js\controller\Details.js" />
     <Content Include="Assets\client\js\controller\Payment.js" />
     <Content Include="Assets\client\js\controller\review.js" />
+    <Content Include="Assets\client\js\controller\search.js" />
     <Content Include="Assets\client\js\controller\userController.js" />
     <Content Include="Assets\client\js\imagesloaded.pkgd.min.js" />
+    <Content Include="Assets\client\js\jquery-1.12.4.js" />
     <Content Include="Assets\client\js\jquery-3.3.1.min.js" />
+    <Content Include="Assets\client\js\jquery-ui.css" />
+    <Content Include="Assets\client\js\jquery-ui.js" />
     <Content Include="Assets\client\js\jquery-ui.min.js" />
     <Content Include="Assets\client\js\jquery.countdown.min.js" />
     <Content Include="Assets\client\js\jquery.dd.min.js" />
@@ -1497,6 +1488,7 @@
     <Content Include="Areas\Admin\Views\Good\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Good\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Good\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Review\Index.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -1610,6 +1602,7 @@
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReviewController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlideController.cs" />
     <Compile Include="Areas\Admin\Controllers\SupplyController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
@@ -1686,6 +1679,7 @@
     <Compile Include="Models\ViewModel\ChangePassViewModel.cs" />
     <Compile Include="Models\ViewModel\DistrictViewModel.cs" />
     <Compile Include="Models\ViewModel\GoodViewModel.cs" />
+    <Compile Include="Models\ViewModel\ImageViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\OrderViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductViewmodel.cs" />
@@ -1732,6 +1726,10 @@
     <Content Include="Views\Account\ViewArticle.cshtml" />
     <Content Include="Views\Cart\PaymentSuccess.cshtml" />
     <Content Include="Views\Cart\PaymentFail.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
+    <Content Include="Views\Account\BaiViet.cshtml" />
+    <Content Include="Views\Account\MyOrder.cshtml" />
+    <Content Include="Views\Cart\Payments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

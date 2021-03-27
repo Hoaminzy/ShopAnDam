@@ -185,6 +185,13 @@ namespace ShopAnDam.Models.Dao
             db.SaveChanges();
             return cancel.Status;
         }
+        public int ExceptOrder(int id)
+        {
+            var cancel = db.Orders.Find(id);
+            cancel.Status = 3;
+            db.SaveChanges();
+            return cancel.Status;
+        }
     }
    
 }

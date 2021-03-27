@@ -1,4 +1,5 @@
-﻿using ShopAnDam.Models.Framework;
+﻿using PagedList;
+using ShopAnDam.Models.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,16 @@ namespace ShopAnDam.Models.Dao
         public ReviewDao()
         {
             db = new AnDamDBContext();
+        }
+
+        public IEnumerable<Review> ListAllPageList(string searchString, int page, int pageSize)
+        {
+            IQueryable<Review> model = db.Reviews;
+            if (!string.IsNullOrEmpty(searchString))
+            {//Contains: tìm kiếm gần đúng
+                model = model.Where(x => x.Product.Name.Contains(searchString));
+            }
+            return model.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
         public List<Review> ListAllRVProduct(long ProductID, int top)
         {
@@ -30,6 +41,21 @@ namespace ShopAnDam.Models.Dao
             db.Reviews.Add(cmt);
             db.SaveChanges();
             return cmt.ID;
+        }
+
+        public bool ChangeStatus(long id)
+        {
+            try
+            {
+                var rv = db.Reviews.Find(id);
+                rv.Status = !rv.Status;
+                db.SaveChanges();
+                return rv.Status;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
     }

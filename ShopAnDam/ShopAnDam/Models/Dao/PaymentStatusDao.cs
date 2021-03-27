@@ -13,9 +13,9 @@ namespace ShopAnDam.Models.Dao
         {
             db = new AnDamDBContext();
         }
-       public List<PaymentStatus> ListAllPayment()
+       public List<PaymentStatus> ListAllPayment(int top )
         {
-            return db.PaymentStatus.OrderBy(x => x.CreateDate).ToList();
+            return db.PaymentStatus.OrderBy(x => x.ID).Take(top).ToList();
         }
     }
 }

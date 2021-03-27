@@ -132,7 +132,8 @@
                             </div>
                             <div id="collapseOne" class="collapse " data-parent="#accordionExample">
                                 <div class="card-body">
-                                    @if (Model.Count > 0)
+                                    <a href="/danh-sach-don-hang">Xem thông tin đơn hàng của bạn</a>
+                                   @* @if (Model.Count > 0)
                                     {
                                         <div class="row mt">
                                             <div class="col-md-12">
@@ -240,83 +241,29 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    }
+                                    }*@
 
                                 </div>
                             </div>
 
                         </div>
                         <div class="card">
-                            @{Html.RenderAction("MyArticle", "Account");}
-                            @* @RenderPage("MyArticle.cshtml")*@
-                        </div>
-                        @*<div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseTwo">
-                                        Danh Sách Đơn Hàng
-                                    </a>
-                                </div>
-                                <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="row mt">
-                                            <div class="col-md-12">
-                                                <div class="content-panel">
-                                                    <table class="table table-striped table-advance table-hover">
-                                                        <thead>
-                                                            <tr class="Search">
-                                                                <th></th>
-                                                                <th><i class="fa fa-bullhorn"></i> Ngày Tạo</th>
-                                                                <th><i class="fa fa-bookmark"></i> Người Nhận</th>
-                                                                <th><i class="fa fa-bookmark"></i> Địa Chỉ</th>
-                                                                <th><i class=" fa fa-edit"></i> Số Điện Thoại</th>
-                                                                <th><i class=" fa fa-edit"></i> Email</th>
-                                                                <th><i class=" fa fa-edit"></i> Trạng Thái</th>
-                                                                <th><i class=" fa fa-edit"></i> Hành Động</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
+                            @*@{Html.RenderAction("MyArticle", "Account");}*@
+                            <div class="card-heading ">
+                                <a class="active" data-toggle="collapse" data-target="#collapseOne">
+                                    Danh Sách Bài Viết
+                                </a>
+                            </div>
+                            <div id="collapseOne" class="collapse " data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div class="col-md-12">
+                                        <a href="/danh-sach-bai-viet">Xem danh sách bải viết của bạn</a>
+                                       
                                     </div>
-
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseTwo">
-                                        Danh Sách Bài Viết
-                                    </a>
-                                </div>
-                                <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="row mt">
-                                            <div class="col-md-12">
-                                                <div class="content-panel">
-                                                    <table class="table table-striped table-advance table-hover">
-                                                        <thead>
-                                                            <tr class="Search">
-                                                                <th></th>
-                                                                <th><i class="fa fa-bullhorn"></i> Ngày Tạo</th>
-                                                                <th><i class="fa fa-bookmark"></i> Người Nhận</th>
-                                                                <th><i class="fa fa-bookmark"></i> Địa Chỉ</th>
-                                                                <th><i class=" fa fa-edit"></i> Số Điện Thoại</th>
-                                                                <th><i class=" fa fa-edit"></i> Email</th>
-                                                                <th><i class=" fa fa-edit"></i> Trạng Thái</th>
-                                                                <th><i class=" fa fa-edit"></i> Hành Động</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>*@
+                        </div>
+                       
 
                     </div>
                 </div>
@@ -362,24 +309,6 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="Modal" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Chi tiết đơn hàng</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-
-    </div>
-</div>
 
 
 

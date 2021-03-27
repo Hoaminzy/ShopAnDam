@@ -53,5 +53,6 @@ namespace ShopAnDam.Models.ViewModel
 
         [Display(Name = "Tổng Tiền:")]
         public decimal TotalPrice { get; set; }
+
     }
 }

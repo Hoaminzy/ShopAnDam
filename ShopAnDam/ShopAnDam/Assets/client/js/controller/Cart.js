@@ -11,6 +11,10 @@
             e.preventDefault();
             window.location.href = "/thanh-toan"; //đưa về trang chủ tiếp tục mua hàng
         });
+        $('#btnthanhtoan').off('click').on('click', function (e) {
+            e.preventDefault();
+            window.alert('Bạn chưa chọn sản phẩm nào!');
+        });
         $('#btnUpdate').off('click').on('click', function () {
             var listProduct = $('.txtQuantity');
             var cartList = [];

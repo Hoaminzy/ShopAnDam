@@ -16,13 +16,23 @@
     <link rel="stylesheet" href="~/Assets/client/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="~/Assets/client/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="~/Assets/client/css/themify-icons.css" type="text/css">
+    <link href="~/Assets/client/js/jquery-ui.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Assets/client/css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="~/Assets/client/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="~/Assets/client/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="~/Assets/client/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="~/Assets/client/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="~/Assets/client/css/style.css" type="text/css">
-    
+    <script>
+        function closeClick() {
+            var x = document.getElementById("searchBar");
+            x.style.display = "none";
+        }
+        function searchClick() {
+            var x = document.getElementById("searchBar");
+            x.style = "position:fixed;width:74rem;left:6rem;top:3.7rem;z-index:1;";
+        }
+    </script>
 </head>
 
 
@@ -98,11 +108,11 @@
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-7">
-                        <div class="advanced-search">
+                        <div class="advanced-search" id="searchBar">
                             <button type="button" class="category-btn">Tất cả Sản Phẩm</button>
-                            <form action="#" class="input-group">
-                                <input type="text" placeholder="Bé yêu của bạn đang cần gì?">
-                                <button type="button"><i class="ti-search"></i></button>
+                            <form action="tim-kiem" method="get" class="input-group">
+                                <input type="text" name="keyword" id="txtSearch" placeholder="Bé yêu của bạn đang cần gì?">
+                                <button type="button"><i class="ti-search" onclick="closeClick()"></i></button>
                             </form>
                         </div>
                     </div>
@@ -126,7 +136,7 @@
     <!-- Header End -->
     @RenderBody()
 
-  
+
     <!-- Partner Logo Section End -->
     <!-- Footer Section Begin -->
     <footer class="footer-section">
@@ -152,9 +162,9 @@
                 </div>
                 <div class="col-lg-2 offset-lg-1">
                     <div class="footer-widget">
-                        <h5>Information</h5>
+                        <h5>Thông Tin</h5>
                         <ul>
-                            <li><a href="/">About Us</a></li>
+                            <li><a href="/">Về chúng tôi</a></li>
                             <li><a href="/thanh-toán">Thanh Toán</a></li>
                             <li><a href="/lien-he">Liên Hệ</a></li>
                             <li><a href="#">Dịch Vụ</a></li>
@@ -163,19 +173,19 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="footer-widget">
-                        <h5>My Account</h5>
+                        <h5>Tài khoản</h5>
                         <ul>
                             <li><a href="/tai-khoan">Tài Khoản Của Bạn</a></li>
                             <li><a href="/lien-he">Liên Hệ</a></li>
-                            <li><a href="/gio-hang">Shopping Cart</a></li>
-                            <li><a href="/san-pham">Shop</a></li>
+                            <li><a href="/gio-hang">Giỏ Hàng</a></li>
+                            <li><a href="/san-pham">Sản Phẩm</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="newslatter-item">
-                        <h5>Join Our Newsletter Now</h5>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <h5>Gửi Thông Tin Cho Chúng Tôi Bất Cứ lúc Nào</h5>
+                        <p>Chúng Tôi Sẽ Cập Nhật Email Mọi Lúc</p>
                         <form action="#" class="subscribe-form">
                             <input type="text" placeholder="Enter Your Mail">
                             <button type="button">Subscribe</button>
@@ -214,12 +224,13 @@
     <script src="~/Assets/client/js/jquery.slicknav.js"></script>
     <script src="~/Assets/client/js/owl.carousel.min.js"></script>
     <script src="~/Assets/client/js/main.js"></script>
-
-
+    <script src="~/Assets/client/js/jquery-ui.js"></script>
+    <script src="~/Assets/client/js/jquery-1.12.4.js"></script>
 
     <!-- Details form -->
 
-   
+
+    <script src="~/Assets/client/js/controller/search.js"></script>
     @RenderSection("jsFooter", required: false)
 </body>
 

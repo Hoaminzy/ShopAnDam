@@ -27,6 +27,7 @@
             @using (Html.BeginForm("Create", "Brand", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <div class="form-horizontal ">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-sm-3 control-label" })
