@@ -12,14 +12,14 @@
         <div class="col-md-10">
             Nhà cung cấp:
             @Html.DropDownList("SupplyID", new SelectList(ViewBag.SupplyID, "ID", "Name"), "Chọn nhà cung cấp", new { @class = "form-control", @id = "ddlncc" })
-            <input type="hidden" id="hdnNCC" name="hdnNCC" />
+           <input type="hidden" id="hdnNCC" name="hdnNCC" />
         </div>
 
     </div>
 
     <div class="form-group">
         <div class="col-md-10">
-            Nhà cung cấp:
+            Sản phẩm:
             @Html.DropDownList("ProductID", new SelectList(ViewBag.ProductID, "ID", "Name"), "Chọn sản phẩm", new { @class = "form-control", @id = "ddlSanPham" })
         </div>
 
@@ -58,7 +58,7 @@
     <div class="form-group">
         <button id="btnCapNhat" href="#" class="btn btn-primary ">Cập nhật</button>
 
-        <button id="btnThemPhieuYeuCau1" type="submit" class="btn btn-primary">Thêm phiếu yêu cầu</button>
+        <button id="btnThemPhieuYeuCau" type="submit" class="btn btn-primary">Thêm phiếu yêu cầu</button>
 
     </div>
 }

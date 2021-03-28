@@ -1657,7 +1657,7 @@
     <Compile Include="Models\Framework\Customer.cs" />
     <Compile Include="Models\Framework\Feedback.cs" />
     <Compile Include="Models\Framework\Good.cs" />
-    <Compile Include="Models\Framework\Goods_Detail.cs" />
+    <Compile Include="Models\Framework\Good_Detail.cs" />
     <Compile Include="Models\Framework\Image.cs" />
     <Compile Include="Models\Framework\Menu.cs" />
     <Compile Include="Models\Framework\Order.cs" />

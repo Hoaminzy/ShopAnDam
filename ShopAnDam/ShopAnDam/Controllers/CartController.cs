@@ -137,18 +137,20 @@ namespace ShopAnDam.Controllers
             if (sessionCustom != null)
             {
 
-                order.ID = sessionCustom.CustomerID;
+                order.CustomersID = sessionCustom.CustomerID;
+              
             }
             order.CreateDate = DateTime.Now;
             order.NameShip = NameShip;
             order.MailShip = email;
             order.PhoneShip = SDT;
             order.AdressShip = address + ", " + TenQuanHuyen + ", " + TenTinhThanh;
-           /* order.FormOfPayment = FormOfPayment;*/
+           order.FormOfPayment = FormOfPayment;
             order.Status = 1;
             try { 
            
                 var id = new OrderDao().Insert(order);
+                //không lấy được ID hóa đơn này
                 var cart = (List<CartItem>)Session[CommonConStants.CartSession];
                 var detailDao = new OrderDetailDao();
                 decimal total = 0;
@@ -167,7 +169,9 @@ namespace ShopAnDam.Controllers
                     {
                         orderDetail.Price = item.Product.Price;
                     }
+                
                     detailDao.Insert(orderDetail);
+                  
                     if (item.Product.MotionPrice != null && item.Product.MotionPrice != 0)
                     {
                         total += (item.Product.MotionPrice.GetValueOrDefault(0) * item.Quantity);
@@ -207,7 +211,7 @@ namespace ShopAnDam.Controllers
                     if (result.Error_code == "00")
                     {
                         Response.Redirect(result.Checkout_url);
-                        //return Redirect("/hoan-thanh");
+                       /* return Redirect("/hoan-thanh");*/
                     }
                     else
                     {
@@ -231,7 +235,8 @@ namespace ShopAnDam.Controllers
             {
                 string script = "<script>alert('" + ex.Message + "');</script>";
 
-                return Redirect("/loi-thanh-toan");
+                /*  return Redirect("/loi-thanh-toan");*/
+                return Redirect("/hoan-thanh");
             }
             Session[CommonConStants.CartSession] = null;
             return Redirect("/hoan-thanh");

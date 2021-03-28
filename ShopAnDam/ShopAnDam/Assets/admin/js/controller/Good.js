@@ -3,7 +3,7 @@
         phieuyeucau.regEvents();
     },
     regEvents: function () {
-        $('#btnThemPhieuYeuCau1').off('click').on('click', function () {
+      $('#btnThemPhieuYeuCau').off('click').on('click', function () {
             window.location.href = "/them-phieu";
         });
         $('#btnCapNhat').off('click').on('click', function () {

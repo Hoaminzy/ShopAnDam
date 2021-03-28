@@ -9,12 +9,9 @@ namespace ShopAnDam.Models.Framework
     public partial class Good
     {
         public int ID { get; set; }
+        public int SupplyID { get; set; }
+        public bool Status { get; set; }
 
-        public int? SupplyID { get; set; }
-        public int? ProductID { get; set; }
-        public int Quantity { get; set; }
-
-        public decimal? Prices { get; set; }
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]

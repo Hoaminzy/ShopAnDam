@@ -13,7 +13,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
     {
         // GET: Admin/Good
         //đơn nhập hàng
-
+       
         private const string SESSION_GOOD = "SESSION_GOOD";
         public ActionResult Index(string SearchSanPham, int page = 1, int pagesize = 5)
         {
@@ -23,13 +23,13 @@ namespace ShopAnDam.Areas.Admin.Controllers
             return View(model);
         }
 
-        public ActionResult Details(int page = 1, int pagesize = 5)
+        public ActionResult Details( /*int page = 1, int pagesize = 5*/)
         {
-            int totalRecord = 0;
+          /*  int totalRecord = 0;*/
             var dao = new GoodDao();
-            var model = dao.ListAllGood(ref totalRecord, page, pagesize);
+            var model = dao.ListAllGood(/*ref totalRecord, page, pagesize*/);
 
-            ViewBag.Total = totalRecord;
+            /*ViewBag.Total = totalRecord;
             ViewBag.Page = page;
 
             int maxPage = 10;
@@ -40,7 +40,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
             ViewBag.First = 1;
             ViewBag.Last = totalPage;
             ViewBag.Next = page + 1;
-            ViewBag.Prev = page - 1;
+            ViewBag.Prev = page - 1;*/
 
             return View(model);
         }
@@ -84,7 +84,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
                 Session[SESSION_GOOD] = productlist;
             }
             //setViewBagNCC();
-            return Redirect("/Admin/Good/Index");
+            return Redirect("/Admin/Good/Details");
         }
         public void setViewBagSupply(long? selectedID = null)
         {
@@ -110,36 +110,37 @@ namespace ShopAnDam.Areas.Admin.Controllers
             setViewBagSanPham();
             return View(productlist);
         }
-        [HttpPost]
-        public ActionResult Create(FormCollection formcollection)
-        {
-            var good = new Good();
+         [HttpPost]
+         public ActionResult Create(FormCollection formcollection)
+         {
+             var good = new Good();
 
-            long sp =long.Parse(formcollection["hdnNCC"]);
-
-            good.SupplyID = (int?)sp;
+      int ncc = int.Parse(formcollection["hdnNCC"]);
+            good.SupplyID = ncc;
             try
-            {
-                var id = new GoodDao().Insert(good);
-                var goodlist = (List<GoodViewModel>)Session[SESSION_GOOD];
-                var detailDao = new GoodDao();
-                var addquantity = new ProductDao();
-                foreach (var item in goodlist)
-                {
-                    var good_detail = new Good();
-                    good_detail.ProductID = item.product.ID;
-                    good_detail.ID = (int)id;
-                    good_detail.Quantity = item.QuantityYC;
-                    detailDao.Insert(good_detail);
-                    addquantity.AddQuantity(item.product.ID, item.QuantityYC);
-                }
-            }
-            catch (Exception ex)
-            {
-                return Redirect("/Admin/Good/Create");
-            }
-            Session[SESSION_GOOD] = null;
-            return Redirect("/Admin/Good/Details");
-        }
+             {
+                 var id = new GoodDao().Insert(good);
+                
+                 var goodlist = (List<GoodViewModel>)Session[SESSION_GOOD];
+                 var detailDao = new GoodDao();
+                 var addquantity = new ProductDao();
+                 foreach (var item in goodlist)
+                 {
+                     var goods = new Good_Detail();
+                     goods.ProductID = item.product.ID;
+                     goods.ID = (int)id;
+                     goods.Quantity = item.QuantityYC;
+                    
+                     detailDao.InsertGoodDetail(goods);
+                     addquantity.AddQuantity(item.product.ID, item.QuantityYC);
+                 }
+             }
+             catch (Exception ex)
+             {
+                 return Redirect("/Admin/Good/Create");
+             }
+             Session[SESSION_GOOD] = null;
+             return Redirect("/Admin/Good/Details");
+         }
     }
 }

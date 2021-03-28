@@ -8,7 +8,7 @@ namespace ShopAnDam.Common
     [Serializable]
     public class CustomerLogin
     {
-        public long CustomerID { get; set; }
+        public int CustomerID { get; set; }
         public string UserName { get; set; }
         public string PassWord { get; set; }
         public string Name { get; set; }

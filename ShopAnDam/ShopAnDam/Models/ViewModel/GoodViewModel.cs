@@ -27,5 +27,6 @@ namespace ShopAnDam.Models.ViewModel
         public string NameSupply { get; set; }
         public string NameProduct { get; set; }
         public int QuantityYC { get; set; }
+        public DateTime? CreateDate { get; set; }
     }
 }

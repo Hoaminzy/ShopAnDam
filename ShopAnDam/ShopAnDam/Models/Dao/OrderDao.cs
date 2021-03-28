@@ -18,11 +18,11 @@ namespace ShopAnDam.Models.Dao
         }
         public long Insert(Order order)
         {
-
-            db.Orders.Add(order);
-            db.SaveChanges();
-            return order.ID;
-
+              db.Orders.Add(order);
+                //ID hóa đơn = 0??
+                db.SaveChanges();
+                return order.ID;// k return
+        
         }
         public IEnumerable<Order> ListAllPaging(string SearchHoaDon, string dateOfOrder, int page, int pageSize)
         {
@@ -144,7 +144,7 @@ namespace ShopAnDam.Models.Dao
             var model = (from a in db.Orders
                          join b in db.Order_Detail on a.ID equals b.OrderID
                          join c in db.Products on b.ProductID equals c.ID
-                         join d in db.Goods on b.ProductID equals d.ProductID
+                         join d in db.Good_Detail on b.ProductID equals d.ProductID
                          where a.Status == 3
                          group new { d.Prices, b.Price, b.Quantity, a.CreateDate } by new { a.ID } into g
 

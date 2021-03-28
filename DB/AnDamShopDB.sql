@@ -149,22 +149,22 @@ create table Supplies(
   ,CreateBy varchar(50)
 )
    
- create table Goods_Detail( -- phiếu nhập hàng(Đơn nhập)
+ create table Goods( -- phiếu nhập hàng(Đơn nhập)
    ID int not null primary key identity
-   ,GoodID int
-  
+   
+  , SupplyID int 
+  ,Status bit default(1)
   ,CreateDate datetime default getdate()
   ,CreateBy varchar(50)
 )
-  create table Goods (  --Phiếu yêu cầu nhập hàng
-   ID int not null primary key identity
-   , SupplyID int 
+  create table Good_detail (  --Phiếu yêu cầu nhập hàng
+   ID int not null primary key identity 
+   ,GoodID int 
    ,ProductID int 
   ,Quantity int default(0)
   ,Price decimal (18,0)
    ,Tongtien decimal(18,0) default(0)
-   ,CreateDate datetime default getdate() --ngày lập
-   ,CreateBy varchar(50) 
+
 	
 )
 --tạo bảng Hóa đơn
@@ -182,6 +182,7 @@ create table Supplies(
    ,FormOfPayment nvarchar(50)
    ,Status int default(0)
    ,Payment_Method int default(0)
+   ,sBankCode nvarchar(50)
    ,CreateDate datetime default getdate()
    ,CreateBy varchar(50)
    ,constraint FK_Order_customer foreign key (CustomersID) references Customers(ID)
