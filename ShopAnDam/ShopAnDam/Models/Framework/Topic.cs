@@ -16,18 +16,21 @@
         }
 
         public int ID { get; set; }
-
+        
         [StringLength(150)]
         [Display(Name = "Chủ đề")]
-        [Required(ErrorMessage = "Hãy nhập chủ đề")]
+     /*   [Required(ErrorMessage = "Hãy nhập chủ đề")]*/
+     [Required]
         public string Name { get; set; }
 
         [StringLength(150)]
         [Display(Name = "Tiêu đề")]
         [Required(ErrorMessage = "Hãy nhập tiêu đề")]
+
         public string MetaTilte { get; set; }
         [Display(Name = "Vị tí hiển thị")]
-        [Required(ErrorMessage = "Hãy nhập vị trí hiển thị")]
+        /*[Required(ErrorMessage = "Hãy nhập vị trí hiển thị")]*/
+       /* [Required]*/
         public int? DisplayOrder { get; set; }
 
         [StringLength(100)]

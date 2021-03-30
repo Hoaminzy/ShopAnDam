@@ -9,6 +9,7 @@ namespace ShopAnDam.Models.Framework
     public class Good_Detail
     {
         [Key]
+      
         public int ID { get; set; }
           public int? GoodID { get; set; }
         public int? ProductID { get; set; }

@@ -97,7 +97,7 @@ namespace ShopAnDam.Models.Dao
                              DistrictID = x.DistrictID,
                          });
             model.OrderByDescending(x => x.CreateDate).Skip((page - 1) * pageSize).Take(pageSize);
-            return model.ToList();
+            return model.ToPagedList(page, pageSize);
         }
         public bool Update(Order entity)
         {
@@ -168,15 +168,18 @@ namespace ShopAnDam.Models.Dao
             model.OrderByDescending(x => x.CreateDate).Skip((page - 1) * pageSize).Take(pageSize);
             return model.ToList();
         }
-
+        public string Doanhthu()
+        {
+            return db.Order_Detail.Where(x=>x.Order.Status == 3).Sum(x => x.Price * x.Quantity).GetValueOrDefault().ToString("N0");
+        }
         public int CountPendingOrders()//đêm số lượng hóa đơn chưa xử lý
         {
-            return db.Orders.Count(x => x.ID == 1);
+            return db.Orders.Count(x => x.Status == 1);
         }
-        public IEnumerable<Order> getOrderByIdUser(long id)
+        public IEnumerable<Order> getOrderByIdUser(long id, int page, int pageSize)
         {
             IQueryable<Order> model = db.Orders;
-            return  model.Where(x => x.CustomersID == id).OrderByDescending(x => x.CreateDate).ToList();
+            return  model.Where(x => x.CustomersID == id).OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
         public int CancelOrder(int id)
         {

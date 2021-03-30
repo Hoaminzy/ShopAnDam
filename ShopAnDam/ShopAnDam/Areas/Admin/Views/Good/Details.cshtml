@@ -45,19 +45,21 @@
                         <th><i class="fa fa-bullhorn"></i> Nhà cung cấp</th>
                         <th><i class="fa fa-bookmark"></i> Sản phẩm</th>
                         <th><i class="fa fa-bookmark"></i> Số Lượng</th>
+                        <th><i class="fa fa-bookmark"></i> Giá nhập</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach (var item in Model)
                     {
-                        <tr id="row_@item.GoodID">
-                            <td></td>
-                            <td>@item.GoodID</td>
-                            <td>@item.NameSupply</td>
-                            <td>@item.NameProduct</td>
-                            <td>@item.QuantityYC</td>
-                        </tr>
+                    <tr id="row_@item.GoodID">
+                        <td></td>
+                        <td>@item.GoodID</td>
+                        <td>@item.NameSupply</td>
+                        <td>@item.NameProduct</td>
+                        <td>@item.QuantityYC</td>
+                        <td>@item.Prices</td>
+                    </tr>
                     }
                 </tbody>
             </table>

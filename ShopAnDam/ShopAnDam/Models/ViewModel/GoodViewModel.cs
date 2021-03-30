@@ -13,6 +13,7 @@ namespace ShopAnDam.Models.ViewModel
         public Product product { get; set; }
         public Supply supply { get; set; }
         [Key]
+
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int GoodID { get; set; }
@@ -27,6 +28,7 @@ namespace ShopAnDam.Models.ViewModel
         public string NameSupply { get; set; }
         public string NameProduct { get; set; }
         public int QuantityYC { get; set; }
+        public decimal Prices { get; set; }
         public DateTime? CreateDate { get; set; }
     }
 }

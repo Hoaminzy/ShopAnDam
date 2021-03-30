@@ -10,20 +10,10 @@
            
             <h5 class="centered">@userSession.UserName</h5>
             <li class="mt">
-                <a class="active" href="#">
+                <a class="active" href="/Admin/Home/Index">
                     <i class="fa fa-dashboard"></i>
                     <span>Trang chủ</span>
                 </a>
-            </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-desktop"></i>
-                    <span>Quản lý danh mục</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="/Admin/Category/Index">Danh mục sản phẩm</a></li>
-                    <li><a href="/Admin/Slide/Index">Quản lý banner</a></li>
-                </ul>
             </li>
             <li class="sub-menu">
                 <a href="javascript:;">
@@ -33,6 +23,7 @@
                 <ul class="sub">
                     <li><a href="/Admin/User/Index">Thông tin tài khoản</a></li>
                     <li><a href="#">Quản lý quyền</a></li>
+                    <li><a href="/Admin/Slide/Index">Quản lý banner</a></li>
                 </ul>
             </li>
             <li class="sub-menu">
@@ -43,6 +34,7 @@
                 <ul class="sub">
                     <li><a href="/Admin/Product/Create">Thêm sản phẩm</a></li>
                     <li><a href="/Admin/Product/Index">Danh sách sản phẩm</a></li>
+                    <li><a href="/Admin/Category/Index">Loại sản phẩm</a></li>
                     <li><a href="/Admin/Image/Index">Quản lý hình ảnh</a></li>
                     <li><a href="/Admin/Brand">Quản lý thương hiệu</a></li>
 
@@ -54,8 +46,8 @@
                     <span>Quản lý nhập hàng</span>
                 </a>
                 <ul class="sub">
-                    <li><a href="/Admin/Good/Index">Phiếu nhập hàng</a></li>
-                    <li><a href="/Admin/Good/Details">Danh sách đơn hàng</a></li>
+                  @*  <li><a href="/Admin/Good/Index">Phiếu nhập hàng</a></li>*@
+                    <li><a href="/Admin/Good/Details">Nhập hàng</a></li>
 
                 </ul>
             </li>

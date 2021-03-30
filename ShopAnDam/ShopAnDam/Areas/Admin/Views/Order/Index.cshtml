@@ -107,17 +107,13 @@
                             {
                                 <a href="#" class="label label-success label-mini btn-active" data-id="@item.ID">Đã giao</a>
                             }
-                            else if (item.Status == 4)
+                            else 
                             {
                                 <a href="#" class="label label-warning label-mini btn-active" data-id="@item.ID">Đã hủy</a>
                             }
-                            else
-                            {
-                                <a href="#" class="label label-danger label-mini btn-active">Trả hàng</a>
-                            }
-
+                          
                         </td>
-                        <td>
+                       @* <td>
                             @if (item.FormOfPayment != "" && item.Payment_Method == 1)
                             {
                                 
@@ -128,7 +124,7 @@
                             {
                                 <a href="#" class="label label-success label-mini btn-active">COD</a>
                             }
-                        </td>
+                        </td>*@
                         <td>@item.Note</td>
                         <td>@item.CreateDate.Value.ToString("dd/MM/yyyy")</td>
                         <td>

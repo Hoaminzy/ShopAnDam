@@ -9,14 +9,14 @@
     public partial class Image
     {
         public int ID { get; set; }
-        /*[Display(Name = "Chọn sản phẩm")]*/
+        [Display(Name = "Chọn sản phẩm")]
         public int? ProductID { get; set; }
-        /*[Display(Name = "Chọn bài viết")]*/
+        [Display(Name = "Chọn bài viết")]
         public int? ArticleID { get; set; }
 
         [Column("Image")]
-      /*  [Display(Name = "Hình ảnh")]
-        [Required(ErrorMessage = "Bạn chưa chọn hình ảnh!")]*/
+        [Display(Name = "Hình ảnh")]
+    /*    [Required(ErrorMessage = "Bạn chưa chọn hình ảnh!")]*/
         public string Image1 { get; set; }
 
         public DateTime? CreateDate { get; set; }

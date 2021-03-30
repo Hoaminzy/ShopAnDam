@@ -76,6 +76,7 @@ namespace ShopAnDam.Models.Dao
                 article.MetaTitle = entity.MetaTitle;
                 article.Description = entity.Description;
                 article.Content = entity.Content;
+                article.Source = entity.Source;
                 article.ViewCount = entity.ViewCount;
                 article.Status = entity.Status;
                 article.CreateDate = DateTime.Now;
@@ -98,13 +99,16 @@ namespace ShopAnDam.Models.Dao
             }
             return model.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
-
+        public int CountArticle()
+        {
+            return db.Articles.Count(x => x.Status == true);
+        }
         public List<Topic> ListAllTopic()
         {
             return db.Topics.Where(x => x.Status == true).ToList();
         }
 
-        public IEnumerable<Article> ListAllByUser(string username, long ID/*, int page, int pageSize*/)
+        public IEnumerable<Article> ListAllByUser(string username, long ID, int page, int pageSize)
         {
             /* var model = (from a in db.Articles
                           join b in db.Customers
@@ -135,7 +139,7 @@ namespace ShopAnDam.Models.Dao
                               ID = x.ID
                           });*/
             IEnumerable<Article> model = db.Articles;
-            return model.Where(x => x.CustomerID == ID).OrderByDescending(x => x.CreateDate).ToList(/*page, pageSize*/);
+            return model.Where(x => x.CustomerID == ID).OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
 
         public Article GetByID(string Name)

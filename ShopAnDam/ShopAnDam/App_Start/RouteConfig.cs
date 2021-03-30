@@ -49,6 +49,12 @@ namespace ShopAnDam
              new[] { "ShopAnDam.Controllers" }
          );
             routes.MapRoute(
+             name: "Create Good 1",
+             url: "them-phieu-nhap",
+             defaults: new { controller = "Good", action = "AddSP", id = UrlParameter.Optional },
+             new[] { "ShopAnDam.Controllers" }
+         );
+            routes.MapRoute(
             name: "Dang Ky",
             url: "dang-ky",
             defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional },

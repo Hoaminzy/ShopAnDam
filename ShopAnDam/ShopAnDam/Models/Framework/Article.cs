@@ -18,12 +18,12 @@
 
         public int ID { get; set; }
         [Display(Name = "Chủ đề")]
-        [Required(ErrorMessage = "Vui lòng chọn chủ đề bài viết")]
+       /* [Required(ErrorMessage = "Vui lòng chọn chủ đề bài viết")]*/
         public int? TopicID { get; set; }
 
         [StringLength(500)]
         [Display(Name = "Tên bài viết")]
-        [Required(ErrorMessage = "Nhập tên bài viết")]
+      /*  [Required(ErrorMessage = "Nhập tên bài viết")]*/
         public string Name { get; set; }
 
         [StringLength(500)]
@@ -32,12 +32,12 @@
 
         [StringLength(500)]
         [Display(Name = "Tiêu đề ngắn")]
-        [Required(ErrorMessage = "Hãy nhập tiêu đề ngắn")]
+        /*[Required(ErrorMessage = "Hãy nhập tiêu đề ngắn")]*/
         public string Title { get; set; }
 
         [StringLength(500)]
         [Display(Name = "Hình ảnh")]
-        [Required(ErrorMessage = "Bạn chưa chọn hình ảnh")]
+       /* [Required(ErrorMessage = "Bạn chưa chọn hình ảnh")]*/
         public string Images { get; set; }
 
         [StringLength(500)]
@@ -46,7 +46,12 @@
 
         [Column(TypeName = "ntext")]
         [Display(Name = "Nội dung")]
+      
         public string Content { get; set; }
+        [StringLength(250)]
+        [Display(Name = "Trích nguồn")]
+        public string Source { get; set; }
+
         [Display(Name = "Lượt xem")]
         public DateTime? ViewCount { get; set; }
         [Display(Name = "Trạng thái")]
@@ -59,6 +64,7 @@
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Người tạo")]
         public string CreateBy { get; set; }
 
         public int? UserID { get; set; }

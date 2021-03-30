@@ -117,6 +117,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\admin\img\Flag_of_Vietnam.png" />
     <Content Include="Assets\admin\css\style-responsive.css" />
     <Content Include="Assets\admin\css\style.css" />
     <Content Include="Assets\admin\css\styles1.css" />
@@ -1288,6 +1289,7 @@
     <Content Include="Assets\client\img\logo-carousel\logo-4.png" />
     <Content Include="Assets\client\img\logo-carousel\logo-5.png" />
     <Content Include="Assets\client\img\logo.jpg" />
+    <Content Include="Assets\client\img\logo88.jpg" />
     <Content Include="Assets\client\img\payment-method.png" />
     <Content Include="Assets\client\img\product-single\avatar-1.png" />
     <Content Include="Assets\client\img\product-single\avatar-2.png" />
@@ -1317,7 +1319,10 @@
     <Content Include="Assets\client\img\products\women-3.jpg" />
     <Content Include="Assets\client\img\products\women-4.jpg" />
     <Content Include="Assets\client\img\products\women-large.jpg" />
+    <Content Include="Assets\client\img\success.jpg" />
+    <Content Include="Assets\client\img\thatbai.jpg" />
     <Content Include="Assets\client\img\time-bg.jpg" />
+    <Content Include="Assets\client\js\bootstrap.min.css" />
     <Content Include="Assets\client\js\bootstrap.min.js" />
     <Content Include="Assets\client\js\controller\CancelOrder.js" />
     <Content Include="Assets\client\js\controller\Cart.js" />
@@ -1340,6 +1345,7 @@
     <Content Include="Assets\client\js\jquery.zoom.min.js" />
     <Content Include="Assets\client\js\main.js" />
     <Content Include="Assets\client\js\owl.carousel.min.js" />
+    <Content Include="Assets\client\template\SendMail.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -1682,6 +1688,7 @@
     <Compile Include="Models\ViewModel\ImageViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\OrderViewModel.cs" />
+    <Compile Include="Models\ViewModel\PieChartModel.cs" />
     <Compile Include="Models\ViewModel\ProductViewmodel.cs" />
     <Compile Include="Models\ViewModel\ProvinceViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
@@ -1741,6 +1748,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Menu\" />
+    <Folder Include="Areas\Admin\Views\Role\" />
     <Folder Include="Image\" />
   </ItemGroup>
   <ItemGroup>

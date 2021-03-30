@@ -1,5 +1,5 @@
-﻿@model List<ShopAnDam.Models.Framework.Article>
-    @using PagedList.Mvc;
+﻿@model  PagedList.IPagedList<ShopAnDam.Models.Framework.Article>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "BaiViet";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,7 +9,7 @@
 @section jsFooter{
 
     <script>
-        $(document).ready(function () {
+        @* $(document).ready(function () {
             $("#show").click(function (e) {
                 e.preventDefault();
                 var url = $("#Modal").data("url");
@@ -20,7 +20,7 @@
                 });
 
             });
-        });
+        });*@
 
 
     @*  function Details(ID)
@@ -34,17 +34,18 @@
             $('.modal-body').html("");
         });*@
 
-     function ViewArticle(ID)
+
+        function Details(id)
            {
-               $.get("@Url.Action("ViewArticle","Account")/"+ID,
+               $.get("@Url.Action("ViewArticle", "Account")/"+id,
                function(data) {$('.modal-body').html(data);})
-                $("#Hoa").modal("show");
+            $("#myModal").modal("show");
            }
-        $('#Hoa').on('hidden.bs.modal', function (e) {
-            e.preventDefault();
+        $('#myModal').on('hidden.bs.modal', function (e) {
             $('.modal-body').html("");
         });
     </script>
+ 
 
 }
 <!-- Breadcrumb Section Begin -->
@@ -110,8 +111,8 @@
                             </th>
                             <th> @item.CreateDate.Value.ToString("dd/MM/yyyy")</th>
                             <td>
-                                <button class="btn btn-success btn-xs" onclick="ViewArticle(@item.ID)"><i class="fa fa-check"></i></button>
-                                <a @*href="/Account/EditArticle/@item.ID"*@ onclick="Details(@item.ID)" data-id="@item.ID" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                @*  <button class="btn btn-success btn-xs" id="@item.ID" onclick="Details(this.id)" data-id="@item.ID"><i class="fa fa-check"></i></button>*@
+                                <a href="/Account/EditArticle/@item.ID" data-id="@item.ID" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                                 @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
                            {
                                Confirm = "Bạn có muốn xóa bản ghi này?",
@@ -134,35 +135,14 @@
             </tbody>
         </table>
 
-
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchUser = @ViewBag.SearchUserString }))
     </div>
 </div>
-<div id='Modal' class='modal' data-url='@Url.Action("CreateArticle","Account")'>
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Thêm nhà thương hiệu</h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
 
-            <div class="modal-body">
-                <div id='Container'>
-
-                </div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<!--<div class="modal fade" id="myModal1" role="dialog" tabindex="-1">
-    <div class="modal-dialog">-->
-<!-- Modal content-->
-<!--<div class="modal-content">
+<div class="modal fade" id="myModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+ Modal content
+<div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel">Chỉnh sửa bài viết</h4>
 
@@ -175,20 +155,3 @@
 
     </div>
 </div>
-
-<div class="modal fade" id="Hoa" role="dialog" tabindex="-1">
-    <div class="modal-dialog">-->
-<!-- Modal content-->
-<!--<div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Chi tiết bài viết</h4>
-
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-
-    </div>
-</div>-->

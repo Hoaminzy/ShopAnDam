@@ -238,7 +238,10 @@ namespace ShopAnDam.Models.Dao
         {
             return db.Products.Find(id);
         }
-
+        public int CountProduct()
+        {
+            return db.Products.Count(x => x.Status == true);
+        }
         public ProductViewmodel ViewProductDetail(int ProductID)// lấy thông tin sản phẩm theo id
         {
             IQueryable<ProductViewmodel> model = from v in db.Products

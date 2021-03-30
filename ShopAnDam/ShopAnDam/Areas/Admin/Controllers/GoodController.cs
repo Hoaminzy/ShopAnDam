@@ -84,7 +84,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
                 Session[SESSION_GOOD] = productlist;
             }
             //setViewBagNCC();
-            return Redirect("/Admin/Good/Details");
+            return Redirect("/Admin/Good/Create");
         }
         public void setViewBagSupply(long? selectedID = null)
         {
@@ -128,9 +128,9 @@ namespace ShopAnDam.Areas.Admin.Controllers
                  {
                      var goods = new Good_Detail();
                      goods.ProductID = item.product.ID;
-                     goods.ID = (int)id;
+                     goods.GoodID = (int)id;
                      goods.Quantity = item.QuantityYC;
-                    
+                    goods.Prices = item.Prices;
                      detailDao.InsertGoodDetail(goods);
                      addquantity.AddQuantity(item.product.ID, item.QuantityYC);
                  }

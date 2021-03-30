@@ -29,6 +29,7 @@
         public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Người tạo")]
         public string CreateBy { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

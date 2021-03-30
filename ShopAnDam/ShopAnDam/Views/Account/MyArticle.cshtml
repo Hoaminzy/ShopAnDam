@@ -20,24 +20,24 @@
         });
     });
 
-      function Details(ID)
+      function Details(id)
            {
-               $.get("@Url.Action("EditArticle","Account")/"+ID,
+               $.get("@Url.Action("EditArticle","Account")/"+id,
                function(data) {$('.modal-body').html(data);})
-                $("#myModal1").modal("show");
+          $("#myModal").modal("show");
            }
-        $('#myModal1').on('hidden.bs.modal', function (e) {
+    $('#myModal').on('hidden.bs.modal', function (e) {
             e.preventDefault();
             $('.modal-body').html("");
         });
 
-     function ViewArticle(ID)
+     function ViewArticle(id)
            {
-               $.get("@Url.Action("ViewArticle","Account")/"+ID,
+               $.get("@Url.Action("ViewArticle","Account")/"+id,
                function(data) {$('.modal-body').html(data);})
-                $("#Hoa").modal("show");
+         $("#myModal").modal("show");
            }
-        $('#Hoa').on('hidden.bs.modal', function (e) {
+    $('#myModal').on('hidden.bs.modal', function (e) {
             e.preventDefault();
             $('.modal-body').html("");
         });
@@ -98,8 +98,8 @@
                                     </th>
                                     <th> @item.CreateDate.Value.ToString("dd/MM/yyyy")</th>
                                     <td>
-                                        <button class="btn btn-success btn-xs" onclick="ViewArticle(@item.ID)"><i class="fa fa-check"></i></button>
-                                        <a @*href="/Account/EditArticle/@item.ID"*@ onclick="Details(@item.ID)" data-id="@item.ID" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                        <a href="#" class="btn btn-success btn-xs" onclick="ViewArticle(this.id)" id="@item.ID" data-id="@item.ID"><i class="fa fa-check"></i></a>
+                                        <a @*href="/Account/EditArticle/@item.ID"*@ onclick="Details(this.id)" id="@item.ID" data-id="@item.ID" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
                                         @Ajax.ActionLink(" ", "Delete", new { @id = item.ID }, new AjaxOptions
                                    {
                                        Confirm = "Bạn có muốn xóa bản ghi này?",
@@ -148,12 +148,12 @@
 
 </div>
 
-<div class="modal fade" id="myModal1" role="dialog" tabindex="-1">
+<div class="modal fade" id="myModal" role="dialog" tabindex="-1">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Chỉnh sửa bài viết</h4>
+              @*  <h4 class="modal-title" id="exampleModalLabel">Chỉnh sửa bài viết</h4>*@
 
             </div>
             <div class="modal-body">
@@ -164,24 +164,6 @@
 
     </div>
 </div>
-
-<div class="modal fade" id="Hoa" role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Chi tiết bài viết</h4>
-
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-
-    </div>
-</div>
-
 
 
 

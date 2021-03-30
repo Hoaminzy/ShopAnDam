@@ -16,15 +16,15 @@ namespace ShopAnDam.Controllers
         public ActionResult Index()
         {
             var sessionUser = (CustomerLogin)Session[CommonConStants.USER_SESSION];
-            if (Session[CommonConStants.USER_SESSION] == null)
+            if (sessionUser == null)
             {
                 return Redirect("/User/Login");
             }
-            var dao = new OrderDao();
-            var model = dao.getOrderByIdUser(sessionUser.CustomerID);
-            return View(model);
+           /* var dao = new OrderDao();
+            var model = dao.getOrderByIdUser(sessionUser.CustomerID);*/
+            return View();
         }
-        public ActionResult MyOrder()
+        public ActionResult MyOrder(int page = 1, int pagesize = 10)
         {
             var sessionUser = (CustomerLogin)Session[CommonConStants.USER_SESSION];
             if (Session[CommonConStants.USER_SESSION] == null)
@@ -32,7 +32,21 @@ namespace ShopAnDam.Controllers
                 return Redirect("/User/Login");
             }
             var dao = new OrderDao();
-            var model = dao.getOrderByIdUser(sessionUser.CustomerID);
+            var model = dao.getOrderByIdUser(sessionUser.CustomerID, page, pagesize);
+            int totalRecord = 0;
+
+            ViewBag.Total = totalRecord;
+            ViewBag.Page = page;
+            int maxPage = 10;
+            int totalPage = 0;
+
+            totalPage = (int)Math.Ceiling((double)(totalRecord / pagesize));
+            ViewBag.TotalPage = totalPage;
+            ViewBag.MaxPage = maxPage;
+            ViewBag.First = 1;
+            ViewBag.Last = totalPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Prev = page - 1;
             return View(model);
         }
         [HttpGet]
@@ -147,8 +161,37 @@ namespace ShopAnDam.Controllers
 
             return View(model);
         }
-        [ChildActionOnly]
-        public ActionResult MyArticle(/*int page = 1, int pagesize = 10*/)
+        /*[ChildActionOnly]
+      public ActionResult MyArticle(int page = 1, int pagesize = 10)
+       {
+           if (Session[CommonConStants.USER_SESSION] == null)
+           {
+               return Redirect("/dang-nhap");
+           }
+           else
+           {
+               var dao = new ArticleDao();
+               var session = (CustomerLogin)Session[CommonConStants.USER_SESSION];
+               var model = dao.ListAllByUser(session.UserName, (int)session.CustomerID, page, pagesize);
+               int totalRecord = 0;
+
+               ViewBag.Total = totalRecord;
+               ViewBag.Page = page;
+               //ViewBag.Tagid = new BaiVietDAO().getTag(tagid);
+               int maxPage = 10;
+               int totalPage = 0;
+
+               totalPage = (int)Math.Ceiling((double)(totalRecord / pagesize));
+               ViewBag.TotalPage = totalPage;
+               ViewBag.MaxPage = maxPage;
+               ViewBag.First = 1;
+               ViewBag.Last = totalPage;
+               ViewBag.Next = page + 1;
+               ViewBag.Prev = page - 1;
+               return PartialView(model);
+           }
+       }*/
+        public ActionResult BaiViet(int page = 1, int pagesize = 10)
         {
             if (Session[CommonConStants.USER_SESSION] == null)
             {
@@ -158,41 +201,11 @@ namespace ShopAnDam.Controllers
             {
                 var dao = new ArticleDao();
                 var session = (CustomerLogin)Session[CommonConStants.USER_SESSION];
-                var model = dao.ListAllByUser(session.UserName, (int)session.CustomerID/*, page, pagesize*/);
-             /*   int totalRecord = 0;
-
-                ViewBag.Total = totalRecord;
-                ViewBag.Page = page;
-                //ViewBag.Tagid = new BaiVietDAO().getTag(tagid);
-                int maxPage = 10;
-                int totalPage = 0;
-
-                totalPage = (int)Math.Ceiling((double)(totalRecord / pagesize));
-                ViewBag.TotalPage = totalPage;
-                ViewBag.MaxPage = maxPage;
-                ViewBag.First = 1;
-                ViewBag.Last = totalPage;
-                ViewBag.Next = page + 1;
-                ViewBag.Prev = page - 1;*/
-                return PartialView(model);
-            }
-        }
-        public ActionResult BaiViet(/*int page = 1, int pagesize = 10*/)
-        {
-            if (Session[CommonConStants.USER_SESSION] == null)
-            {
-                return Redirect("/dang-nhap");
-            }
-            else
-            {
-                var dao = new ArticleDao();
-                var session = (CustomerLogin)Session[CommonConStants.USER_SESSION];
-                var model = dao.ListAllByUser(session.UserName, (int)session.CustomerID/*, page, pagesize*/);
-                /*   int totalRecord = 0;
+                var model = dao.ListAllByUser(session.UserName, (int)session.CustomerID, page, pagesize);
+                  int totalRecord = 0;
 
                    ViewBag.Total = totalRecord;
                    ViewBag.Page = page;
-                   //ViewBag.Tagid = new BaiVietDAO().getTag(tagid);
                    int maxPage = 10;
                    int totalPage = 0;
 
@@ -202,7 +215,7 @@ namespace ShopAnDam.Controllers
                    ViewBag.First = 1;
                    ViewBag.Last = totalPage;
                    ViewBag.Next = page + 1;
-                   ViewBag.Prev = page - 1;*/
+                   ViewBag.Prev = page - 1;
                 return PartialView(model);
             }
         }

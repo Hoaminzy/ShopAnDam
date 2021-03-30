@@ -64,7 +64,7 @@
             //var test = $("#ddlncc option:selected").text();
             var sanPhamName = $("#ddlSanPham option:selected").text();
             var sanPhamValue = $("#ddlSanPham option:selected").val();
-            window.location.href = "/them-phieu?ProductID=" + sanPhamValue + "&soluong=1";
+            window.location.href = "/them-phieu-nhap?ProductID=" + sanPhamValue + "&soluong=1";
         });
     }
 }

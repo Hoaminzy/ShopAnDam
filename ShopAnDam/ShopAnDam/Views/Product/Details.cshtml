@@ -95,68 +95,6 @@
                     </div>
                     <a href="#" class="filter-btn">Lọc</a>
                 </div>
-                @*<div class="filter-widget">
-                        <h4 class="fw-title">Color</h4>
-                        <div class="fw-color-choose">
-                            <div class="cs-item">
-                                <input type="radio" id="cs-black">
-                                <label class="cs-black" for="cs-black">Black</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-violet">
-                                <label class="cs-violet" for="cs-violet">Violet</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-blue">
-                                <label class="cs-blue" for="cs-blue">Blue</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-yellow">
-                                <label class="cs-yellow" for="cs-yellow">Yellow</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-red">
-                                <label class="cs-red" for="cs-red">Red</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-green">
-                                <label class="cs-green" for="cs-green">Green</label>
-                            </div>
-                        </div>
-                    </div>*@
-                @* <div class="filter-widget">
-                        <h4 class="fw-title">Size</h4>
-                        <div class="fw-size-choose">
-                            <div class="sc-item">
-                                <input type="radio" id="s-size">
-                                <label for="s-size">s</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="m-size">
-                                <label for="m-size">m</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="l-size">
-                                <label for="l-size">l</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="xs-size">
-                                <label for="xs-size">xs</label>
-                            </div>
-                        </div>
-                    </div>*@
-                @*<div class="filter-widget">
-                        <h4 class="fw-title">Tags</h4>
-                        <div class="fw-tags">
-                            <a href="#">Towel</a>
-                            <a href="#">Shoes</a>
-                            <a href="#">Coat</a>
-                            <a href="#">Dresses</a>
-                            <a href="#">Trousers</a>
-                            <a href="#">Men's hats</a>
-                            <a href="#">Backpack</a>
-                        </div>
-                    </div>*@
             </div>
             <div class="col-lg-9">
                 <div class="row">
@@ -197,7 +135,6 @@
                     <div class="col-lg-6">
                         <div class="product-details">
                             <div class="pd-title">
-                                @*<span>@cate.Name</span>*@
                                 <h3>@Model.Name</h3>
                                 <input type="hidden" id="idSanPham" name="idSanPham" value="@Model.ID">
                                 <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
@@ -227,47 +164,13 @@
 
 
                             </div>
-                            @*<div class="pd-color">
-                                    <h6>Color</h6>
-                                    <div class="pd-color-choose">
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-black">
-                                            <label for="cc-black"></label>
-                                        </div>
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-yellow">
-                                            <label for="cc-yellow" class="cc-yellow"></label>
-                                        </div>
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-violet">
-                                            <label for="cc-violet" class="cc-violet"></label>
-                                        </div>
-                                    </div>
-                                </div>*@
-                            @*<div class="pd-size-choose">
-                                    <div class="sc-item">
-                                        <input type="radio" id="sm-size">
-                                        <label for="sm-size">s</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="md-size">
-                                        <label for="md-size">m</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="lg-size">
-                                        <label for="lg-size">l</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="xl-size">
-                                        <label for="xl-size">xs</label>
-                                    </div>
-                                </div>*@
+                          
                             @if (Model.Quantity > 0)
                             {
                                 <div class="quantity">
-                                    <div class="pro-qty">
+                                   @* <div class="pro-qty">
                                         <input type="text" value="1" class="txtQuantity">
-                                    </div>
+                                    </div>*@
                                     <a href="/them-gio-hang?ProductID=@Model.ID&Quantity=1" class="primary-btn pd-cart" id="btnUpdate">Thêm giỏ hàng</a>
                                 </div>
                             }
@@ -434,33 +337,6 @@
                                             </div>
                                         }
 
-                                        @*     <div class="co-item">
-                                                    <div class="avatar-pic">
-                                                        <img src="img/product-single/avatar-2.png" alt="">
-                                                    </div>
-                                                    <div class="avatar-text">
-                                                        <div class="at-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <h5>Roy Banks <span>27 Aug 2019</span></h5>
-                                                        <div class="at-reply">Nice !</div>
-                                                    </div>
-                                                </div>
-                                            </div>*@
-                                        @*       <div class="personal-rating">
-                                                <h6>Your Ratind</h6>
-                                                <div class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            </div>*@
                                         @if (userSession != null)
                                         {
                                             <div class="leave-comment">

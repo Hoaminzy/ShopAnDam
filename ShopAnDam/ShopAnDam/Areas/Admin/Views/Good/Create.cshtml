@@ -3,8 +3,10 @@
     ViewBag.Title = "Tạo phiếu";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@section jsFooter{
+    <script src="~/Assets/admin/js/controller/Good.js"></script>
 
-<script src="~/Assets/admin/js/controller/Good.js"></script>
+}
 
 @using (Html.BeginForm("Create", "Good", FormMethod.Post))
 {
@@ -12,7 +14,7 @@
         <div class="col-md-10">
             Nhà cung cấp:
             @Html.DropDownList("SupplyID", new SelectList(ViewBag.SupplyID, "ID", "Name"), "Chọn nhà cung cấp", new { @class = "form-control", @id = "ddlncc" })
-           <input type="hidden" id="hdnNCC" name="hdnNCC" />
+            <input type="hidden" id="hdnNCC" name="hdnNCC" />
         </div>
 
     </div>
@@ -24,6 +26,7 @@
         </div>
 
     </div>
+
     <div class="row">
         <div class="col">
             <table class="table">
@@ -38,16 +41,16 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td></td>
-                        <td>@item.product.Name</td>
-                        <td><input type="number" class="txtQuantity" data-id="@item.product.ID" value="@item.QuantityYC" /></td>
-                        <td>
-                            <a href="#" data-id="@item.product.ID" class="btn btn-white border-secondary bg-white btn-md mb-2 btn-delete">
-                                <i class="fa fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td></td>
+                            <td>@item.product.Name</td>
+                            <td><input type="number" class="txtQuantity" data-id="@item.product.ID" value="@item.QuantityYC" /></td>
+                            <td>
+                                <a href="#" data-id="@item.product.ID" class="btn btn-white border-secondary bg-white btn-md mb-2 btn-delete">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
                     }
 
                 </tbody>

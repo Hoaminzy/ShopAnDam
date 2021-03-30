@@ -29,7 +29,7 @@ namespace ShopAnDam.Models.Dao
         }
         public string SumOrder()
         {
-            return db.Order_Detail.Sum(x => x.Price * x.Quantity).GetValueOrDefault().ToString("N0");
+            return db.Order_Detail.Where(x => x.Order.Status==3).Sum(x => x.Price * x.Quantity).GetValueOrDefault().ToString("N0");
         }
     }
 }

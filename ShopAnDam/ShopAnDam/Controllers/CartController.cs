@@ -17,10 +17,10 @@ namespace ShopAnDam.Controllers
    
     public class CartController : Controller
     {
-        private string MerchantID = ConfigurationManager.AppSettings["MerchantID"].ToString();
+       /* private string MerchantID = ConfigurationManager.AppSettings["MerchantID"].ToString();
         private string MerchantPassword = ConfigurationManager.AppSettings["MerchantPassword"].ToString();
         private string MerchantEmail = ConfigurationManager.AppSettings["MerchantEmail"].ToString();
-        private string currentLink = ConfigurationManager.AppSettings["currentLink"].ToString();
+        private string currentLink = ConfigurationManager.AppSettings["currentLink"].ToString();*/
         // GET: Cart
         public ActionResult Index()
         {
@@ -183,7 +183,7 @@ namespace ShopAnDam.Controllers
                     dao.AddQuantity(item.Product.ID, item.Quantity);
 
                 }
-                if (!FormOfPayment.Equals("COD"))
+               /* if (!FormOfPayment.Equals("COD"))
                 {
                     RequestInfo info = new RequestInfo();
                     info.Merchant_id = MerchantID;
@@ -211,15 +211,15 @@ namespace ShopAnDam.Controllers
                     if (result.Error_code == "00")
                     {
                         Response.Redirect(result.Checkout_url);
-                       /* return Redirect("/hoan-thanh");*/
+                       *//* return Redirect("/hoan-thanh");*//*
                     }
                     else
                     {
                         return Redirect("/loi-thanh-toan");
                     }
 
-                }
-                string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/Client/Templates/MailForm.html"));
+                }*/
+                /* string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/client/template/SendMail.html"));
 
                 content = content.Replace("{{NameShip}}", NameShip);
                 content = content.Replace("{{PhoneShip}}", SDT);
@@ -229,14 +229,14 @@ namespace ShopAnDam.Controllers
                 var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
 
                 new Mail().SendMail(email, "Đơn hàng mới từ ANDAM88", content);
-                new Mail().SendMail(toEmail, "Đơn hàng mới từ ANDAM88", content);
+                new Mail().SendMail(toEmail, "Đơn hàng mới từ ANDAM88", content);*/
             }
             catch (Exception ex)
             {
                 string script = "<script>alert('" + ex.Message + "');</script>";
 
-                /*  return Redirect("/loi-thanh-toan");*/
-                return Redirect("/hoan-thanh");
+                 return Redirect("/loi-thanh-toan");
+               /* return Redirect("/hoan-thanh");*/
             }
             Session[CommonConStants.CartSession] = null;
             return Redirect("/hoan-thanh");
@@ -244,7 +244,7 @@ namespace ShopAnDam.Controllers
 
         public ActionResult PaymentSuccess()
         {
-           var order = new Order();
+          /* var order = new Order();
             String Token = Request["token"];
             if (Token != null)
             {
@@ -261,7 +261,7 @@ namespace ShopAnDam.Controllers
                 order.Payment_Method = 1;
                 new OrderDao().Update(order);
 
-            }
+            }*/
 
             return View();
         }
