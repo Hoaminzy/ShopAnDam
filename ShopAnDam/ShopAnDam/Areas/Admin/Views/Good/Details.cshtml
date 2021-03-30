@@ -1,4 +1,5 @@
-﻿@model List<ShopAnDam.Models.ViewModel.GoodViewModel>
+﻿@model PagedList.IPagedList<ShopAnDam.Models.ViewModel.GoodViewModel>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -6,7 +7,7 @@
 
 @section header{
     Danh sách hàng nhập
-    }
+}
 @section jsFooter{
 
     <script src="~/Assets/admin/js/controller/Good.js"></script>
@@ -31,7 +32,7 @@
     {
         <div class="form-group col-lg-12">
             <div class="col-md-8">
-                <a class="btn btn-theme" href="/Admin/Good/Create" ><i class="fa fa-plus"></i>Thêm mới</a>
+                <a class="btn btn-theme" href="/Admin/Good/Create"><i class="fa fa-plus"></i>Thêm mới</a>
             </div>
         </div>
     }
@@ -45,7 +46,9 @@
                         <th><i class="fa fa-bullhorn"></i> Nhà cung cấp</th>
                         <th><i class="fa fa-bookmark"></i> Sản phẩm</th>
                         <th><i class="fa fa-bookmark"></i> Số Lượng</th>
-                        <th><i class="fa fa-bookmark"></i> Giá nhập</th>
+                        @*<th><i class="fa fa-bookmark"></i> Giá nhập</th>*@
+                        <th><i class="fa fa-bookmark"></i>Ngày thêm</th>
+                       <th><i class="fa fa-bookmark"></i>Người thêm</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,11 +61,15 @@
                         <td>@item.NameSupply</td>
                         <td>@item.NameProduct</td>
                         <td>@item.QuantityYC</td>
-                        <td>@item.Prices</td>
+                        @* <td>@item.Prices</td>*@
+                        <td>@item.CreateDate</td>
+                       <td>@item.CreateBy</td>
+
                     </tr>
                     }
                 </tbody>
             </table>
+            @Html.PagedListPager(Model, page => Url.Action("Details", new { page, searchString = ViewBag.SearchString }))
         </div>
         <!-- /content-panel -->
     </div>

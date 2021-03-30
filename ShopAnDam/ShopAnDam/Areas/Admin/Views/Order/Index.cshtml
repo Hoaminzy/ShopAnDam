@@ -78,8 +78,8 @@
                         <th><i class="fa fa-bookmark"></i> Sô điện thoại</th>
                         <th><i class="fa fa-bookmark"></i> Địa chỉ</th>
                         <th><i class="fa fa-bookmark"></i>Trạng thái </th>
-                        <th><i class=" fa fa-edit"></i>Trạng thái TT</th>
-                        <th><i class=" fa fa-edit"></i>Ghi chú</th>
+                        @*<th><i class=" fa fa-edit"></i>Trạng thái TT</th>*@
+                       @* <th><i class=" fa fa-edit"></i>Ghi chú</th>*@
                         <th><i class=" fa fa-edit"></i>Ngày tạo</th>
                         <th><i class=" fa fa-edit"></i> Hành động</th>
                     </tr>
@@ -125,7 +125,7 @@
                                 <a href="#" class="label label-success label-mini btn-active">COD</a>
                             }
                         </td>*@
-                        <td>@item.Note</td>
+                     @*   <td>@item.Note</td>*@
                         <td>@item.CreateDate.Value.ToString("dd/MM/yyyy")</td>
                         <td>
                             <a class="btn btn-success btn-xs " href="/Admin/Order/OrderDetails/@item.ID"  data-id="@item.ID"  ><i class="fa fa-check"></i></a>

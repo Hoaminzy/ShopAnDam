@@ -1,5 +1,5 @@
-﻿@model List<ShopAnDam.Models.ViewModel.OrderViewModel>
-@*@using PagedList.Mvc;*@
+﻿@model PagedList.IPagedList<ShopAnDam.Models.ViewModel.OrderViewModel>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "OrderDetails";
@@ -18,42 +18,53 @@
             <p>Trạng thái: @Model.FirstOrDefault().Status<br /></p>
             <p>Hình thức thanh toán: @Model.FirstOrDefault().FormOfPayment<br /></p>
         </div>
-       
-        <div class="col-md-10 col-md-offset-1">
-            <div class="content-panel">
-                <table class="table table-striped table-advance table-hover">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th><i class="fa fa-bullhorn"></i> Tên sản phẩm</th>
-                            <th><i class="fa fa-bullhorn"></i>Đơn giá</th>
-                            <th><i class="fa fa-bookmark"></i> Số lượng</th>
-                            <th><i class="fa fa-bookmark"></i> Thành tiền</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        @if (Model.Count > 0)
+        {
+            decimal? tongtien = 0;
+            <div class="col-md-10 col-md-offset-1">
+                <div class="content-panel">
+                    <table class="table table-striped table-advance table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th><i class="fa fa-bullhorn"></i> Tên sản phẩm</th>
+                                <th><i class="fa fa-bullhorn"></i>Đơn giá</th>
+                                <th><i class="fa fa-bookmark"></i> Số lượng</th>
+                                <th><i class="fa fa-bookmark"></i> Thành tiền</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        @foreach (var item in Model)
-                        {
-                            var thanh_tien = item.Price * item.Quantity;
-                            using (Html.BeginForm())
+                            @foreach (var item in Model)
                             {
-                                @Html.AntiForgeryToken()
-                                <tr id="row_@item.ID">
-                                    <th></th>
-                                    <td>@item.ProductName</td>
-                                    <td>@item.Price</td>
-                                    <td>@item.Quantity</td>
-                                    <td>@thanh_tien</td>
-                                </tr>
+                                decimal? thanh_tien = item.Price * item.Quantity;
+                                tongtien += thanh_tien;
+                                using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <tr id="row_@item.ID">
+                                        <th></th>
+                                        <td>@item.ProductName</td>
+                                        <td>@item.Price</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@thanh_tien</td>
+                                        
+                                    </tr>
+                                }
                             }
-                        }
-                    </tbody>
-                </table>
-              @*  @Html.PagedListPager(Model, page => Url.Action("OrderDetails", new { page}))*@
+                            <tr>
+                                <td colspan="3" class="text-left"><strong>Tổng tiền:</strong> </td>
+                                <td colspan="1" class="text-right"><span style="color:red"> @(tongtien.Value.ToString("N0")) VNĐ</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("OrderDetails", new { page }))
 
+                </div>
             </div>
-        </div>
+        }
+
     </div>
 </div>
 

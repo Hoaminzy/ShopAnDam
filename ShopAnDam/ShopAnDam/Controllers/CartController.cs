@@ -41,9 +41,14 @@ namespace ShopAnDam.Controllers
             foreach(var item in sessionCart)
             {
                 var jsonItem = jsonCart.SingleOrDefault(x => x.Product.ID == item.Product.ID);
-                if(jsonItem != null)
+                if (jsonItem != null && jsonItem.Quantity <= item.Product.Quantity)
                 {
                     item.Quantity = jsonItem.Quantity;
+                }
+                else
+                {
+                    string outOfquantity = "Số lượng sản phẩm không đủ!";
+                    SetAlert(outOfquantity, "error");
                 }
             }
             return Json(new
@@ -112,6 +117,7 @@ namespace ShopAnDam.Controllers
             }
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public ActionResult Payments()
         {
@@ -124,6 +130,9 @@ namespace ShopAnDam.Controllers
 
             return View(list);
         }
+
+
+
         [HttpPost]
        [ValidateAntiForgeryToken]
         public ActionResult Payments(string NameShip, string email, string SDT, string address, string sBankCode, string FormOfPayment, FormCollection formCollection )
@@ -244,7 +253,7 @@ namespace ShopAnDam.Controllers
 
         public ActionResult PaymentSuccess()
         {
-          /* var order = new Order();
+           /*var order = new Order();
             String Token = Request["token"];
             if (Token != null)
             {
@@ -261,8 +270,8 @@ namespace ShopAnDam.Controllers
                 order.Payment_Method = 1;
                 new OrderDao().Update(order);
 
-            }*/
-
+            }
+*/
             return View();
         }
         public ActionResult PaymentFail()
@@ -271,6 +280,22 @@ namespace ShopAnDam.Controllers
 
             //new OrderDAO().CancelOrder(orderID);
             return View();
+        }
+        protected void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            else if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            else if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
         }
         public JsonResult LoadProvince()
         {

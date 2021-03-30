@@ -1,4 +1,5 @@
-﻿using ShopAnDam.Models.Dao;
+﻿using ShopAnDam.Common;
+using ShopAnDam.Models.Dao;
 using ShopAnDam.Models.Framework;
 using ShopAnDam.Models.ViewModel;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace ShopAnDam.Areas.Admin.Controllers
 {
@@ -23,13 +25,13 @@ namespace ShopAnDam.Areas.Admin.Controllers
             return View(model);
         }
 
-        public ActionResult Details( /*int page = 1, int pagesize = 5*/)
+        public ActionResult Details( int page = 1, int pagesize = 10)
         {
-          /*  int totalRecord = 0;*/
+            int totalRecord = 0;
             var dao = new GoodDao();
-            var model = dao.ListAllGood(/*ref totalRecord, page, pagesize*/);
+            var model = dao.ListAllGood(ref totalRecord, page, pagesize);
 
-            /*ViewBag.Total = totalRecord;
+            ViewBag.Total = totalRecord;
             ViewBag.Page = page;
 
             int maxPage = 10;
@@ -40,7 +42,7 @@ namespace ShopAnDam.Areas.Admin.Controllers
             ViewBag.First = 1;
             ViewBag.Last = totalPage;
             ViewBag.Next = page + 1;
-            ViewBag.Prev = page - 1;*/
+            ViewBag.Prev = page - 1;
 
             return View(model);
         }
@@ -86,6 +88,24 @@ namespace ShopAnDam.Areas.Admin.Controllers
             //setViewBagNCC();
             return Redirect("/Admin/Good/Create");
         }
+        public JsonResult Update(String productModel)
+        {
+            var jsonProduct = new JavaScriptSerializer().Deserialize<List<GoodViewModel>>(productModel);
+            var sessionProduct = (List<GoodViewModel>)Session[SESSION_GOOD];
+            foreach (var item in sessionProduct)
+            {
+                var jsonItem = jsonProduct.SingleOrDefault(x => x.product.ID == item.product.ID);
+                if (jsonItem != null)
+                {
+                    item.QuantityYC = jsonItem.QuantityYC;
+                }
+            }
+            Session[SESSION_GOOD] = sessionProduct;
+            return Json(new
+            {
+                status = true
+            });
+        }
         public void setViewBagSupply(long? selectedID = null)
         {
             var dao = new SupplyDao();
@@ -114,19 +134,22 @@ namespace ShopAnDam.Areas.Admin.Controllers
          public ActionResult Create(FormCollection formcollection)
          {
              var good = new Good();
-
-      int ncc = int.Parse(formcollection["hdnNCC"]);
+            var userSession = (UserLogin)Session[CommonConStants.USER_SESSION];
+            good.CreateBy = userSession.UserName;
+            good.CreateDate = DateTime.Now;
+            int ncc = int.Parse(formcollection["hdnNCC"]);
             good.SupplyID = ncc;
             try
              {
                  var id = new GoodDao().Insert(good);
-                
+               
                  var goodlist = (List<GoodViewModel>)Session[SESSION_GOOD];
                  var detailDao = new GoodDao();
                  var addquantity = new ProductDao();
                  foreach (var item in goodlist)
                  {
                      var goods = new Good_Detail();
+                   
                      goods.ProductID = item.product.ID;
                      goods.GoodID = (int)id;
                      goods.Quantity = item.QuantityYC;

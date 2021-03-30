@@ -24,18 +24,18 @@
 
         [StringLength(150)]
         [Display(Name = "Tên sản phẩm")]
-          [Required]
+         
         public string Name { get; set; }
       
         
         [StringLength(50)]
         [Display(Name = "Mã sản phẩm")]
-    /*   [Required(ErrorMessage = "Hãy nhập mã sản phẩm")]*/
+ /*      [Required(ErrorMessage = "Hãy nhập mã sản phẩm")]*/
         public string Code { get; set; }
 
         [StringLength(150)]
         [Display(Name = "Tiêu đề ngắn")]
-    /*    [Required(ErrorMessage = "Hãy nhập tiêu đề sản phẩm")]*/
+      /* [Required(ErrorMessage = "Hãy nhập tiêu đề sản phẩm")]*/
         public string Title { get; set; }
 
         [StringLength(150)]

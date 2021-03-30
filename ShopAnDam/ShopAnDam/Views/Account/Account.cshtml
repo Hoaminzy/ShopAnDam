@@ -113,7 +113,7 @@
                                                     <th>  </th>
                                                     <td>
                                                         <a href="/Account/EditAccount/@sessionUser.CustomerID" class="btn btn-warning" @*id="@sessionUser.CustomerID" onclick="Details(this.id)" *@data-id="@sessionUser.CustomerID" ><i class="fa fa-edit"></i>Thay Đổi Thông Tin</a>
-                                                        <a href="#" class="btn btn-warning"id="@sessionUser.CustomerID" onclick="ChangePass(@sessionUser.CustomerID)" data-id="@sessionUser.CustomerID" ><i class="fa fa-edit"></i>Đổi Mật Khẩu</a>
+                                                        <a href="/Account/ChangePassword/@sessionUser.CustomerID" class="btn btn-warning"@*id="@sessionUser.CustomerID" onclick="ChangePass(@sessionUser.CustomerID)" *@data-id="@sessionUser.CustomerID" ><i class="fa fa-edit"></i>Đổi Mật Khẩu</a>
 
                                                     </td>
                                                 </tr>

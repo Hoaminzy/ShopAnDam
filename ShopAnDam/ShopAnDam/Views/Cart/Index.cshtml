@@ -6,7 +6,7 @@
 }
 @section jsFooter{
 
-    <script src="~/Assets/client/js/controller/Cart.js"></script>    
+    <script src="~/Assets/client/js/controller/Cart.js"></script>
 }
 <!-- Breadcrumb Section Begin -->
 <div class="breacrumb-section">
@@ -14,8 +14,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text product-more">
-                    <a href="./home.html"><i class="fa fa-home"></i> Trang chủ</a>
-                    <a href="./shop.html"><i class="fa fa-plus-circle"></i>Sản phẩm</a>
+                    <a href="/" rel="nofollow"><i class="fa fa-home"></i> Trang chủ</a>
+                    <a href="/san-pham"><i class="fa fa-plus-circle"></i>Sản phẩm</a>
                     <span>Giỏ hàng</span>
                 </div>
             </div>
@@ -24,6 +24,11 @@
 </div>
 <!-- Breadcrumb Section Begin -->
 <!-- Shopping Cart Section Begin -->
+@if (TempData["AlertMessage"] != null)
+{
+    <div id="AlertBox" style="margin-left: 120px; margin-right: 800px" class="alert @TempData["AlertType"] hide">@Html.Raw(TempData["AlertMessage"])</div>
+}
+
 <section class="shopping-cart spad">
     <div class="container">
         <div class="row">
@@ -75,7 +80,7 @@
                                             </div>
                                         </td>
                                         <td class="total-price first-row">@((item.Product.MotionPrice.HasValue && (item.Product.MotionPrice.ToString() != "0") ? (item.Product.MotionPrice * item.Quantity).Value.ToString("N0") : (item.Product.Price * item.Quantity).Value.ToString("N0")))</td>
-                                        <td class="close-td first-row"><a href="#" data-id="@item.Product.ID" id="btnDelete"><i class="ti-close" ></i></a></td>
+                                        <td class="close-td first-row"><a href="#" data-id="@item.Product.ID" id="btnDelete"><i class="ti-close"></i></a></td>
                                     </tr>
 
                                 }
@@ -95,7 +100,7 @@
                                     <th>Giá</th>
                                     <th>Số lượng</th>
                                     <th>Tổng tiền</th>
-                                    <th><i class="ti-close" ></i></th>
+                                    <th><i class="ti-close"></i></th>
                                 </tr>
                             </thead>
 
@@ -118,7 +123,7 @@
                             <h6>Mã giảm giá</h6>
                             <form action="#" class="coupon-form" style="width:390px">
                                 <input type="text" placeholder="Enter your codes">
-                                <button type="submit" class="site-btn coupon-btn" >Sử dụng</button>
+                                <button type="submit" class="site-btn coupon-btn">Sử dụng</button>
                             </form>
                         </div>
                     </div>

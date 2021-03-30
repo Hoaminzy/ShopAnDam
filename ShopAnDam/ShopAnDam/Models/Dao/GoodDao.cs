@@ -42,9 +42,9 @@ namespace ShopAnDam.Models.Dao
             return model.OrderByDescending(x => x.GoodID).ToPagedList(page, pageSize);
         }
 
-        public IEnumerable<GoodViewModel> ListAllGood(/*ref int totalRecord, int page = 1, int pageSize = 10*/)
+        public IEnumerable<GoodViewModel> ListAllGood(ref int totalRecord, int page = 1, int pageSize = 10)
         {
-           /* totalRecord = db.Goods.Count();*/
+            totalRecord = db.Goods.Count();
             var model = (from a in db.Supplies
                          join b in db.Goods on a.ID equals b.SupplyID
                          join c in db.Good_Detail on b.ID equals c.GoodID
@@ -54,7 +54,9 @@ namespace ShopAnDam.Models.Dao
                              GoodID = b.ID,
                              SupplyName = a.Name,
                              ProductName = d.Name,
-                             QuantityYC = c.Quantity
+                             QuantityYC = c.Quantity,
+                             CreateDate = DateTime.Now,
+                             CreateBy = b.CreateBy
                          })
                          .AsEnumerable().Select(x => new GoodViewModel()
                          {
@@ -62,10 +64,12 @@ namespace ShopAnDam.Models.Dao
                              NameProduct = x.ProductName,
                              NameSupply = x.SupplyName,
                              QuantityYC = x.QuantityYC,
+                             CreateDate = x.CreateDate,
+                             CreateBy = x.CreateBy,
 
                          });
           
-            return model.OrderByDescending(x => x.NameProduct).ToList();
+            return model.OrderByDescending(x => x.NameProduct).ToPagedList(page, pageSize);
         }
         public int Insert(Good good)
         {

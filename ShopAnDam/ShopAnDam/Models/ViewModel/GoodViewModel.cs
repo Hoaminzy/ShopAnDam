@@ -30,5 +30,6 @@ namespace ShopAnDam.Models.ViewModel
         public int QuantityYC { get; set; }
         public decimal Prices { get; set; }
         public DateTime? CreateDate { get; set; }
+        public string CreateBy { get; set; }
     }
 }
